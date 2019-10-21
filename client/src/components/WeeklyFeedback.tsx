@@ -1,10 +1,7 @@
-import React, { Component } from 'react'
-import { reducerFunctions } from '../reducer/appReducer';
+import React, { Component } from 'react';
 import { IWindow } from '../framework/IWindow';
 
 declare let window: IWindow;
-
-interface ISurveyState { };
 
 export default class WeeklyFeedback extends Component {
     render() {

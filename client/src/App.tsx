@@ -10,6 +10,7 @@ import axios from 'axios';
 import { reducerFunctions } from './reducer/appReducer';
 import Startpage from './components/Home';
 import WeeklyFeedback from './components/WeeklyFeedback';
+import RandomGenerator from "./components/RandomGenerator";
 
 import { IWindow } from './framework/IWindow';
 
@@ -38,8 +39,20 @@ export default class App extends React.PureComponent<IProps> {
       type: ActionType.server_called
     }
     window.CS.clientAction(uiAction);
+
+    // Get 
     axios.get('/assets/read').then(response => {
       console.log("this data was loaded as a result of componentDidMount:");
+      console.log(response.data);
+      const responseAction: IAssetsLoadedAction = {
+        type: ActionType.add_assets_from_server,
+        assets: response.data as IAssetData[]
+      }
+      window.CS.clientAction(responseAction);
+    }).catch(function (error) { console.log(error); })
+
+    // Get alle registered useres
+    axios.get('/random-generator/read').then(response => {
       console.log(response.data);
       const responseAction: IAssetsLoadedAction = {
         type: ActionType.add_assets_from_server,
@@ -60,6 +73,7 @@ export default class App extends React.PureComponent<IProps> {
           <Route path="/login" component={Login} />
           <Route exact path="/" component={Startpage} />
           <Route path="/feedback" component={WeeklyFeedback} />
+          <Route path="/random-generator" component={RandomGenerator} />
         </Switch>
       </>
     );
