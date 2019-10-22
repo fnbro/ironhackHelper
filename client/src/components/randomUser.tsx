@@ -11,9 +11,9 @@ export default class RandomUser extends React.PureComponent<IProps> {
     render() {
         console.log()
         return (
-            <div>
-                {this.props.user.username}
-            </div>
+            <tr>
+                <td>{this.props.user.username}</td>
+            </tr>
 
         )
     }
