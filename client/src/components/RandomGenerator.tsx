@@ -22,28 +22,51 @@ export default class RandomGenerator extends Component<IProps, IState> {
 
     }
     render() {
-        return (
-            <div>
-                <h1>Pair Programming : Random Generator</h1>
-                <p>Click this button to get new pairs:&nbsp;
-            <button onClick={this.randomizeAllUsers}>Random</button>
-                </p>
-                <p>{window.CS.getBMState().members.length > 0 &&
-                    <h2>
-                        You have {window.CS.getBMState().members.length} members in your Bootcamp.
+
+        if ((window.CS.getBMState().members.length-1) % 2)
+            return (
+                <div>
+                    <h1>Pair Programming : Random Generator</h1>
+                    <p>Click this button to get new pairs:&nbsp;<button onClick={this.randomizeAllUsers}>Random</button></p>
+                    <p>{window.CS.getBMState().members.length > 0 &&
+                        <h2>
+                            You have {window.CS.getBMState().members.length} members in your Bootcamp.
                     </h2>
-                }</p>
-                <table>
-                    <tbody>
-                        <tr>
-                            <th>Partner 1</th>
-                            <th>Partner 2</th>
-                        </tr>
-                            {window.CS.getBMState().members.map(user => <RandomUser key={user._id} user={user} />)}
-                    </tbody>
-                </table>
-            </div>
-        )
+                    }</p>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>Partner 1</th>
+                                <th>Partner 2</th>
+                            </tr>
+                            <th>{window.CS.getBMState().members.slice(0, window.CS.getBMState().members.length / 2).map(user => <RandomUser key={user._id} user={user} />)}</th>
+                            <th>{window.CS.getBMState().members.slice(window.CS.getBMState().members.length / 2).map(user => <RandomUser key={user._id} user={user} />)}</th>
+                        </tbody>
+                    </table>
+                </div>
+            )
+        else
+            return (
+                <div>
+                    <h1>Pair Programming : Random Generator</h1>
+                    <p>Click this button to get new pairs:&nbsp;<button onClick={this.randomizeAllUsers}>Random</button></p>
+                    <p>{window.CS.getBMState().members.length > 0 &&
+                        <h2>
+                            You have {window.CS.getBMState().members.length} members in your Bootcamp.
+                </h2>
+                    }</p>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>Partner 1</th>
+                                <th>Partner 2</th>
+                            </tr>
+                            <td>{window.CS.getBMState().members.slice(0, window.CS.getBMState().members.length / 2).map(user => <RandomUser key={user._id} user={user} />)}</td>
+                            <td>{window.CS.getBMState().members.slice(window.CS.getBMState().members.length / 2).map(user => <RandomUser key={user._id} user={user} />)}</td>
+                        </tbody>
+                    </table>
+                </div>
+            )
     }
 
     randomizeAllUsers() {
