@@ -21,6 +21,10 @@ router.post("/signup", (req, res) => {
 
 
   User.findOne({ username }, "username", (err, user) => {
+    if (username === "" || userPassword === "") {
+      res.status(200).json({ errorMessage: "Type in a Username and a Password" });
+      return;
+    }
     if (user !== null) {
       console.log("User with username exists already:" + username);
       res.status(200).json({ errorMessage: 'this user already exists' });
@@ -51,7 +55,7 @@ router.post("/login", (req, res) => {
   const username = req.body.username;
   const userPassword = req.body.password;
   if (username === "" || userPassword === "") {
-    //res.status(200).json({ errorMessage: "Type in a Username and a Password" });
+    res.status(200).json({ errorMessage: "Type in a Username and a Password" });
     return;
   }
   User.findOne({ username }, "_id username password firstname lastname", (err, user) => {
