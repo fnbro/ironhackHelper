@@ -1,6 +1,7 @@
 export enum ActionType {
     INIT = "@@INIT",
     login_error = "login_error",
+    register_error = 'register_error',
     user_logged_in = "user_logged_in",
     user_logged_out = "user_logged_out",
     update_user = "update_user",

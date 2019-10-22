@@ -3,6 +3,7 @@ export interface IUser {
     lastname:string;
     username:string;
     password:string;
+    confirmpassword:string;
 }
 
 export interface ILogin{
@@ -57,7 +58,8 @@ export const initial:IState = {
             firstname:"",
             lastname:"",
             username:"",
-            password:""
+            password:"",
+            confirmpassword:""
         },
         assets:[],
         members:[]
