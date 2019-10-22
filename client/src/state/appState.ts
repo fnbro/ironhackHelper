@@ -3,12 +3,12 @@ export interface IUser {
     lastname:string;
     username:string;
     password:string;
+    confirmpassword:string;
 }
 
 export interface ILogin{
     errorMessage:string;
 }
-
 
 export interface IUI{
     counter: number;
@@ -53,7 +53,8 @@ export const initial:IState = {
             firstname:"",
             lastname:"",
             username:"",
-            password:""
+            password:"",
+            confirmpassword:""
         },
         assets:[]
 	}
