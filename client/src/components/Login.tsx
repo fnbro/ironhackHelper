@@ -13,7 +13,7 @@ export interface IErrorMessage extends IAction {
     errorMessage: string;
 }
 
-reducerFunctions[ActionType.login_error] = function (newState: IState, action: IErrorMessage) {
+ reducerFunctions[ActionType.login_error] = function (newState: IState, action: IErrorMessage) {
     newState.UI.waitingForResponse = false;
     newState.UI.Login.errorMessage = action.errorMessage;
     return newState
