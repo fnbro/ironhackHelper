@@ -5,12 +5,12 @@ import Register from './components/Register';
 import ShowAssets from './components/ShowAssets';
 import { Switch, Route } from 'react-router-dom';
 import { IAction, ActionType } from './framework/IAction';
-import { IAssetData, IState } from './state/appState'
+import { IAssetData, IState, IUserData } from './state/appState'
 import axios from 'axios';
 import { reducerFunctions } from './reducer/appReducer';
 import Startpage from './components/Home';
 import WeeklyFeedback from './components/WeeklyFeedback';
-import RandomGenerator from "./components/RandomGenerator";
+import RandomGenerator from "./components/randomUser";
 
 import { IWindow } from './framework/IWindow';
 
@@ -23,6 +23,10 @@ interface IProps {
 export interface IAssetsLoadedAction extends IAction {
   assets: IAssetData[]
 }
+export interface IUsersLoadedAction extends IAction {
+  registeredUsers: IUserData[]
+}
+
 reducerFunctions[ActionType.server_called] = function (newState: IState, action: IAction) {
   newState.UI.waitingForResponse = true;
   return newState;
@@ -54,9 +58,9 @@ export default class App extends React.PureComponent<IProps> {
     // Get alle registered useres
     axios.get('/random-generator/read').then(response => {
       console.log(response.data);
-      const responseAction: IAssetsLoadedAction = {
-        type: ActionType.add_assets_from_server,
-        assets: response.data as IAssetData[]
+      const responseAction: IUsersLoadedAction = {
+        type: ActionType.add_users_from_server,
+        registeredUsers: response.data as IUserData[]
       }
       window.CS.clientAction(responseAction);
     }).catch(function (error) { console.log(error); })

@@ -9,7 +9,6 @@ export interface ILogin{
     errorMessage:string;
 }
 
-
 export interface IUI{
     counter: number;
     loggedIn: boolean;
@@ -29,11 +28,16 @@ export interface IAssetData {
     asset_value: number;
   }
 
-export interface IBM{
-    user:IUser;
-    assets:IAssetData[]
+export interface IUserData {
+    _id: string;
+    user_name: string;    
 }
 
+export interface IBM{
+    user:IUser;
+    assets:IAssetData[];
+    members:IUserData[];
+}
 
 export interface IState{
     UI:IUI;
@@ -55,6 +59,7 @@ export const initial:IState = {
             username:"",
             password:""
         },
-        assets:[]
+        assets:[],
+        members:[]
 	}
 };
