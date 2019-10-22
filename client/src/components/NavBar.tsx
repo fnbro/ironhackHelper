@@ -28,6 +28,7 @@ export default class nav extends Component {
                             <NavLink to="/links">Helpful Links</NavLink>
                             <NavLink to="/settings">Settings</NavLink>
                         </div>
+
                     </div>
                     <div>
                         <NavLink to="/login">Logout</NavLink>

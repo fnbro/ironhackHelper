@@ -29,11 +29,16 @@ export interface IAssetData {
     asset_value: number;
   }
 
-export interface IBM{
-    user:IUser;
-    assets:IAssetData[]
+export interface IUserData {
+    _id: string;
+    username: string;    
 }
 
+export interface IBM{
+    user:IUser;
+    assets:IAssetData[];
+    members:IUserData[];
+}
 
 export interface IState{
     UI:IUI;
@@ -56,6 +61,7 @@ export const initial:IState = {
             password:"",
             confirmpassword:""
         },
-        assets:[]
+        assets:[],
+        members:[]
 	}
 };
