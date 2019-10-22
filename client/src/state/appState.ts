@@ -30,7 +30,7 @@ export interface IAssetData {
 
 export interface IUserData {
     _id: string;
-    user_name: string;    
+    username: string;    
 }
 
 export interface IBM{

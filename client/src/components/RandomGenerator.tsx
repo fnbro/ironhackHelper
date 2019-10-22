@@ -1,17 +1,18 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import RandomUser from './randomUser';
+import { IState, IUserData } from '../state/appState';
 
-import RandomUser from './randomUser'
-import mongoose from 'mongoose';
-import { IAction, ActionType } from '../framework/IAction';
-import { IAssetData, IState, IUserData } from '../state/appState'
-import axios from 'axios';
-
-import { IUser } from '../state/appState'
-
-import { IWindow } from '../framework/IWindow'
+import { reducerFunctions } from '../reducer/appReducer';
+import { IWindow } from '../framework/IWindow';
+import { ActionType } from '../framework/IAction';
+import { IUsersLoadedAction } from '../App';
 declare let window: IWindow;
 
 interface IProps { };
+
+reducerFunctions[ActionType.shuffle_members] = function (newState: IState, updateAction: IUserData) {
+    newState.UI.waitingForResponse=false;
+}
 
 export default class RandomGenerator extends Component<IProps, IState> {
     constructor(props: IProps) {
@@ -27,6 +28,7 @@ export default class RandomGenerator extends Component<IProps, IState> {
                 <p>Click this button to get new pairs:&nbsp;
             <button onClick={this.randomizeAllUsers}>Random</button>
                 </p>
+                
                 {window.CS.getBMState().members.map(user => <RandomUser key={user._id} user={user} />)}
             </div>
         )
@@ -35,7 +37,11 @@ export default class RandomGenerator extends Component<IProps, IState> {
     randomizeAllUsers() {
         let members: IUserData[] = window.CS.getBMState().members
         members = this.shuffleArray(members)
-
+        const action: IUsersLoadedAction = {
+            type: ActionType.shuffle_members,
+            members: members            
+        }
+        window.CS.clientAction(action)
     }
 
 

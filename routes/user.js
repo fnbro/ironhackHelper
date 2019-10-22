@@ -1,12 +1,12 @@
 const express = require('express');
-const route = express.Router();
+const router = express.Router();
 
 
 let User = require('../models/User');
 
 //R: read all Users
 
-route.route('/read').get(function (req, res) {
+router.route('/read').get(function (req, res) {
   console.log("got a request for users");
   User.find(function (err, user) {
     if (err) {
@@ -16,3 +16,6 @@ route.route('/read').get(function (req, res) {
     }
   });
 });
+
+
+module.exports = router;

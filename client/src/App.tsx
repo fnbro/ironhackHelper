@@ -10,7 +10,7 @@ import axios from 'axios';
 import { reducerFunctions } from './reducer/appReducer';
 import Startpage from './components/Home';
 import WeeklyFeedback from './components/WeeklyFeedback';
-import RandomGenerator from "./components/randomUser";
+import RandomGenerator from "./components/RandomGenerator";
 
 import { IWindow } from './framework/IWindow';
 
@@ -24,7 +24,7 @@ export interface IAssetsLoadedAction extends IAction {
   assets: IAssetData[]
 }
 export interface IUsersLoadedAction extends IAction {
-  registeredUsers: IUserData[]
+  members: IUserData[]
 }
 
 reducerFunctions[ActionType.server_called] = function (newState: IState, action: IAction) {
@@ -36,6 +36,12 @@ reducerFunctions[ActionType.add_assets_from_server] = function (newState: IState
   newState.BM.assets = action.assets;
   return newState;
 }
+reducerFunctions[ActionType.add_users_from_server] = function (newState: IState, action: IUsersLoadedAction) {
+  newState.UI.waitingForResponse = false;
+  newState.BM.members = action.members;
+  return newState;
+}
+
 export default class App extends React.PureComponent<IProps> {
 
   componentDidMount() {
@@ -57,11 +63,12 @@ export default class App extends React.PureComponent<IProps> {
 
     // Get alle registered useres
     axios.get('/random-generator/read').then(response => {
-      console.log(response.data);
+      
       const responseAction: IUsersLoadedAction = {
         type: ActionType.add_users_from_server,
-        registeredUsers: response.data as IUserData[]
+        members: response.data as IUserData[]
       }
+      console.log(responseAction.members);
       window.CS.clientAction(responseAction);
     }).catch(function (error) { console.log(error); })
   }

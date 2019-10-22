@@ -1,16 +1,18 @@
 import React from 'react';
 import { IUserData } from '../state/appState'
-
-interface IProps {
-    user: IUserData;
-}
+import { IWindow } from '../framework/IWindow'
+declare let window: IWindow;
+interface IProps { 
+    user: IUserData
+ }
 
 export default class RandomUser extends React.PureComponent<IProps> {
-
+    
     render() {
+        console.log()
         return (
             <div>
-                <p>{this.props.user.user_name}</p>
+                {this.props.user.username}
             </div>
 
         )
