@@ -8,6 +8,21 @@ export interface IUser {
     confirmpassword:string;
 }
 
+export enum INewsType {
+    solution = "Solution",
+    question = "Question",
+    note = "Note",
+    lab = "Lab"
+}
+
+export interface INewsData {
+    _id: string,
+    created_by?: string,
+    news_type: INewsType,
+    news_headline: string,
+    news_content: string
+}
+
 export interface ILogin {
     errorMessage: string;
 }
@@ -61,7 +76,8 @@ export interface IBM{
     user:IUser;
     assets:IAssetData[];
     members:IUserData[];
-    surveys: IFeedbackData[]
+    surveys: IFeedbackData[];
+    news: INewsData[]
 }
 
 // initial state 
@@ -85,6 +101,7 @@ export const initial: IState = {
         },
         assets:[],
         members:[],
-        surveys: []
+        surveys: [],
+        news: []
 	}
 };
