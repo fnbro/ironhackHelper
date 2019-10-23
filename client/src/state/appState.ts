@@ -1,14 +1,20 @@
+import Register from "../components/test";
+
 export interface IUser {
-    firstname: string;
-    lastname: string;
-    username: string;
-    password: string;
+    firstname:string;
+    lastname:string;
+    username:string;
+    password:string;
+    confirmpassword:string;
 }
 
 export interface ILogin {
     errorMessage: string;
 }
 
+export interface IRegister {
+    errorMessageRegister: string;
+}
 
 export interface IUI {
     counter: number;
@@ -21,6 +27,7 @@ export interface IUI {
     loggedIn: boolean;
     waitingForResponse: boolean;
     Login: ILogin;
+    Register: IRegister;
 }
 
 export interface IAssetData {
@@ -39,16 +46,21 @@ export interface IFeedbackData {
     feedback_comments: string;
 }
 
-export interface IBM {
-    user: IUser;
-    assets: IAssetData[];
-    surveys: IFeedbackData[]
-}
-
-
 export interface IState {
     UI: IUI;
     BM: IBM;
+}
+
+export interface IUserData {
+    _id: string;
+    username: string;    
+}
+
+export interface IBM{
+    user:IUser;
+    assets:IAssetData[];
+    members:IUserData[];
+    surveys: IFeedbackData[]
 }
 
 // initial state 
@@ -57,16 +69,19 @@ export const initial: IState = {
         counter: 0,
         loggedIn: false,
         waitingForResponse: false,
-        Login: { errorMessage: "" }
+        Login: {errorMessage:""},
+        Register: {errorMessageRegister:""}
     },
-    BM: {
-        user: {
-            firstname: "",
-            lastname: "",
-            username: "",
-            password: ""
+	BM: {
+        user:{
+            firstname:"",
+            lastname:"",
+            username:"",
+            password:"",
+            confirmpassword:""
         },
-        assets: [],
+        assets:[],
+        members:[],
         surveys: []
-    }
+	}
 };

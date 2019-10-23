@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import mongoose from 'mongoose';
 import { ActionType, IAction } from '../framework/IAction';
 import { reducerFunctions } from '../reducer/appReducer';
+
 import { IWindow } from '../framework/IWindow';
 import { IFeedbackData, IState } from '../state/appState'
 import axios from 'axios';
@@ -49,8 +50,7 @@ export default class WeeklyFeedback extends React.PureComponent<IFeedbackData, I
 
           event.preventDefault();
     }
-
-
+    
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
