@@ -29,35 +29,41 @@ reducerFunctions[ActionType.user_logged_out] = function (newState: IState, actio
     newState.UI.waitingForResponse = false;
     newState.UI.Login.errorMessage = "";
     newState.UI.loggedIn = false;
-    newState.BM.user = {lastname:"",firstname:"",username:"",password:"", confirmpassword:""};
+
+    newState.BM.user = { lastname: "", firstname: "", username: "", password: "", confirmpassword: "" };
+
     return newState
 }
 
 export default class Login extends Component {
     render() {
         if (window.CS.getUIState().loggedIn)
-        return (
-            <div>
-                <p>You are logged in as {window.CS.getBMState().user.username}</p>
-                <button onClick={this.handleLogout}>Logout</button>
-            </div>
-        )
-    else
-        return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <label htmlFor="username">Username:</label>
-                    <input type="username" placeholder="Your username" onChange={this.handleUsernameChange} value={window.CS.getBMState().user.username} />
-                    <br />
-                    <label htmlFor="password">Password:</label>
-                    <input type="password" placeholder="********" onChange={this.handlePasswordChange} value={window.CS.getBMState().user.password} />
-                    <br />
-                    <input type="submit" value="Login" />
-                </form>
-                <p>{window.CS.getUIState().Login.errorMessage}</p>
-
-            </div>
-        )
+            return (
+                <div>
+                    <p>You are logged in as {window.CS.getBMState().user.username}</p>
+                    <button className="join-btn" onClick={this.handleLogout}>Logout</button>
+                </div>
+            )
+        else
+            return (
+                <div className="signupSection">
+                    <form onSubmit={this.handleSubmit}>
+                        <h2 className="signup">Login</h2>
+                        <ul className="noBullet">
+                            <li>
+                                <label htmlFor="username"></label>
+                                <input className="inputFields" type="username" placeholder="Your username" onChange={this.handleUsernameChange} value={window.CS.getBMState().user.username} />
+                            </li>
+                            <li>
+                                <label htmlFor="password"></label>
+                                <input className="inputFields" type="password" placeholder="password" onChange={this.handlePasswordChange} value={window.CS.getBMState().user.password} />
+                            </li>
+                            <input className= "join-btn"  type="submit" value="Login" />
+                            <p className="errorMessage">{window.CS.getUIState().Login.errorMessage}</p>
+                        </ul>
+                    </form>
+                </div>
+            )
     }
 
     handleUsernameChange(event: any) {

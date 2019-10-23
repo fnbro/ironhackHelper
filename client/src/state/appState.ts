@@ -1,3 +1,5 @@
+import Register from "../components/test";
+
 export interface IUser {
     firstname:string;
     lastname:string;
@@ -8,6 +10,10 @@ export interface IUser {
 
 export interface ILogin{
     errorMessage:string;
+}
+
+export interface IRegister {
+    errorMessageRegister: string;
 }
 
 export interface IUI{
@@ -21,6 +27,7 @@ export interface IUI {
     loggedIn: boolean;
     waitingForResponse: boolean;
     Login: ILogin;
+    Register: IRegister;
 }
 
 export interface IAssetData {
@@ -51,7 +58,8 @@ export const initial:IState = {
 		counter: 0,
 		loggedIn: false,
         waitingForResponse: false,
-        Login: {errorMessage:""}
+        Login: {errorMessage:""},
+        Register: {errorMessageRegister:""}
     },
 	BM: {
         user:{
