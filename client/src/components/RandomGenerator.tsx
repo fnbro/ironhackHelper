@@ -22,6 +22,15 @@ export default class RandomGenerator extends Component<IProps, IState> {
 
     }
     render() {
+        const randomUsers: any = [];
+        window.CS.getBMState().members.forEach((user, ind, arr) => {
+            if(ind % 2) 
+               randomUsers.push(<RandomUser key={user._id} users={[arr[ind-1], arr[ind]]} />)
+            if(arr.length%2 && ind === arr.length-1)
+                randomUsers.push(<tr>
+                    <td>{user.username}</td>
+                    </tr>)
+    }, [])
         return (
             <div>
                 <h1>Pair Programming : Random Generator</h1>
@@ -39,7 +48,7 @@ export default class RandomGenerator extends Component<IProps, IState> {
                             <th>Partner 1</th>
                             <th>Partner 2</th>
                         </tr>
-                            {window.CS.getBMState().members.map(user => <RandomUser key={user._id} user={user} />)}
+                            {randomUsers}
                     </tbody>
                 </table>
             </div>
