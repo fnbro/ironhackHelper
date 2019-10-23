@@ -50,18 +50,18 @@ export default class Newsticker extends Component<IProps, IState> {
           <form onSubmit={this.handleSubmit}>
             <div className="row">
               <div className="col-25">
-                <label htmlFor="lname">Headline</label>
+                <label htmlFor="headline">Headline</label>
               </div>
               <div className="col-75">
-                <input type="text" id="lname" name="lastname" placeholder="Your headline.." />
+                <input type="text" id="lname" name="headline" placeholder="Your headline.." />
               </div>
             </div>
             <div className="row">
               <div className="col-25">
-                <label htmlFor="country">Type</label>
+                <label htmlFor="type">Type</label>
               </div>
               <div className="col-75">
-                <select id="country" name="country">
+                <select id="country" name="type">
                   <option value="solution">Solution</option>
                   <option value="question">Question</option>
                   <option value="note">Note</option>
@@ -71,10 +71,10 @@ export default class Newsticker extends Component<IProps, IState> {
             </div>
             <div className="row">
               <div className="col-25">
-                <label htmlFor="subject">Content</label>
+                <label htmlFor="content">Content</label>
               </div>
               <div className="col-75">
-                <textarea id="subject" name="subject" placeholder="Write something.."></textarea>
+                <textarea id="subject" name="content" placeholder="Write something.."></textarea>
               </div>
             </div>
             <div className="row">
@@ -90,7 +90,7 @@ export default class Newsticker extends Component<IProps, IState> {
     const newNews: INewsData = {
       _id: mongoose.Types.ObjectId().toString(),
       news_type: INewsType.solution,
-      news_headline: "TestHeadline2",
+      news_headline: "testst",
       news_content: "TestContent2"
     }
     const action: INewsAction = {
