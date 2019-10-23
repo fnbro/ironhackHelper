@@ -8,18 +8,18 @@ export interface IUser {
     confirmpassword:string;
 }
 
-export interface ILogin{
-    errorMessage:string;
+export interface ILogin {
+    errorMessage: string;
 }
 
 export interface IRegister {
     errorMessageRegister: string;
 }
 
-export interface IUI{
+export interface IUI {
     counter: number;
     loggedIn: boolean;
-    waitingForResponse:boolean;
+    waitingForResponse: boolean;
 }
 
 export interface IUI {
@@ -34,7 +34,22 @@ export interface IAssetData {
     _id: string;
     asset_name: string;
     asset_value: number;
-  }
+}
+
+export interface IFeedbackData {
+    _id: string;
+    created_by: string;
+    feedback_week: number;
+    feedback_satisfied: number;
+    feedback_happy: any;
+    feedback_unhappy: any;
+    feedback_comments: string;
+}
+
+export interface IState {
+    UI: IUI;
+    BM: IBM;
+}
 
 export interface IUserData {
     _id: string;
@@ -45,18 +60,14 @@ export interface IBM{
     user:IUser;
     assets:IAssetData[];
     members:IUserData[];
-}
-
-export interface IState{
-    UI:IUI;
-    BM:IBM;
+    surveys: IFeedbackData[]
 }
 
 // initial state 
-export const initial:IState = {
-	UI: {
-		counter: 0,
-		loggedIn: false,
+export const initial: IState = {
+    UI: {
+        counter: 0,
+        loggedIn: false,
         waitingForResponse: false,
         Login: {errorMessage:""},
         Register: {errorMessageRegister:""}
@@ -70,6 +81,7 @@ export const initial:IState = {
             confirmpassword:""
         },
         assets:[],
-        members:[]
+        members:[],
+        surveys: []
 	}
 };

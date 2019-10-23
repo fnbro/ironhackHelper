@@ -14,6 +14,7 @@ export enum ActionType {
     server_called = "server_called",
     asset_updated = "asset_updated",
     add_assets_from_server = "add_assets_from_server",
+    add_survey = "add_survey",
     add_users_from_server = "add_users_from_server",
     shuffle_members = "shuffle_members"
 }
