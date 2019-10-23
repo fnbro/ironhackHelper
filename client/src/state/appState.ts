@@ -19,7 +19,8 @@ export interface IRegister {
 export interface IUI {
     counter: number;
     loggedIn: boolean;
-    waitingForResponse: boolean;
+    waitingForResponse:boolean;
+    isMember:boolean;
 }
 
 export interface IUI {
@@ -70,7 +71,9 @@ export const initial: IState = {
         loggedIn: false,
         waitingForResponse: false,
         Login: {errorMessage:""},
-        Register: {errorMessageRegister:""}
+        Register: {errorMessageRegister:""},
+        isMember: false
+        
     },
 	BM: {
         user:{

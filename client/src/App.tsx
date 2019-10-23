@@ -10,7 +10,9 @@ import axios from 'axios';
 import { reducerFunctions } from './reducer/appReducer';
 import Startpage from './components/Home';
 import WeeklyFeedback from './components/WeeklyFeedback';
+import Settings from './components/Settings';
 import RandomGenerator from "./components/RandomGenerator";
+
 
 import { IWindow } from './framework/IWindow';
 
@@ -84,6 +86,7 @@ export default class App extends React.PureComponent<IProps> {
           <Route path="/login" component={Login} />
           <Route exact path="/" component={Startpage} />
           <Route path="/feedback" component={WeeklyFeedback} />
+          <Route path="/settings" component={Settings} />
           <Route path="/random-generator" component={RandomGenerator} />
         </Switch>
       </>
