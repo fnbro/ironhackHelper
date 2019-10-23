@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import RandomUser from './randomUser';
 import { IState, IUserData } from '../state/appState';
-
+import axios from 'axios';
 import { reducerFunctions } from '../reducer/appReducer';
 import { IWindow } from '../framework/IWindow';
 import { ActionType } from '../framework/IAction';
@@ -24,13 +24,13 @@ export default class RandomGenerator extends Component<IProps, IState> {
     render() {
         const randomUsers: any = [];
         window.CS.getBMState().members.forEach((user, ind, arr) => {
-            if(ind % 2) 
-               randomUsers.push(<RandomUser key={user._id} users={[arr[ind-1], arr[ind]]} />)
-            if(arr.length%2 && ind === arr.length-1)
+            if (ind % 2)
+                randomUsers.push(<RandomUser key={user._id} users={[arr[ind - 1], arr[ind]]} />)
+            if (arr.length % 2 && ind === arr.length - 1)
                 randomUsers.push(<tr>
                     <td className="partner">{user.username}</td>
-                    </tr>)
-    }, [])
+                </tr>)
+        }, [])
         return (
             <div id="section">
                 <h1>Pair Programming : Random Generator</h1>
@@ -48,7 +48,7 @@ export default class RandomGenerator extends Component<IProps, IState> {
                             <th>Partner 1</th>
                             <th>Partner 2</th>
                         </tr>
-                            {randomUsers}
+                        {randomUsers}
                     </tbody>
                 </table>
             </div>
@@ -56,6 +56,16 @@ export default class RandomGenerator extends Component<IProps, IState> {
     }
 
     randomizeAllUsers() {
+        // Get alle registered useres
+        axios.get('/random-generator/read').then(response => {
+            const responseAction: IUsersLoadedAction = {
+                type: ActionType.add_users_from_server,
+                members: response.data as IUserData[]
+            }
+            console.log(responseAction.members);
+            window.CS.clientAction(responseAction);
+        }).catch(function (error) { console.log(error); })
+
         let members: IUserData[] = window.CS.getBMState().members
         members = this.shuffleArray(members)
         const action: IUsersLoadedAction = {

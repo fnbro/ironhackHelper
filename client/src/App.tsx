@@ -63,16 +63,6 @@ export default class App extends React.PureComponent<IProps> {
       window.CS.clientAction(responseAction);
     }).catch(function (error) { console.log(error); })
 
-    // Get alle registered useres
-    axios.get('/random-generator/read').then(response => {
-      
-      const responseAction: IUsersLoadedAction = {
-        type: ActionType.add_users_from_server,
-        members: response.data as IUserData[]
-      }
-      console.log(responseAction.members);
-      window.CS.clientAction(responseAction);
-    }).catch(function (error) { console.log(error); })
   }
 
   render() {
