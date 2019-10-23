@@ -51,7 +51,7 @@ export default class nav extends Component {
                         <i id="fa fa-caret-down"></i>
                         </button>
                         <div id="dropdown-content">
-                            <NavLink to="/random">Pair Programming</NavLink>
+                            <NavLink to="/random-generator">Pair Programming</NavLink>
                             <NavLink to="/links">Helpful Links</NavLink>
                             <NavLink to="/settings">Settings</NavLink>
                         </div>

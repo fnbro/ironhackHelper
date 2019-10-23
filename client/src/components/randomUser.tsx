@@ -3,7 +3,7 @@ import { IUserData } from '../state/appState'
 import { IWindow } from '../framework/IWindow'
 declare let window: IWindow;
 interface IProps { 
-    user: IUserData
+    users: any
  }
 
 export default class RandomUser extends React.PureComponent<IProps> {
@@ -11,7 +11,10 @@ export default class RandomUser extends React.PureComponent<IProps> {
     render() {
         console.log()
         return (
-                <td>{this.props.user.username}</td>
+            <tr>
+                <td>{this.props.users[0].username}</td>
+                <td>{this.props.users[1].username}</td>
+            </tr>
         )
     }
 
