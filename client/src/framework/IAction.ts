@@ -12,7 +12,8 @@ export enum ActionType {
     render_test = "render_test",
     server_called = "server_called",
     asset_updated = "asset_updated",
-    add_assets_from_server = "add_assets_from_server" 
+    add_assets_from_server = "add_assets_from_server",
+    add_survey = "add_survey"
 }
 export interface IAction {
     type: ActionType;
