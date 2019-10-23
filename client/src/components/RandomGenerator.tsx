@@ -21,6 +21,19 @@ export default class RandomGenerator extends Component<IProps, IState> {
         this.shuffleArray = this.shuffleArray.bind(this);
 
     }
+
+    componentDidMount() {
+        // Get alle registered useres
+        axios.get('/random-generator/read').then(response => {
+            const responseAction: IUsersLoadedAction = {
+                type: ActionType.add_users_from_server,
+                members: response.data as IUserData[]
+            }
+            console.log(responseAction.members);
+            window.CS.clientAction(responseAction);
+        }).catch(function (error) { console.log(error); })
+    }
+    
     render() {
         const randomUsers: any = [];
         window.CS.getBMState().members.forEach((user, ind, arr) => {
@@ -56,16 +69,6 @@ export default class RandomGenerator extends Component<IProps, IState> {
     }
 
     randomizeAllUsers() {
-        // Get alle registered useres
-        axios.get('/random-generator/read').then(response => {
-            const responseAction: IUsersLoadedAction = {
-                type: ActionType.add_users_from_server,
-                members: response.data as IUserData[]
-            }
-            console.log(responseAction.members);
-            window.CS.clientAction(responseAction);
-        }).catch(function (error) { console.log(error); })
-
         let members: IUserData[] = window.CS.getBMState().members
         members = this.shuffleArray(members)
         const action: IUsersLoadedAction = {
