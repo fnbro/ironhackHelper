@@ -28,14 +28,14 @@ export default class RandomGenerator extends Component<IProps, IState> {
                randomUsers.push(<RandomUser key={user._id} users={[arr[ind-1], arr[ind]]} />)
             if(arr.length%2 && ind === arr.length-1)
                 randomUsers.push(<tr>
-                    <td>{user.username}</td>
+                    <td className="partner">{user.username}</td>
                     </tr>)
     }, [])
         return (
-            <div>
+            <div id="section">
                 <h1>Pair Programming : Random Generator</h1>
                 <p>Click this button to get new pairs:&nbsp;
-            <button onClick={this.randomizeAllUsers}>Random</button>
+            <button className="randomBtn" onClick={this.randomizeAllUsers}>Random</button>
                 </p>
                 <p>{window.CS.getBMState().members.length > 0 &&
                     <h2>
