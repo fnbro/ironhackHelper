@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
 import { ActionType, IAction } from '../framework/IAction';
-import { IState, IUser } from '../state/appState'
+import { IState, IUser, IUserData } from '../state/appState'
 import axios from 'axios';
 import { IWindow } from '../framework/IWindow';
 import { reducerFunctions } from '../reducer/appReducer';
 import { IUserAction } from './Register';
+import { IUsersLoadedAction } from '../App';
 
 declare let window: IWindow;
+
+export interface IUserAction extends IAction {
+  user: IUser
+}
 
 reducerFunctions[ActionType.update_user] = function (newState: IState, updateAction: IUserAction) {
   newState.BM.settings.foundUser = updateAction.user;
@@ -14,6 +19,7 @@ reducerFunctions[ActionType.update_user] = function (newState: IState, updateAct
 }
 
 reducerFunctions[ActionType.select_user] = function (newState: IState, updateAction: IUserAction) {
+  newState.UI.waitingForResponse = false;
   newState.BM.settings.foundUser = updateAction.user;
   return newState
 }
@@ -26,6 +32,18 @@ reducerFunctions[ActionType.set_role] = function (newState: IState, action: IUse
 
 
 export default class Settings extends Component {
+  componentDidMount() {
+    // Get alle registered useres
+    axios.get('/random-generator/read').then(response => {
+        const responseAction: IUsersLoadedAction = {
+            type: ActionType.add_users_from_server,
+            members: response.data as IUserData[]
+        }
+        console.log(responseAction.members);
+        window.CS.clientAction(responseAction);
+    }).catch(function (error) { console.log(error); })
+  }
+  
   render() {
     return (
       <div>
@@ -42,27 +60,16 @@ export default class Settings extends Component {
             <label htmlFor="password"></label>
             <input type="username" placeholder="username" onChange={this.handleUsernameRoleChange} value={window.CS.getBMState().settings.foundUser.username} />
           </p>
-          <input type='button' onClick= {this.handleSearch} value="search for the User" />
-          <input type="submit" onClick= {this.handleSubmit} value="set Role" />
+          <input type='button' onClick= {this.handleSearch} value="search" />
+          <input type="submit" onClick= {this.handleSubmit} value="change" />
         </form>
       </div>
     )
   }
 
-  handleOptionSelection = (event: any) => {
-    let userMember = window.CS.getBMState().settings.foundUser;
-    userMember.isMember = event.target.value === 'Member' ? true : false;
-    let userAdmin = window.CS.getBMState().settings.foundUser;
-    userAdmin.isAdmin = event.target.value === 'Admin' ? true : false;
-    const action: IUserAction = {
-      type: ActionType.make_member,
-      user: userMember || userAdmin
-    }
-    window.CS.clientAction(action);
-  }
 
   handleMemberAndAdmin(event: any) {
-    console.log(window.CS.getBMState().settings.foundUser.isMember)
+    console.log(window.CS.getBMState().settings.foundUser)
     let userMember = window.CS.getBMState().settings.foundUser
     userMember.isMember = event.target.value === 'Member' ? true : false;
     let userAdmin = window.CS.getBMState().settings.foundUser;
@@ -76,14 +83,19 @@ export default class Settings extends Component {
   }
 
   handleSearch = () => {
-    const search: any = window.CS.getBMState().members.filter(user => user.username.toLowerCase() === window.CS.getBMState().settings.foundUser.username.toLowerCase());
-    const action: IUserAction = {
-      type: ActionType.select_user,
-      user: search[0]
+    const search: any = window.CS.getBMState().members.filter(user => user.username === window.CS.getBMState().settings.foundUser.username);
+    {
+      const action: IUserAction = {
+        type: ActionType.select_user,
+        user: search[0]
+      }
+      window.CS.clientAction(action);
+      
+      const selected = document.getElementsByName('role')[0] as HTMLSelectElement;
+      selected.options[window.CS.getBMState().settings.foundUser.isAdmin ? 1 : (window.CS.getBMState().settings.foundUser.isMember? 0 : 1)].selected = true;
     }
-    window.CS.clientAction(action);
-    const selected = document.getElementsByName('role')[0] as HTMLSelectElement;
-    selected.options[window.CS.getBMState().settings.foundUser.isAdmin ? 1 : (window.CS.getBMState().settings.foundUser.isMember? 0 : 2)].selected = true;
+   
+    
   }
 
   handleUsernameRoleChange(event: any) {
