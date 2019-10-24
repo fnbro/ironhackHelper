@@ -65,7 +65,6 @@ export default class RandomGenerator extends Component<IProps, IState> {
         window.CS.clientAction(action)
     }
 
-
     shuffleArray(array: IUserData[]) {
         let currentIndex = array.length, temporaryValue, randomIndex;
 
