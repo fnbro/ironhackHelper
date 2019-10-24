@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import './navbar.css';
 import './account.scss';
+import './randomUser.css'
 import * as serviceWorker from './serviceWorker';
 import { Router } from 'react-router-dom';
 import history from './framework/history';
