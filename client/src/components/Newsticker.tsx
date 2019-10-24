@@ -18,12 +18,14 @@ export interface INewsAction extends IAction {
 // READ ALL NEWS
 reducerFunctions[ActionType.add_news_from_server] = function (newState: IState, action: INewsLoadedAction) {
   newState.UI.waitingForResponse = false;
-  return newState;
+  newState.BM.allNews = action.news
+  console.log(newState.BM.allNews)
+  return newState
 }
 
 // CREATE NEW NEWS
 reducerFunctions[ActionType.create_news] = function (newState: IState, updateAction: INewsAction) {
-  console.log(updateAction.news);
+  newState.BM.allNews.push(updateAction.news);
   newState.UI.waitingForResponse = false;
   return newState
 }
@@ -50,7 +52,7 @@ export default class Newsticker extends Component<IProps, IState> {
     axios.get('/news/read').then(response => {
       const responseAction: INewsLoadedAction = {
         type: ActionType.add_news_from_server,
-        news: response.data as INewsData
+        news: response.data as INewsData[]
       }
       console.log(responseAction.news);
       window.CS.clientAction(responseAction);
@@ -58,10 +60,11 @@ export default class Newsticker extends Component<IProps, IState> {
   }
 
   render() {
+    console.log(window.CS.getBMState().allNews)
     return (
       <div>
         <div>
-          {/* {window.CS.getBMState().news.map(news => <NewsArticle key={news._id} news={news} />)} */}
+          {window.CS.getBMState().allNews.map(news => <NewsArticle key={news._id} news={news} />)}
         </div>
         <div className="container">
           <form onSubmit={this.handleSubmit}>
@@ -105,10 +108,15 @@ export default class Newsticker extends Component<IProps, IState> {
   }
 
   handleSubmit(event: any) {
+    const uiAction: IAction = {
+      type: ActionType.server_called
+    }
+    window.CS.clientAction(uiAction);
     axios.post('/news/add', window.CS.getBMState().news)
       .then(res => {
-        const action: IAction = {
-          type: ActionType.create_news
+        const action: INewsAction = {
+          type: ActionType.create_news,
+          news: res.data
         }
         window.CS.clientAction(action);
         console.log(res.data)

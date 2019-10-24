@@ -30,7 +30,7 @@ export interface IUsersLoadedAction extends IAction {
   members: IUserData[]
 }
 export interface INewsLoadedAction extends IAction {
-  news: INewsData
+  news: INewsData[]
 }
 
 reducerFunctions[ActionType.server_called] = function (newState: IState, action: IAction) {

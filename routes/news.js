@@ -9,7 +9,7 @@ newsRoutes.route('/add').post(function (req, res) {
     let news = new News(req.body);
     news.save()
         .then(news => {
-            res.status(200).json({ 'news': 'news added successfully' });
+            res.status(200).json(news);
         })
         .catch(err => {
             res.status(400).send('adding new news failed');
@@ -19,7 +19,6 @@ newsRoutes.route('/add').post(function (req, res) {
 newsRoutes.route('/read').get(function (req, res) {
   console.log("got a request for news");
   News.find(function (err, user) {
-    console.log(user)
     if (err) {
       console.log(err);
     } else {

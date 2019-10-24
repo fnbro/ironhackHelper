@@ -17,6 +17,7 @@ export enum INewsType {
 }
 
 export interface INewsData {
+    _id?: string,
     created_by?: string,
     news_type: INewsType,
     news_headline: string,
@@ -77,6 +78,7 @@ export interface IBM{
     assets:IAssetData[];
     members:IUserData[];
     surveys: IFeedbackData[];
+    allNews: INewsData[],
     news: INewsData
 }
 
@@ -102,6 +104,7 @@ export const initial: IState = {
         assets:[],
         members:[],
         surveys: [],
+        allNews: [],
         news: {
             news_headline:"",
             news_content:"",
