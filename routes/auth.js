@@ -87,4 +87,16 @@ router.get("/logout", (req, res, next) => {
   });
 });
 
+
+router.put("/settings", (req, res) => {
+  User.findByIdAndUpdate(req.body._id, req.body, {'new': true}).then(user => {
+    //const userPassworEncrypted = { username, password, firstname, lastname, isMember = true, isAdmin = true};
+    res.status(200).json(user);
+  }).catch(err => console.log(err));
+});
+
+
+
+
+
 module.exports = router;
