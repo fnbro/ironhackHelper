@@ -6,7 +6,7 @@ import axios from 'axios';
 import { reducerFunctions } from '../reducer/appReducer';
 import { IWindow } from '../framework/IWindow';
 import { INewsLoadedAction } from '../App';
-import NewsArticle from './NewsArticle'
+import NewsArticle from './NewsArticle';
 declare let window: IWindow;
 
 interface IProps { };
@@ -15,10 +15,24 @@ export interface INewsAction extends IAction {
   news: INewsData
 }
 
-reducerFunctions[ActionType.add_news] = function (newState: IState, action: INewsAction) {
-  newState.BM.news.push(action.news);
+// READ ALL NEWS
+reducerFunctions[ActionType.add_news_from_server] = function (newState: IState, action: INewsLoadedAction) {
   newState.UI.waitingForResponse = false;
   return newState;
+}
+
+// CREATE NEW NEWS
+reducerFunctions[ActionType.create_news] = function (newState: IState, updateAction: INewsAction) {
+  console.log(updateAction.news);
+  newState.UI.waitingForResponse = false;
+  return newState
+}
+
+// UPDATE NEWS
+reducerFunctions[ActionType.update_user] = function (newState: IState, updateAction: INewsAction) {
+  console.log(updateAction.news);
+  newState.BM.news = updateAction.news;
+  return newState
 }
 
 
@@ -26,6 +40,9 @@ export default class Newsticker extends Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleHeadlineChange = this.handleHeadlineChange.bind(this);
+    this.handleTypeChange = this.handleTypeChange.bind(this);
+    this.handleContentChange = this.handleContentChange.bind(this);
   }
 
   componentDidMount() {
@@ -33,7 +50,7 @@ export default class Newsticker extends Component<IProps, IState> {
     axios.get('/news/read').then(response => {
       const responseAction: INewsLoadedAction = {
         type: ActionType.add_news_from_server,
-        news: response.data as INewsData[]
+        news: response.data as INewsData
       }
       console.log(responseAction.news);
       window.CS.clientAction(responseAction);
@@ -44,7 +61,7 @@ export default class Newsticker extends Component<IProps, IState> {
     return (
       <div>
         <div>
-          {window.CS.getBMState().news.map(news => <NewsArticle key={news._id} news={news} />)}
+          {/* {window.CS.getBMState().news.map(news => <NewsArticle key={news._id} news={news} />)} */}
         </div>
         <div className="container">
           <form onSubmit={this.handleSubmit}>
@@ -53,7 +70,7 @@ export default class Newsticker extends Component<IProps, IState> {
                 <label htmlFor="headline">Headline</label>
               </div>
               <div className="col-75">
-                <input type="text" id="lname" name="headline" placeholder="Your headline.." />
+                <input onChange={this.handleHeadlineChange} type="text" id="lname" name="headline" placeholder="Your headline.." />
               </div>
             </div>
             <div className="row">
@@ -61,7 +78,8 @@ export default class Newsticker extends Component<IProps, IState> {
                 <label htmlFor="type">Type</label>
               </div>
               <div className="col-75">
-                <select id="country" name="type">
+                <select onChange={this.handleTypeChange} id="country" name="type">
+                  <option value="none">none</option>
                   <option value="solution">Solution</option>
                   <option value="question">Question</option>
                   <option value="note">Note</option>
@@ -74,7 +92,7 @@ export default class Newsticker extends Component<IProps, IState> {
                 <label htmlFor="content">Content</label>
               </div>
               <div className="col-75">
-                <textarea id="subject" name="content" placeholder="Write something.."></textarea>
+                <textarea onChange={this.handleContentChange} id="subject" name="content" placeholder="Write something.."></textarea>
               </div>
             </div>
             <div className="row">
@@ -87,23 +105,47 @@ export default class Newsticker extends Component<IProps, IState> {
   }
 
   handleSubmit(event: any) {
-    const newNews: INewsData = {
-      _id: mongoose.Types.ObjectId().toString(),
-      news_type: INewsType.solution,
-      news_headline: "testst",
-      news_content: "TestContent2"
-    }
-    const action: INewsAction = {
-      type: ActionType.add_news,
-      news: newNews
-    }
-    axios.post('/news/add', newNews)
+    axios.post('/news/add', window.CS.getBMState().news)
       .then(res => {
+        const action: IAction = {
+          type: ActionType.create_news
+        }
         window.CS.clientAction(action);
         console.log(res.data)
       });
 
     event.preventDefault();
   }
+
+  handleHeadlineChange(event: any) {
+    let currentNews = window.CS.getBMState().news;
+    currentNews.news_headline = event.target.value;
+    const action: INewsAction = {
+      type: ActionType.update_news,
+      news: currentNews
+    }
+    window.CS.clientAction(action);
+  }
+
+  handleTypeChange(event: any) {
+    let currentNews = window.CS.getBMState().news;
+    currentNews.news_type = event.target.value;
+    const action: INewsAction = {
+      type: ActionType.update_news,
+      news: currentNews
+    }
+    window.CS.clientAction(action);
+  }
+
+  handleContentChange(event: any) {
+    let currentNews = window.CS.getBMState().news;
+    currentNews.news_content = event.target.value;
+    const action: INewsAction = {
+      type: ActionType.update_news,
+      news: currentNews
+    }
+    window.CS.clientAction(action);
+  }
+
 
 }

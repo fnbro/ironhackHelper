@@ -1,7 +1,5 @@
 import React from 'react';
-import { INewsData } from '../state/appState'
-import { IWindow } from '../framework/IWindow'
-declare let window: IWindow;
+import { INewsData } from '../state/appState';
 interface IProps {
   news: INewsData
 }

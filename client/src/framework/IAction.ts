@@ -18,7 +18,8 @@ export enum ActionType {
     add_users_from_server = "add_users_from_server",
     shuffle_members = "shuffle_members",
     add_news_from_server = "add_news_from_server",
-    add_news = "add_news"
+    create_news = "add_news",
+    update_news = "update_news"
 
 }
 export interface IAction {

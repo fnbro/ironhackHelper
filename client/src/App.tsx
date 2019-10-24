@@ -30,7 +30,7 @@ export interface IUsersLoadedAction extends IAction {
   members: IUserData[]
 }
 export interface INewsLoadedAction extends IAction {
-  news: INewsData []
+  news: INewsData
 }
 
 reducerFunctions[ActionType.server_called] = function (newState: IState, action: IAction) {
@@ -47,11 +47,7 @@ reducerFunctions[ActionType.add_users_from_server] = function (newState: IState,
   newState.BM.members = action.members;
   return newState;
 }
-reducerFunctions[ActionType.add_news_from_server] = function (newState: IState, action: INewsLoadedAction) {
-  newState.UI.waitingForResponse = false;
-  newState.BM.news = action.news;
-  return newState;
-}
+
 
 export default class App extends React.PureComponent<IProps> {
 

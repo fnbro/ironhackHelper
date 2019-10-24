@@ -5,7 +5,7 @@ let News = require('../models/News');
 
 //C: create a new Survey
 newsRoutes.route('/add').post(function (req, res) {
-    console.log("Request to save this survey:" + JSON.stringify(req.body));
+    console.log("Request to save this news:" + JSON.stringify(req.body));
     let news = new News(req.body);
     news.save()
         .then(news => {
@@ -19,6 +19,7 @@ newsRoutes.route('/add').post(function (req, res) {
 newsRoutes.route('/read').get(function (req, res) {
   console.log("got a request for news");
   News.find(function (err, user) {
+    console.log(user)
     if (err) {
       console.log(err);
     } else {
