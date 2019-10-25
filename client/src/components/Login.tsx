@@ -13,7 +13,7 @@ export interface IErrorMessage extends IAction {
     errorMessage: string;
 }
 
- reducerFunctions[ActionType.login_error] = function (newState: IState, action: IErrorMessage) {
+reducerFunctions[ActionType.login_error] = function (newState: IState, action: IErrorMessage) {
     newState.UI.waitingForResponse = false;
     newState.UI.Login.errorMessage = action.errorMessage;
     return newState
@@ -30,7 +30,7 @@ reducerFunctions[ActionType.user_logged_out] = function (newState: IState, actio
     newState.UI.waitingForResponse = false;
     newState.UI.Login.errorMessage = "";
     newState.UI.loggedIn = false;
-    newState.BM.user = { lastname: "", firstname: "", username: "", password: "", confirmpassword: "", isMember: false, isAdmin: false};
+    newState.BM.user = { lastname: "", firstname: "", username: "", password: "", confirmpassword: "", isMember: false, isAdmin: false };
 
     return newState
 }
@@ -58,7 +58,7 @@ export default class Login extends Component {
                                 <label htmlFor="password"></label>
                                 <input className="inputFields" type="password" placeholder="password" onChange={this.handlePasswordChange} value={window.CS.getBMState().user.password} />
                             </li>
-                            <input className= "join-btn"  type="submit" value="Login" />
+                            <input className="join-btn" type="submit" value="Login" />
                             <p className="errorMessage">{window.CS.getUIState().Login.errorMessage}</p>
                         </ul>
                     </form>
@@ -125,7 +125,7 @@ export default class Login extends Component {
             window.CS.clientAction(loggedoutAction);
         }
         );
+        window.location.reload();
     }
-
 
 }
