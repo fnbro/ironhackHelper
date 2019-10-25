@@ -40,12 +40,11 @@ export interface IAssetData {
 }
 
 export interface IFeedbackData {
-    _id: string;
-    created_by: string;
+    submitted_by?: any;
     feedback_week: number;
     feedback_satisfied: number;
-    feedback_happy: any;
-    feedback_unhappy: any;
+    feedback_happy: number[];
+    feedback_unhappy: number[];
     feedback_comments: string;
 }
 
@@ -69,7 +68,7 @@ export interface IBM{
     user:IUser;
     assets:IAssetData[];
     members:IUserData[];
-    surveys: IFeedbackData[];
+    survey: IFeedbackData;
     settings: ISettings;
 }
 
@@ -96,7 +95,13 @@ export const initial: IState = {
         },
         assets:[],
         members:[],
-        surveys: [],
+        survey: {
+            feedback_week: 0,
+            feedback_satisfied: 0,
+            feedback_happy: [],
+            feedback_unhappy: [],
+            feedback_comments: ""
+        },
         settings: {
             searchUser: '',
             foundUser:{

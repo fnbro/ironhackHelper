@@ -4,9 +4,10 @@ const User = require("../models/User");
 let Survey = require('../models/feedback');
 
 //C: create a new Survey
-feedbackRoutes.route('/feedback/savesurvey').post(function (req, res) {
-    console.log("Request to save this survey:" + JSON.stringify(req.body));
+feedbackRoutes.post('/savesurvey', (req, res) => {
+    console.log("Request to save this survey:", JSON.stringify(req.body));
     let survey = new Survey(req.body);
+    console.log("survey:", survey);
     survey.save()
         .then(survey => {
             res.status(200).json({ 'survey': 'survey added successfully' });
@@ -16,4 +17,4 @@ feedbackRoutes.route('/feedback/savesurvey').post(function (req, res) {
         });
 });
 
-module.exports = assetRoutes;
+module.exports = feedbackRoutes;
