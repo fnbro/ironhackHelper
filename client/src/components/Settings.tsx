@@ -39,12 +39,12 @@ export default class Settings extends Component {
             type: ActionType.add_users_from_server,
             members: response.data as IUserData[]
         }
-        console.log(responseAction.members);
         window.CS.clientAction(responseAction);
     }).catch(function (error) { console.log(error); })
   }
   
   render() {
+    if (window.CS.getUIState().currentUser.isAdmin) {
     return (
       <div>
 
@@ -65,11 +65,20 @@ export default class Settings extends Component {
         </form>
       </div>
     )
+        }
+        else {
+          return (
+          <div>
+
+      You are not an Admin
+ 
+      </div>
+          )
+        }
   }
 
 
   handleMemberAndAdmin(event: any) {
-    console.log(window.CS.getBMState().settings.foundUser)
     let userMember = window.CS.getBMState().settings.foundUser
     userMember.isMember = event.target.value === 'Member' ? true : false;
     let userAdmin = window.CS.getBMState().settings.foundUser;
@@ -83,18 +92,28 @@ export default class Settings extends Component {
   }
 
   handleSearch = () => {
+    let membersArray = window.CS.getBMState().members.map((user, index) => {
+      let usernameMap = user.username
+      return usernameMap;
+    });
     const search: any = window.CS.getBMState().members.filter(user => user.username === window.CS.getBMState().settings.foundUser.username);
-    {
+    const selected = document.getElementsByName('role')[0] as HTMLSelectElement;
+    if (membersArray.includes(window.CS.getBMState().settings.foundUser.username)){
       const action: IUserAction = {
         type: ActionType.select_user,
         user: search[0]
       }
       window.CS.clientAction(action);
-      
-      const selected = document.getElementsByName('role')[0] as HTMLSelectElement;
       selected.options[window.CS.getBMState().settings.foundUser.isAdmin ? 1 : (window.CS.getBMState().settings.foundUser.isMember? 0 : 1)].selected = true;
     }
-   
+    else {
+      alert("This User does not exists");
+    }
+     // if (membersArray.includes(window.CS.getBMState().settings.foundUser.username)){
+      //  console.log("ok")
+      //}
+      
+    
     
   }
 
