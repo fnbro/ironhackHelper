@@ -6,6 +6,8 @@ export interface IUser {
     username:string;
     password:string;
     confirmpassword:string;
+    isMember: boolean;
+    isAdmin: boolean;
 }
 
 export interface ILogin {
@@ -46,6 +48,12 @@ export interface IFeedbackData {
     feedback_comments: string;
 }
 
+export interface ISettings {
+    currentSelection?: string;
+    foundUser: IUser;
+    searchUser: string;
+}
+
 export interface IState {
     UI: IUI;
     BM: IBM;
@@ -60,7 +68,8 @@ export interface IBM{
     user:IUser;
     assets:IAssetData[];
     members:IUserData[];
-    survey: IFeedbackData
+    survey: IFeedbackData;
+    settings: ISettings;
 }
 
 // initial state 
@@ -80,7 +89,9 @@ export const initial: IState = {
             lastname:"",
             username:"",
             password:"",
-            confirmpassword:""
+            confirmpassword:"",
+            isMember: false,
+            isAdmin: false
         },
         assets:[],
         members:[],
@@ -90,6 +101,18 @@ export const initial: IState = {
             feedback_happy: [],
             feedback_unhappy: [],
             feedback_comments: ""
+        },
+        settings: {
+            searchUser: '',
+            foundUser:{
+                firstname:"",
+                lastname:"",
+                username:"",
+                password:"",
+                confirmpassword:"",
+                isMember: false,
+                isAdmin: false
+            },
         }
 	}
 };

@@ -7,6 +7,9 @@ export enum ActionType {
     update_user = "update_user",
     user_created = "user_created",
     user_exists = "user_exists",
+    make_member = "make_member",
+    make_admin = "make_admin",
+    set_role = "set_role",
     create_asset = "create_asset",
     update_asset = "update_asset",
     delete_asset = "delete_asset",
@@ -20,7 +23,8 @@ export enum ActionType {
     change_dislike = "change_dislike",
     add_users_from_server = "add_users_from_server",
     shuffle_members = "shuffle_members",
-    change_comment = "change_comment"
+    change_comment = "change_comment",
+    select_user = 'select_user'
 }
 export interface IAction {
     type: ActionType;
