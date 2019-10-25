@@ -26,8 +26,6 @@ reducerFunctions[ActionType.select_user] = function (newState: IState, updateAct
 
 reducerFunctions[ActionType.set_role] = function (newState: IState, action: IUserAction) {
   newState.UI.waitingForResponse = false;
-  newState.UI.isMember = action.user.isMember;
-  newState.UI.isAdmin = action.user.isAdmin;
   newState.BM.settings.foundUser = action.user;
   return newState
 }

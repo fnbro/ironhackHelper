@@ -22,8 +22,6 @@ export interface IUI {
     counter: number;
     loggedIn: boolean;
     waitingForResponse:boolean;
-    isMember:boolean;
-    isAdmin: boolean;
     currentUser: IUser
 }
 
@@ -83,8 +81,6 @@ export const initial: IState = {
         waitingForResponse: false,
         Login: {errorMessage:""},
         Register: {errorMessageRegister:""},
-        isMember: false,
-        isAdmin: false,
         currentUser: {
             firstname: "",
             lastname: "",
