@@ -23,6 +23,8 @@ export interface IUI {
     loggedIn: boolean;
     waitingForResponse:boolean;
     isMember:boolean;
+    isAdmin: boolean;
+    currentUser: IUser
 }
 
 export interface IUI {
@@ -61,7 +63,8 @@ export interface IState {
 
 export interface IUserData {
     _id: string;
-    username: string;    
+    username: string; 
+    isAdmin?: string;   
 }
 
 export interface IBM{
@@ -80,7 +83,17 @@ export const initial: IState = {
         waitingForResponse: false,
         Login: {errorMessage:""},
         Register: {errorMessageRegister:""},
-        isMember: false
+        isMember: false,
+        isAdmin: false,
+        currentUser: {
+            firstname: "",
+            lastname: "",
+            username: "",
+            password: "",
+            confirmpassword: "",
+            isMember: false,
+            isAdmin: false
+        }
         
     },
 	BM: {
