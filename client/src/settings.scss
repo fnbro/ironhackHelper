@@ -1,0 +1,132 @@
+select {
+  margin-bottom: 1em;
+  padding: .25em;
+  border: 0;
+  border-bottom: 2px solid currentcolor; 
+  font-weight: bold;
+  letter-spacing: .15em;
+  border-radius: 0;
+  position: relative;
+  height: 50px;
+  width: 400px;
+  margin: 50px;
+  &:focus, &:active {
+    outline: 0;
+    border-bottom-color: red;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  33% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  background: deepskyblue;
+  box-shadow: 0 3px 2px 0 rgba(0,0,0,0.1);
+  border-radius: 5px;
+  height: 45px;
+  width: 200px;
+  padding: 0 30px;
+  color: #fff;
+  font-family: Lato, Arial, sans-serif;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: .3s, transform .3s, box-shadow .3s;
+   will-change: transform;
+  
+  &:hover {
+    background: darken(deepskyblue,10%);
+    box-shadow: 0 4px 17px rgba(0,0,0,0.2);
+    transform: translate3d(0, -2px, 0);
+  }
+  &:active {
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,0.1);
+    transform: translate3d(0, 1px, 0);
+  }
+}
+
+.pulse {
+  position: relative;
+  &:before, &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255,255,255,.4);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    opacity: 0;
+    margin: auto;
+  }
+  &:before {
+    animation: pulse 1.5s infinite linear;
+  }
+  &:after {
+    animation: pulse 2s .4s infinite linear;
+  }
+  &:hover:before, &:hover:after {
+    display: none;
+  }
+}
+
+.form-wrap {
+  position: relative;
+  height: 50px;
+  width: 400px;
+  margin-top: 10px;
+  margin-left: 50px;
+}
+
+.form-field {
+  border: 3px solid #758596;
+  background: #E5EEF7;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  color: #758596;
+  -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(000,000,000,0.7) 0 1px 1px;
+  -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(000,000,000,0.7) 0 1px 1px;
+  box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(000,000,000,0.7) 0 1px 1px;
+  padding:8px;
+  margin-bottom:20px;
+  width:288px;
+  }
+  .errorBody{
+    font-family: 'Ropa Sans', sans-serif;
+    text-align: center;
+    color: black;
+}
+  .error-heading{
+    margin: 50px auto;
+    width: 250px;
+    border: 5px solid #fff;
+    font-size: 126px;
+    line-height: 126px;
+    border-radius: 30px;
+    text-shadow: 6px 6px 5px #000;
+}
+.error-heading img{
+    width: 100%;
+}
+.error-main h1{
+    font-size: 72px;
+    margin: 0px;
+    color: #F3661C;
+    text-shadow: 0px 0px 5px #fff;
+}
