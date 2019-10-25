@@ -5,13 +5,14 @@ import Register from './components/Register';
 import ShowAssets from './components/ShowAssets';
 import { Switch, Route } from 'react-router-dom';
 import { IAction, ActionType } from './framework/IAction';
-import { IAssetData, IState, IUserData } from './state/appState'
+import { IAssetData, IState, IUserData, INewsData } from './state/appState'
 import axios from 'axios';
 import { reducerFunctions } from './reducer/appReducer';
 import Startpage from './components/Home';
 import WeeklyFeedback from './components/WeeklyFeedback';
 import Settings from './components/Settings';
 import RandomGenerator from "./components/RandomGenerator";
+import Newsticker from "./components/Newsticker";
 
 
 import { IWindow } from './framework/IWindow';
@@ -28,6 +29,9 @@ export interface IAssetsLoadedAction extends IAction {
 export interface IUsersLoadedAction extends IAction {
   members: IUserData[]
 }
+export interface INewsLoadedAction extends IAction {
+  news: INewsData[]
+}
 
 reducerFunctions[ActionType.server_called] = function (newState: IState, action: IAction) {
   newState.UI.waitingForResponse = true;
@@ -43,6 +47,7 @@ reducerFunctions[ActionType.add_users_from_server] = function (newState: IState,
   newState.BM.members = action.members;
   return newState;
 }
+
 
 export default class App extends React.PureComponent<IProps> {
 
@@ -78,6 +83,7 @@ export default class App extends React.PureComponent<IProps> {
           <Route path="/feedback" component={WeeklyFeedback} />
           <Route path="/settings" component={Settings} />
           <Route path="/random-generator" component={RandomGenerator} />
+          <Route path="/news" component={Newsticker} />
         </Switch>
       </>
     );

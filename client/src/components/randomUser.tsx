@@ -1,6 +1,5 @@
 import React from 'react';
-import { IUserData } from '../state/appState'
-import { IWindow } from '../framework/IWindow'
+import { IWindow } from '../framework/IWindow';
 declare let window: IWindow;
 interface IProps { 
     users: any

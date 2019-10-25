@@ -13,6 +13,7 @@ export enum ActionType {
     create_asset = "create_asset",
     update_asset = "update_asset",
     delete_asset = "delete_asset",
+    delete_news = "delete_news",
     render_test = "render_test",
     server_called = "server_called",
     asset_updated = "asset_updated",
@@ -23,6 +24,9 @@ export enum ActionType {
     change_dislike = "change_dislike",
     add_users_from_server = "add_users_from_server",
     shuffle_members = "shuffle_members",
+    add_news_from_server = "add_news_from_server",
+    create_news = "add_news",
+    update_news = "update_news",
     change_comment = "change_comment",
     select_user = 'select_user'
 }
