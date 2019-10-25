@@ -21,7 +21,6 @@ if (window.__REDUX_DEVTOOLS_EXTENSION__) {
 export class CS {
     private store: any;
     public log(message: string) {
-        console.log(message);
     }
     public getStore(){
         return this.store;

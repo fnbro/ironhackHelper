@@ -83,7 +83,9 @@ const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes); 
 app.use('/assets', require('./routes/asset'));
 const userRoute = require('./routes/user');
-app.use('/random-generator', userRoute)
+app.use('/random-generator', userRoute);
+const feedbackRoute = require('./routes/feedback');
+app.use('/feedback', feedbackRoute);
 
 //redux-change
 app.get('/*', (req, res) => {
