@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom';
-import { reducerFunctions } from '../reducer/appReducer';
-import { IState } from '../state/appState';
 import { IWindow } from '../framework/IWindow';
 
 declare let window: IWindow;

@@ -1,0 +1,100 @@
+input[type=text], select, textarea {
+  width: 800px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+  width: 100px;
+}
+
+.select {
+  padding: 12px 12px 12px 0;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.row {
+  width: 1000px;
+}
+
+.button-col{
+  width: 0;
+  margin: 20px;
+}
+.col-25 {
+  width: 10%;
+  float: left;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.newsContainer {
+  border: 0.5px solid #97c4fe;
+  border-radius: 10px;
+  width: 1000px;
+  margin: 15px 0;
+  padding: 0 10px 10px 10px;
+  box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.5);
+}
+
+h3 {
+  margin: 8px 0;
+}
+
+.sectionNews {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px 0;
+}
+
+#deleteBtn {
+  height: 15px;
+  margin: 8px 0;
+}
+
+.headlineContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

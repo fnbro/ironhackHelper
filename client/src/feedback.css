@@ -1,0 +1,377 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900');
+ul {
+	list-style-type: none;
+	}
+
+body {
+		font-family: 'Roboto', sans-serif;
+  }
+
+/* Styling Checkbox Starts */
+.checkbox-label {
+		position: relative;
+		padding: 0rem 2rem;
+    margin: auto;
+    cursor: pointer;
+    font-size: 22px;
+    line-height: 30px;
+    height: 24px;
+    width: 24px;
+    clear: both;
+}
+
+.checkbox-label input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkbox-label .checkbox-custom {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 24px;
+    width: 24px;
+    background-color: transparent;
+    border-radius: 5px;
+    transition: all 0.3s ease-out;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    border: 2px solid #009BFF;
+}
+
+
+.checkbox-label input:checked ~ .checkbox-custom {
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    -webkit-transform: rotate(0deg) scale(1);
+    -ms-transform: rotate(0deg) scale(1);
+    transform: rotate(0deg) scale(1);
+    opacity:1;
+    border: 2px solid #009BFF;
+}
+
+
+.checkbox-label .checkbox-custom::after {
+    position: absolute;
+    content: "";
+    left: 12px;
+    top: 12px;
+    height: 0px;
+    width: 0px;
+    border-radius: 5px;
+    border: solid #009BFF;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(0deg) scale(0);
+    -ms-transform: rotate(0deg) scale(0);
+    transform: rotate(0deg) scale(0);
+    opacity:1;
+    transition: all 0.3s ease-out;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+}
+
+
+.checkbox-label input:checked ~ .checkbox-custom::after {
+  -webkit-transform: rotate(45deg) scale(1);
+  -ms-transform: rotate(45deg) scale(1);
+  transform: rotate(45deg) scale(1);
+  opacity:1;
+  left: 8px;
+  top: 3px;
+  width: 6px;
+  height: 12px;
+  border: solid #009BFF;
+  border-width: 0 2px 2px 0;
+  background-color: transparent;
+  border-radius: 0;
+}
+
+
+
+/* For Ripple Effect */
+.checkbox-label .checkbox-custom::before {
+    position: absolute;
+    content: "";
+    left: 10px;
+    top: 10px;
+    width: 0px;
+    height: 0px;
+    border-radius: 5px;
+    border: 2px solid #FFFFFF;
+    -webkit-transform: scale(0);
+    -ms-transform: scale(0);
+    transform: scale(0);    
+}
+
+.checkbox-label input:checked ~ .checkbox-custom::before {
+    left: -3px;
+    top: -3px;
+    width: 24px;
+    height: 24px;
+    border-radius: 5px;
+    -webkit-transform: scale(3);
+    -ms-transform: scale(3);
+    transform: scale(3);
+    opacity:0;
+    z-index: 999;
+    transition: all 0.3s ease-out;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+}
+
+
+
+
+/* Style for Circular Checkbox */
+.checkbox-label .checkbox-custom.circular {
+    border-radius: 50%;
+    border: 2px solid #FFFFFF;
+}
+
+.checkbox-label input:checked ~ .checkbox-custom.circular {
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    border: 2px solid #FFFFFF;
+}
+.checkbox-label input:checked ~ .checkbox-custom.circular::after {
+    border: solid #0067FF;
+    border-width: 0 2px 2px 0;
+}
+.checkbox-label .checkbox-custom.circular::after {
+    border-radius: 50%;
+}
+
+.checkbox-label .checkbox-custom.circular::before {
+    border-radius: 50%;
+    border: 2px solid #FFFFFF;
+}
+
+.checkbox-label input:checked ~ .checkbox-custom.circular::before {
+    border-radius: 50%;
+}
+
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+  position: absolute;
+  left: -9999px;
+}
+[type="radio"]:checked + label,
+[type="radio"]:not(:checked) + label {
+  position: relative;
+  padding-left: 28px;
+  cursor: pointer;
+  line-height: 20px;
+  display: inline-block;
+  color: #666;
+}
+[type="radio"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #97c4fe;
+  border-radius: 100%;
+  background: #fff;
+}
+[type="radio"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after {
+  content: "";
+  width: 12px;
+  height: 12px;
+  background: #97c4fe;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  border-radius: 100%;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+[type="radio"]:not(:checked) + label:after {
+  opacity: 0;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+}
+[type="radio"]:checked + label:after {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+
+input[type=text] {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+	box-shadow:inset 0px 1px 0px 0px #97c4fe;
+	background:linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);
+	background-color:#3d94f6;
+	border-radius:6px;
+	border:1px solid #337fed;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #1570cd;
+}
+input[type=submit] {
+	background:linear-gradient(to bottom, #1e62d0 5%, #3d94f6 100%);
+	background-color:#1e62d0;
+}
+input[type=submit] {
+	position:relative;
+	top:1px;
+}
+
+.introductionForm {
+	flex-shrink: 0;
+	margin: 20px;
+	border: solid transparent;
+	background-origin: border-box;
+	background-clip: content-box, border-box;
+	background-size: cover;
+	box-sizing: border-box;
+	box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.5);
+	justify-content: space-around;
+	align-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	border-color: #1e62d0;
+	border-radius: 0px 0px 40px 0px;
+	text-align: center;
+	width: 70%;
+	padding: 1rem;
+	font-size: 1.5rem;
+}
+
+.introductionForm2 {
+	flex-shrink: 0;
+	margin: 20px;
+	border: solid transparent;
+	background-origin: border-box;
+	background-clip: content-box, border-box;
+	background-size: cover;
+	box-sizing: border-box;
+	box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.5);
+	justify-content: space-around;
+	align-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	border-color: #1e62d0;
+	border-radius: 0px 0px 40px 0px;
+	width: 70%;
+	padding: 1rem;
+
+}
+
+.satisfiedForm {
+	flex-shrink: 0;
+	margin: 20px;
+	border: solid transparent;
+	background-origin: border-box;
+	background-clip: content-box, border-box;
+	background-size: cover;
+	box-sizing: border-box;
+	box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.5);
+	justify-content: space-around;
+	align-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	border-color: #1e62d0;
+	border-radius: 0px 0px 40px 0px;
+	width: 70%;
+	padding: 1rem;
+}
+
+.likeForm {
+	flex-shrink: 0;
+	margin: 20px;
+	border: solid transparent;
+	background-origin: border-box;
+	background-clip: content-box, border-box;
+	background-size: cover;
+	box-sizing: border-box;
+	box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.5);
+	justify-content: space-around;
+	align-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	border-color: #1e62d0;
+	border-radius: 0px 0px 40px 0px;
+	width: 70%;
+	padding: 1rem;
+}
+
+.dislikeForm {
+	flex-shrink: 0;
+	margin: 20px;
+	border: solid transparent;
+	background-origin: border-box;
+	background-clip: content-box, border-box;
+	background-size: cover;
+	box-sizing: border-box;
+	box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.5);
+	justify-content: space-around;
+	align-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	border-color: #1e62d0;
+	border-radius: 0px 0px 40px 0px;
+	width: 70%;
+	padding: 1rem;
+}
+
+.commentForm {
+	flex-shrink: 0;
+	margin: 20px;
+	border: solid transparent;
+	background-origin: border-box;
+	background-clip: content-box, border-box;
+	background-size: cover;
+	box-sizing: border-box;
+	box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.5);
+	justify-content: space-around;
+	align-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	border-color: #1e62d0;
+	border-radius: 0px 0px 40px 0px;
+	width: 70%;
+	padding: 1rem;
+}
+
+.submitButton{
+	margin: 1rem 0 2rem 0;
+}
+
+#title {
+	text-align: center;
+	color: #97c4fe;
+}
+
+form {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+#comments {
+	width: 35%;
+}

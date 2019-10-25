@@ -10,6 +10,22 @@ export interface IUser {
     isAdmin: boolean;
 }
 
+export enum INewsType {
+    none = "none",
+    solution = "Solution",
+    question = "Question",
+    note = "Note",
+    lab = "Lab"
+}
+
+export interface INewsData {
+    _id?: string,
+    created_by?: string,
+    news_type: INewsType,
+    news_headline: string,
+    news_content: string
+}
+
 export interface ILogin {
     errorMessage: string;
 }
@@ -69,6 +85,8 @@ export interface IBM{
     user:IUser;
     assets:IAssetData[];
     members:IUserData[];
+    allNews: INewsData[],
+    news: INewsData;
     survey: IFeedbackData;
     settings: ISettings;
 }
@@ -104,6 +122,12 @@ export const initial: IState = {
         },
         assets:[],
         members:[],
+        allNews: [],
+        news: {
+            news_headline:"",
+            news_content:"",
+            news_type: INewsType.none
+        },
         survey: {
             feedback_week: 0,
             feedback_satisfied: 0,
