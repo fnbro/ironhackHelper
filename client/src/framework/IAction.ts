@@ -7,6 +7,9 @@ export enum ActionType {
     update_user = "update_user",
     user_created = "user_created",
     user_exists = "user_exists",
+    make_member = "make_member",
+    make_admin = "make_admin",
+    set_role = "set_role",
     create_asset = "create_asset",
     update_asset = "update_asset",
     delete_asset = "delete_asset",
@@ -16,12 +19,16 @@ export enum ActionType {
     asset_updated = "asset_updated",
     add_assets_from_server = "add_assets_from_server",
     add_survey = "add_survey",
+    change_satisfied = "change_satisfied",
+    change_like = "change_like",
+    change_dislike = "change_dislike",
     add_users_from_server = "add_users_from_server",
     shuffle_members = "shuffle_members",
     add_news_from_server = "add_news_from_server",
     create_news = "add_news",
-    update_news = "update_news"
-
+    update_news = "update_news",
+    change_comment = "change_comment",
+    select_user = 'select_user'
 }
 export interface IAction {
     type: ActionType;

@@ -23,13 +23,14 @@ reducerFunctions[ActionType.user_logged_in] = function (newState: IState, action
     newState.UI.Login.errorMessage = "";
     newState.UI.loggedIn = true;
     newState.BM.user = action.user;
+    newState.UI.currentUser = action.user;
     return newState
 }
 reducerFunctions[ActionType.user_logged_out] = function (newState: IState, action: IUserAction) {
     newState.UI.waitingForResponse = false;
     newState.UI.Login.errorMessage = "";
     newState.UI.loggedIn = false;
-    newState.BM.user = { lastname: "", firstname: "", username: "", password: "", confirmpassword: ""};
+    newState.BM.user = { lastname: "", firstname: "", username: "", password: "", confirmpassword: "", isMember: false, isAdmin: false};
 
     return newState
 }
@@ -65,6 +66,7 @@ export default class Login extends Component {
             )
     }
 
+
     handleUsernameChange(event: any) {
         let user = window.CS.getBMState().user;
         user.username = event.target.value
@@ -93,7 +95,7 @@ export default class Login extends Component {
         axios.post('/auth/login', window.CS.getBMState().user)
             .then(res => {
                 const data = res.data;
-                console.log(data);
+                console.log(res.data)
                 if (data.errorMessage) {
                     const uiAction: IErrorMessage = {
                         type: ActionType.login_error,
@@ -106,7 +108,7 @@ export default class Login extends Component {
                         user: data as IUser
                     }
                     window.CS.clientAction(loggedinAction);
-                    history.push("/feedback");
+                    history.push("/");
                 }
             });
     }

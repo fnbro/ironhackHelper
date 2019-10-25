@@ -6,6 +6,8 @@ export interface IUser {
     username:string;
     password:string;
     confirmpassword:string;
+    isMember: boolean;
+    isAdmin: boolean;
 }
 
 export enum INewsType {
@@ -36,7 +38,7 @@ export interface IUI {
     counter: number;
     loggedIn: boolean;
     waitingForResponse:boolean;
-    isMember:boolean;
+    currentUser: IUser
 }
 
 export interface IUI {
@@ -54,13 +56,18 @@ export interface IAssetData {
 }
 
 export interface IFeedbackData {
-    _id: string;
-    created_by: string;
+    submitted_by?: any;
     feedback_week: number;
     feedback_satisfied: number;
-    feedback_happy: any;
-    feedback_unhappy: any;
+    feedback_happy: number[];
+    feedback_unhappy: number[];
     feedback_comments: string;
+}
+
+export interface ISettings {
+    currentSelection?: string;
+    foundUser: IUser;
+    searchUser: string;
 }
 
 export interface IState {
@@ -70,16 +77,18 @@ export interface IState {
 
 export interface IUserData {
     _id: string;
-    username: string;    
+    username: string; 
+    isAdmin?: string;   
 }
 
 export interface IBM{
     user:IUser;
     assets:IAssetData[];
     members:IUserData[];
-    surveys: IFeedbackData[];
     allNews: INewsData[],
-    news: INewsData
+    news: INewsData;
+    survey: IFeedbackData;
+    settings: ISettings;
 }
 
 // initial state 
@@ -90,7 +99,15 @@ export const initial: IState = {
         waitingForResponse: false,
         Login: {errorMessage:""},
         Register: {errorMessageRegister:""},
-        isMember: false
+        currentUser: {
+            firstname: "",
+            lastname: "",
+            username: "",
+            password: "",
+            confirmpassword: "",
+            isMember: false,
+            isAdmin: false
+        }
         
     },
 	BM: {
@@ -99,16 +116,36 @@ export const initial: IState = {
             lastname:"",
             username:"",
             password:"",
-            confirmpassword:""
+            confirmpassword:"",
+            isMember: false,
+            isAdmin: false
         },
         assets:[],
         members:[],
-        surveys: [],
         allNews: [],
         news: {
             news_headline:"",
             news_content:"",
             news_type: INewsType.none
+        },
+        survey: {
+            feedback_week: 0,
+            feedback_satisfied: 0,
+            feedback_happy: [],
+            feedback_unhappy: [],
+            feedback_comments: ""
+        },
+        settings: {
+            searchUser: '',
+            foundUser:{
+                firstname:"",
+                lastname:"",
+                username:"",
+                password:"",
+                confirmpassword:"",
+                isMember: false,
+                isAdmin: false
+            },
         }
 	}
 };

@@ -86,6 +86,8 @@ const userRoute = require('./routes/user');
 app.use('/random-generator', userRoute);
 const newsRoute = require('./routes/news');
 app.use('/news', newsRoute);
+const feedbackRoute = require('./routes/feedback');
+app.use('/feedback', feedbackRoute);
 
 //redux-change
 app.get('/*', (req, res) => {
