@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import mongoose from 'mongoose';
-import { IState, INewsData, INewsType } from '../state/appState';
+import { IState, INewsData } from '../state/appState';
 import { ActionType, IAction } from '../framework/IAction';
 import axios from 'axios';
 import { reducerFunctions } from '../reducer/appReducer';
@@ -19,6 +18,7 @@ export interface INewsAction extends IAction {
 reducerFunctions[ActionType.add_news_from_server] = function (newState: IState, action: INewsLoadedAction) {
   newState.UI.waitingForResponse = false;
   newState.BM.allNews = action.news
+  
   console.log(newState.BM.allNews)
   return newState
 }
@@ -27,13 +27,6 @@ reducerFunctions[ActionType.add_news_from_server] = function (newState: IState, 
 reducerFunctions[ActionType.create_news] = function (newState: IState, updateAction: INewsAction) {
   newState.BM.allNews.push(updateAction.news);
   newState.UI.waitingForResponse = false;
-  return newState
-}
-
-// UPDATE NEWS
-reducerFunctions[ActionType.update_user] = function (newState: IState, updateAction: INewsAction) {
-  console.log(updateAction.news);
-  newState.BM.news = updateAction.news;
   return newState
 }
 
@@ -68,37 +61,39 @@ export default class Newsticker extends Component<IProps, IState> {
         </div>
         <div className="container">
           <form onSubmit={this.handleSubmit}>
-            <div className="row">
-              <div className="col-25">
-                <label htmlFor="headline">Headline</label>
+            <div>
+              <div className="row">
+                <div className="col-25">
+                  <label htmlFor="headline">Headline</label>
+                </div>
+                <div className="col-75">
+                  <input onChange={this.handleHeadlineChange} type="text" id="lname" name="headline" placeholder="Your headline.." />
+                </div>
               </div>
-              <div className="col-75">
-                <input onChange={this.handleHeadlineChange} type="text" id="lname" name="headline" placeholder="Your headline.." />
+              <div className="row">
+                <div className="col-25">
+                  <label htmlFor="type">Type</label>
+                </div>
+                <div className="col-75 select">
+                  <select onChange={this.handleTypeChange} id="country" name="type">
+                    <option value="none">none</option>
+                    <option value="solution">Solution</option>
+                    <option value="question">Question</option>
+                    <option value="note">Note</option>
+                    <option value="lab">Lab</option>
+                  </select>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-25">
+                  <label htmlFor="content">Content</label>
+                </div>
+                <div className="col-75">
+                  <textarea onChange={this.handleContentChange} id="subject" name="content" placeholder="Write something.."></textarea>
+                </div>
               </div>
             </div>
-            <div className="row">
-              <div className="col-25">
-                <label htmlFor="type">Type</label>
-              </div>
-              <div className="col-75">
-                <select onChange={this.handleTypeChange} id="country" name="type">
-                  <option value="none">none</option>
-                  <option value="solution">Solution</option>
-                  <option value="question">Question</option>
-                  <option value="note">Note</option>
-                  <option value="lab">Lab</option>
-                </select>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-25">
-                <label htmlFor="content">Content</label>
-              </div>
-              <div className="col-75">
-                <textarea onChange={this.handleContentChange} id="subject" name="content" placeholder="Write something.."></textarea>
-              </div>
-            </div>
-            <div className="row">
+            <div className="row button-col">
               <input type="submit" value="Submit" />
             </div>
           </form>
@@ -154,6 +149,8 @@ export default class Newsticker extends Component<IProps, IState> {
     }
     window.CS.clientAction(action);
   }
+
+
 
 
 }

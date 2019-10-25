@@ -10,6 +10,7 @@ export enum ActionType {
     create_asset = "create_asset",
     update_asset = "update_asset",
     delete_asset = "delete_asset",
+    delete_news = "delete_news",
     render_test = "render_test",
     server_called = "server_called",
     asset_updated = "asset_updated",

@@ -16,6 +16,7 @@ newsRoutes.route('/add').post(function (req, res) {
         });
 });
 
+//R: read alle news 
 newsRoutes.route('/read').get(function (req, res) {
   console.log("got a request for news");
   News.find(function (err, user) {
@@ -24,6 +25,16 @@ newsRoutes.route('/read').get(function (req, res) {
     } else {
       res.json(user);
     }
+  });
+});
+
+//D: delete the news with the given id
+newsRoutes.route('/delete/:id').post(function (req, res) {
+  News.findByIdAndDelete(req.params.id, function (err, news) {
+      if (!news)
+          res.status(404).send("data is not found");
+      else
+          res.json('news deleted!');
   });
 });
 

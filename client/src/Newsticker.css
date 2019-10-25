@@ -1,5 +1,5 @@
 input[type=text], select, textarea {
-  width: 80%;
+  width: 800px;
   padding: 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -19,6 +19,11 @@ input[type=submit] {
   border-radius: 4px;
   cursor: pointer;
   float: right;
+  width: 100px;
+}
+
+.select {
+  padding: 12px 12px 12px 0;
 }
 
 input[type=submit]:hover {
@@ -31,15 +36,22 @@ input[type=submit]:hover {
   padding: 20px;
 }
 
+.row {
+  width: 1000px;
+}
+
+.button-col{
+  width: 0;
+  margin: 20px;
+}
 .col-25 {
+  width: 10%;
   float: left;
-  width: 25%;
   margin-top: 6px;
 }
 
 .col-75 {
   float: left;
-  width: 75%;
   margin-top: 6px;
 }
 
@@ -50,21 +62,13 @@ input[type=submit]:hover {
   clear: both;
 }
 
-/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-  .col-25, .col-75, input[type=submit] {
-    width: 100%;
-    margin-top: 0;
-  }
-}
-
 .newsContainer {
-  border: 0.5px solid black;
+  border: 0.5px solid #97c4fe;
   border-radius: 10px;
   width: 1000px;
-  margin: 5px 0;
+  margin: 15px 0;
   padding: 0 10px 10px 10px;
-  background: rgb(182, 181, 181);
+  box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.5);
 }
 
 h3 {
@@ -75,5 +79,22 @@ h3 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 10px 0;
+  margin: 30px 0;
+}
+
+#deleteBtn {
+  height: 15px;
+  margin: 8px 0;
+}
+
+.headlineContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
