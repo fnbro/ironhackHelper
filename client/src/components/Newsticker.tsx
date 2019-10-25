@@ -63,7 +63,7 @@ export default class Newsticker extends Component<IProps, IState> {
     console.log(window.CS.getBMState().allNews)
     return (
       <div>
-        <div>
+        <div className="sectionNews">
           {window.CS.getBMState().allNews.map(news => <NewsArticle key={news._id} news={news} />)}
         </div>
         <div className="container">

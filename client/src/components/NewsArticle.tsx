@@ -8,10 +8,9 @@ export default class NewsArticle extends React.PureComponent<IProps> {
 
   render() {
     return (
-      <div>
-        <p>{this.props.news.news_headline}</p>
+      <div className="newsContainer">
+        <h3>{this.props.news.news_headline}</h3>
         <p>{this.props.news.news_content}</p>
-        <p>{this.props.news.news_type}</p>
       </div>
 
     )
