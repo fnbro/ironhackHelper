@@ -58,7 +58,7 @@ router.post("/login", (req, res) => {
     res.status(200).json({ errorMessage: "Type in a Username and a Password" });
     return;
   }
-  User.findOne({ username }, "_id username password firstname lastname", (err, user) => {
+  User.findOne({ username }, (err, user) => {
     if (err || !user) {
       res.status(200).json({ errorMessage: "The username doesn't exist." });
     } else {

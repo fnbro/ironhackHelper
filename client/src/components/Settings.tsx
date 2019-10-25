@@ -46,19 +46,7 @@ export default class Settings extends Component {
   }
   
   render() {
-   /* let membersArray = window.CS.getBMState().members.map((user, index) => {
-      let usernameMap = user.username
-      return usernameMap;
-    });
-    let checkAdmin = window.CS.getBMState().members.map((user, index) => {
-      let usernameMap = user
-      return usernameMap;
-    });
-    console.log(checkAdmin)
-    if (membersArray.includes(window.CS.getBMState().settings.foundUser.username)){
-      console.log("test")
-    }
-    */
+    if (window.CS.getUIState().currentUser.isAdmin) {
     return (
       <div>
 
@@ -79,6 +67,16 @@ export default class Settings extends Component {
         </form>
       </div>
     )
+        }
+        else {
+          return (
+          <div>
+
+      You are not an Admin
+ 
+      </div>
+          )
+        }
   }
 
 
