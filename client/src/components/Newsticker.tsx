@@ -54,17 +54,16 @@ export default class Newsticker extends Component<IProps, IState> {
   componentDidMount() {
     // Get all News from Database
     axios.get('/news/read').then(response => {
+
       const responseAction: INewsLoadedAction = {
         type: ActionType.add_news_from_server,
         news: response.data as INewsData[]
       }
-      console.log(responseAction.news);
       window.CS.clientAction(responseAction);
     }).catch(function (error) { console.log(error); })
   }
 
   render() {
-    console.log(window.CS.getBMState().allNews)
     return (
       <div>
         <div className="sectionNews">
@@ -142,6 +141,9 @@ export default class Newsticker extends Component<IProps, IState> {
       window.CS.clientAction(uiAction);
     }
     else {
+      const user = window.CS.getUIState().currentUser as any;
+      console.log(user);
+      window.CS.getBMState().news.created_by = user.username;
       axios.post('/news/add', window.CS.getBMState().news)
         .then(res => {
           const action: INewsAction = {

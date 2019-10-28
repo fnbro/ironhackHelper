@@ -1,5 +1,3 @@
-import Register from "../components/test";
-
 export interface IUser {
     firstname:string;
     lastname:string;
@@ -19,10 +17,9 @@ export enum INewsType {
     note = "note",
     lab = "lab"
 }
-
 export interface INewsData {
     _id?: string,
-    created_by?: string,
+    created_by: string,
     news_type: INewsType,
     news_headline: string,
     news_content: string
@@ -138,7 +135,8 @@ export const initial: IState = {
         news: {
             news_headline:"",
             news_content:"",
-            news_type: INewsType.none
+            news_type: INewsType.none,
+            created_by: ''
         },
         survey: {
             feedback_week: 0,

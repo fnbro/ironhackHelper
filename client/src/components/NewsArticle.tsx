@@ -62,6 +62,7 @@ export default class NewsArticle extends React.PureComponent<IProps> {
             <img onClick={this.handleDeleteButton} id="deleteBtn" src={logo} alt="delete-btn" />
           </div>
           <p>{this.props.news.news_content}</p>
+          <i id="createdBy">created by: {this.props.news.created_by}</i>
         </div>
       </div>
     )
