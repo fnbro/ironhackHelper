@@ -15,7 +15,8 @@ export interface IFeedbackAction extends IAction {
     survey: IFeedbackData
 }
 
-reducerFunctions[ActionType.add_survey] = function (newState: IState, action: IFeedbackAction) {
+reducerFunctions[ActionType.add_survey] = function (newState: IState, updateAction: IFeedbackAction) {
+    newState.BM.allSurveys.push(updateAction.survey);
     newState.UI.waitingForResponse = false;
     return newState;
 }
@@ -57,16 +58,16 @@ export default class WeeklyFeedback extends React.PureComponent<IFeedbackData, I
 
     handleSubmit(event: any) {
 
-        const action: IAction = {
-            type: ActionType.add_survey,
-        }
         let data = JSON.parse(JSON.stringify(window.CS.getBMState().survey));
         const user = window.CS.getUIState().currentUser as any;
         data.submitted_by = user._id;
         axios.post('/feedback/savesurvey', data)
             .then(res => {
+                const action: IFeedbackAction = {
+                    type: ActionType.add_survey,
+                    survey: res.data
+                }
                 window.CS.clientAction(action);
-                console.log(res.data)
 
                 history.push("/");
             });
