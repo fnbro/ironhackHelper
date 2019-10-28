@@ -30,7 +30,7 @@ reducerFunctions[ActionType.user_logged_out] = function (newState: IState, actio
     newState.UI.waitingForResponse = false;
     newState.UI.Login.errorMessage = "";
     newState.UI.loggedIn = false;
-    newState.BM.user = { lastname: "", firstname: "", username: "", password: "", confirmpassword: "", isMember: false, isAdmin: false };
+    newState.BM.user = { lastname: "", firstname: "", username: "", password: "", confirmpassword: "",newpassword:"", oldpassword:"", isMember: false, isAdmin: false };
 
     return newState
 }

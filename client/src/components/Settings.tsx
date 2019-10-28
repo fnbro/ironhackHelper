@@ -13,6 +13,10 @@ export interface IUserAction extends IAction {
   user: IUser
 }
 
+export interface IErrorMessage extends IAction {
+  errorMessage: string;
+}
+
 reducerFunctions[ActionType.update_user] = function (newState: IState, updateAction: IUserAction) {
   newState.BM.settings.foundUser = updateAction.user;
   return newState
@@ -30,6 +34,13 @@ reducerFunctions[ActionType.set_role] = function (newState: IState, action: IUse
   return newState
 }
 
+reducerFunctions[ActionType.update_password_change] = function (newState: IState, updateAction: IUserAction) {
+  newState.BM.user = updateAction.user;
+  newState.UI.currentUser = updateAction.user;
+  newState.UI.Register.errorMessageRegister = "";
+  return newState
+}
+
 
 export default class Settings extends Component {
   componentDidMount() {
@@ -44,46 +55,63 @@ export default class Settings extends Component {
   }
 
   render() {
-    if (window.CS.getUIState().currentUser.isAdmin) {
-      return (
-        <div>
-          <h1>Settings</h1>
-          <form >
-            {
+    //if (window.CS.getUIState().currentUser.isAdmin) {
+    return (
+      <div>
+        <h1>Settings</h1>
+        <form >
+          {
 
-              <select id="selectbox" onChange={this.handleMemberAndAdmin} name="role" disabled={false}>
-                <option value='Member'>Member</option>
-                <option value="Admin">Admin</option>
-                <option value='Member'>Not Registered</option>
-              </select>
+            <select id="selectbox" onChange={this.handleMemberAndAdmin} name="role" disabled={false}>
+              <option value='Member'>Member</option>
+              <option value="Admin">Admin</option>
+              <option value='Member'>Not Registered</option>
+            </select>
 
-            }
-            <div className="form-wrap">
+          }
+          <div className="form-wrap">
             <div className="input">
-            <p>
+              <p>
+                <label htmlFor="password"></label>
+                <input className="form-field" type="username" placeholder="username" onChange={this.handleUsernameRoleChange} value={window.CS.getBMState().settings.foundUser.username} />
+              </p>
+              <input className="button pulse" type='button' onClick={this.handleSearch} value="search" />
+              <input className="button pulse" type="button" onClick={this.handleSubmit} value="change" />
+            </div>
+          </div>
+        </form>
+        <p>
+        <h1>Change your Password</h1>
+        </p>
+        <form onSubmit={this.handlePasswordSubmit}>
+          <ul>
+            <li>
               <label htmlFor="password"></label>
-              <input className="form-field" type="username" placeholder="username" onChange={this.handleUsernameRoleChange} value={window.CS.getBMState().settings.foundUser.username} />
-            </p>
-            <input className="button pulse" type='button' onClick={this.handleSearch} value="search" />
-            <input className="button pulse" type="submit" onClick={this.handleSubmit} value="change" />
-           </div>
-           </div>
-          </form>
-        </div>
-      )
-    }
-    else {
-      return (
-        <div className="errorBody" >
+              <input className="inputFields" type="password" placeholder="old password" onChange={this.handleCheckPassword} value={window.CS.getBMState().user.oldpassword} />
+            </li>
+            <li>
+              <label htmlFor="password"></label>
+              <input className="inputFields" type="password" placeholder="new password"  onChange={this.handlePasswordChange} value={window.CS.getBMState().user.newpassword} />
+            </li>
+            <input className="join-btn" type="submit" value="Change" />
+            <p className="errorMessage">{window.CS.getUIState().Login.errorMessage}</p>
+          </ul>
+        </form>
+      </div>
+    )
+    //}
+    //else {
+    return (
+      <div className="errorBody" >
         <div className="error-main">
-        <h1>Oops!</h1>
-        <div className="error-heading">403</div>
-        <p>You do not have permission to access the document or program that you requested.</p>
+          <h1>Oops!</h1>
+          <div className="error-heading">403</div>
+          <p>You do not have permission to access the document or program that you requested.</p>
+        </div>
       </div>
-      </div>
-      )
-    }
+    )
   }
+  //}
 
 
   handleMemberAndAdmin(event: any) {
@@ -137,7 +165,6 @@ export default class Settings extends Component {
     window.CS.clientAction(uiAction);
     axios.put('/auth/settings', window.CS.getBMState().settings.foundUser)
       .then(res => {
-        console.log(res.data);
         const setRole: IUserAction = {
           type: ActionType.set_role,
           user: res.data as IUser
@@ -145,4 +172,53 @@ export default class Settings extends Component {
         window.CS.clientAction(setRole);
       });
   }
+
+  handleCheckPassword(event: any) {
+    let user = window.CS.getBMState().user;
+    user.oldpassword = event.target.value
+    const action: IUserAction = {
+        type: ActionType.update_password,
+        user: user
+    }
+    window.CS.clientAction(action);
+}
+
+handlePasswordChange(event: any) {
+  let user = window.CS.getBMState().user;
+  user.newpassword = event.target.value
+  const action: IUserAction = {
+      type: ActionType.update_password,
+      user: user
+  }
+  window.CS.clientAction(action);
+}
+
+handlePasswordSubmit(event: any) {
+  event.preventDefault();
+  const uiAction: IAction = {
+      type: ActionType.server_called
+  }
+  window.CS.clientAction(uiAction);
+  axios.post('/auth/password', window.CS.getBMState().user)
+      .then(res => {
+          const data = res.data;
+          console.log(data);
+          if (data.errorMessage) {
+              const uiAction: IErrorMessage = {
+                  type: ActionType.register_error,
+                  errorMessage: data.errorMessage
+              }
+              window.CS.clientAction(uiAction);
+          }
+          else {
+              const uiAction: IAction = {
+                  type: ActionType.update_password
+              }
+              window.CS.clientAction(uiAction);
+              console.log(res.data)
+          }
+
+      });
+}
+
 }
