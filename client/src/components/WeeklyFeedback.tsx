@@ -194,93 +194,93 @@ export default class WeeklyFeedback extends React.PureComponent<IFeedbackData, I
 
                 <div className="satisfiedForm">
                     <h3 className="questiontitles">On a scale from 0 to 10, how satisfied are you with this week at Ironhack?</h3> 
-                    <label htmlFor ="satisfied0" className="checkbox-label">Not At All</label>
+                    <label htmlFor ="satisfied0" className="checkbox-label-feedback">Not At All</label>
                     <input type="radio" id="satisfied0" name="Satisfied" value="0" onChange={this.handleSatisfiedChange} />
-                    <label htmlFor ="satisfied0" className="checkbox-label">0</label>
+                    <label htmlFor ="satisfied0" className="checkbox-label-feedback">0</label>
                     <input type="radio" id="satisfied1" name="Satisfied" value="1" onChange={this.handleSatisfiedChange} />
-                    <label htmlFor ="satisfied1" className="checkbox-label">1</label>
+                    <label htmlFor ="satisfied1" className="checkbox-label-feedback">1</label>
                     <input type="radio" id="satisfied2" name="Satisfied" value="2" onChange={this.handleSatisfiedChange} />
-                    <label htmlFor ="satisfied2" className="checkbox-label">2</label>
+                    <label htmlFor ="satisfied2" className="checkbox-label-feedback">2</label>
                     <input type="radio" id="satisfied3" name="Satisfied" value="3" onChange={this.handleSatisfiedChange} />
-                    <label htmlFor ="satisfied3" className="checkbox-label">3</label>
+                    <label htmlFor ="satisfied3" className="checkbox-label-feedback">3</label>
                     <input type="radio" id="satisfied4" name="Satisfied" value="4" onChange={this.handleSatisfiedChange} />
-                    <label htmlFor ="satisfied4" className="checkbox-label">4</label>
+                    <label htmlFor ="satisfied4" className="checkbox-label-feedback">4</label>
                     <input type="radio" id="satisfied5" name="Satisfied" value="5" onChange={this.handleSatisfiedChange} />
-                    <label htmlFor ="satisfied5" className="checkbox-label">5</label>
+                    <label htmlFor ="satisfied5" className="checkbox-label-feedback">5</label>
                     <input type="radio" id="satisfied6" name="Satisfied" value="6" onChange={this.handleSatisfiedChange} />
-                    <label htmlFor ="satisfied6" className="checkbox-label">6</label>
+                    <label htmlFor ="satisfied6" className="checkbox-label-feedback">6</label>
                     <input type="radio" id="satisfied7" name="Satisfied" value="7" onChange={this.handleSatisfiedChange} />
-                    <label htmlFor ="satisfied7" className="checkbox-label">7</label>
+                    <label htmlFor ="satisfied7" className="checkbox-label-feedback">7</label>
                     <input type="radio" id="satisfied8" name="Satisfied" value="8" onChange={this.handleSatisfiedChange} />
-                    <label htmlFor ="satisfied8" className="checkbox-label">8</label>
+                    <label htmlFor ="satisfied8" className="checkbox-label-feedback">8</label>
                     <input type="radio" id="satisfied9" name="Satisfied" value="9" onChange={this.handleSatisfiedChange} />
-                    <label htmlFor ="satisfied9" className="checkbox-label">9</label>
+                    <label htmlFor ="satisfied9" className="checkbox-label-feedback">9</label>
                     <input type="radio" id="satisfied10" name="Satisfied" value="10" onChange={this.handleSatisfiedChange} />
-                    <label htmlFor ="satisfied10" className="checkbox-label">10</label>
-                    <label htmlFor ="satisfied0" className="checkbox-label">Awesome</label>
+                    <label htmlFor ="satisfied10" className="checkbox-label-feedback">10</label>
+                    <label htmlFor ="satisfied0" className="checkbox-label-feedback">Awesome</label>
                 </div>
 
                 <div className="likeForm">
                     <h3 className="questiontitles">Please pick 3 areas of your learning experience that you think we are doing well (check 3 that apply):</h3>
                     <ul>
                         <li>
-                            <label className="checkbox-label">
+                            <label className="checkbox-label-feedback">
                                 <input type="checkbox" name="Like" value="1" onChange={this.handleLikeChange} />
                                 Curriculum topics and structure
                             <span className="checkbox-custom rectangular"></span>
                             </label>
                         </li>
                         <li>
-                            <label className="checkbox-label">
+                            <label className="checkbox-label-feedback">
                                 <input type="checkbox" name="Like" value="2" onChange={this.handleLikeChange} />
                                 Curriculum difficulty level
                             <span className="checkbox-custom rectangular"></span>
                             </label>
                         </li>
                         <li>
-                            <label className="checkbox-label">
+                            <label className="checkbox-label-feedback">
                                 <input type="checkbox" name="Like" value="3" onChange={this.handleLikeChange} />
                                 Quality of lessons
                             <span className="checkbox-custom rectangular"></span>
                             </label>
                         </li>
                         <li>
-                            <label className="checkbox-label">
+                            <label className="checkbox-label-feedback">
                                 <input type="checkbox" name="Like" value="4" onChange={this.handleLikeChange} />
                                 Quality of labs (WebDev & Data) and projects (UX/UI)
                             <span className="checkbox-custom rectangular"></span>
                             </label>
                         </li>
                         <li>
-                            <label className="checkbox-label">
+                            <label className="checkbox-label-feedback">
                                 <input type="checkbox" name="Like" value="5" onChange={this.handleLikeChange} />
                                 Teacher technical skills
                             <span className="checkbox-custom rectangular"></span>
                             </label>
                         </li>
                         <li>
-                            <label className="checkbox-label">
+                            <label className="checkbox-label-feedback">
                                 <input type="checkbox" name="Like" value="6" onChange={this.handleLikeChange} />
                                 Teacher teaching ability
                             <span className="checkbox-custom rectangular"></span>
                             </label>
                         </li>
                         <li>
-                            <label className="checkbox-label">
+                            <label className="checkbox-label-feedback">
                                 <input type="checkbox" name="Like" value="7" onChange={this.handleLikeChange} />
                                 Teacher accessibility
                             <span className="checkbox-custom rectangular"></span>
                             </label>
                         </li>
                         <li>
-                            <label className="checkbox-label">
+                            <label className="checkbox-label-feedback">
                                 <input type="checkbox" name="Like" value="8" onChange={this.handleLikeChange} />
                                 Teacher´s Assistant abilities
                             <span className="checkbox-custom rectangular"></span>
                             </label>
                         </li>
                         <li>
-                            <label className="checkbox-label">
+                            <label className="checkbox-label-feedback">
                                 <input type="checkbox" name="Like" value="9" onChange={this.handleLikeChange} />
                                 Helping you achieve your personal learning goals
                             <span className="checkbox-custom rectangular"></span>
@@ -293,63 +293,63 @@ export default class WeeklyFeedback extends React.PureComponent<IFeedbackData, I
                     <h3 className="questiontitles">Please pick 3 areas of your learning experience that you think we need to improve most (check 3 that apply):</h3>
                     <ul>
                         <li>
-                            <label className="checkbox-label">
+                            <label className="checkbox-label-feedback">
                                 <input type="checkbox" name="Dislike" value="1" onChange={this.handleDislikeChange} />
                                 Curriculum topics and structure
                             <span className="checkbox-custom rectangular"></span>
                             </label>
                         </li>
                         <li>
-                            <label className="checkbox-label">
+                            <label className="checkbox-label-feedback">
                                 <input type="checkbox" name="Dislike" value="2" onChange={this.handleDislikeChange} />
                                 Curriculum difficulty level
                             <span className="checkbox-custom rectangular"></span>
                             </label>
                         </li>
                         <li>
-                            <label className="checkbox-label">
+                            <label className="checkbox-label-feedback">
                                 <input type="checkbox" name="Dislike" value="3" onChange={this.handleDislikeChange} />
                                 Quality of lessons
                             <span className="checkbox-custom rectangular"></span>
                             </label>
                         </li>
                         <li>
-                            <label className="checkbox-label">
+                            <label className="checkbox-label-feedback">
                                 <input type="checkbox" name="Dislike" value="4" onChange={this.handleDislikeChange} />
                                 Quality of labs (WebDev & Data) and projects (UX/UI)
                             <span className="checkbox-custom rectangular"></span>
                             </label>
                         </li>
                         <li>
-                            <label className="checkbox-label">
+                            <label className="checkbox-label-feedback">
                                 <input type="checkbox" name="Dislike" value="5" onChange={this.handleDislikeChange} />
                                 Teacher technical skills
                                 <span className="checkbox-custom rectangular"></span>
                             </label>
                         </li>
                         <li>
-                            <label className="checkbox-label">
+                            <label className="checkbox-label-feedback">
                                 <input type="checkbox" name="Dislike" value="6" onChange={this.handleDislikeChange} />
                                 Teacher teaching ability
                             <span className="checkbox-custom rectangular"></span>
                             </label>
                         </li>
                         <li>
-                            <label className="checkbox-label">
+                            <label className="checkbox-label-feedback">
                                 <input type="checkbox" name="Dislike" value="7" onChange={this.handleDislikeChange} />
                                 Teacher accessibility
                             <span className="checkbox-custom rectangular"></span>
                             </label>
                         </li>
                         <li>
-                            <label className="checkbox-label">
+                            <label className="checkbox-label-feedback">
                                 <input type="checkbox" name="Dislike" value="8" onChange={this.handleDislikeChange} />
                                 Teacher´s Assistant abilities
                             <span className="checkbox-custom rectangular"></span>
                             </label>
                         </li>
                         <li>
-                            <label className="checkbox-label">
+                            <label className="checkbox-label-feedback">
                                 <input type="checkbox" name="Dislike" value="9" onChange={this.handleDislikeChange} />
                                 Helping you achieve your personal learning goals
                             <span className="checkbox-custom rectangular"></span>

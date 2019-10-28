@@ -6,7 +6,7 @@ input[type=text], select, textarea {
   resize: vertical;
 }
 
-label {
+.news-label {
   padding: 12px 12px 12px 0;
   display: inline-block;
 }
@@ -29,6 +29,8 @@ input[type=submit] {
 input[type=submit]:hover {
   background-color: #45a049;
 }
+
+
 
 .container {
   border-radius: 5px;

@@ -8,7 +8,7 @@ body {
   }
 
 /* Styling Checkbox Starts */
-.checkbox-label {
+.checkbox-label-feedback {
 		position: relative;
 		padding: 0rem 2rem;
     margin: auto;
@@ -20,13 +20,13 @@ body {
     clear: both;
 }
 
-.checkbox-label input {
+.checkbox-label-feedback input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
 }
 
-.checkbox-label .checkbox-custom {
+.checkbox-label-feedback .checkbox-custom {
     position: absolute;
     top: 0px;
     left: 0px;
@@ -43,7 +43,7 @@ body {
 }
 
 
-.checkbox-label input:checked ~ .checkbox-custom {
+.checkbox-label-feedback input:checked ~ .checkbox-custom {
     background-color: #FFFFFF;
     border-radius: 5px;
     -webkit-transform: rotate(0deg) scale(1);
@@ -54,7 +54,7 @@ body {
 }
 
 
-.checkbox-label .checkbox-custom::after {
+.checkbox-label-feedback .checkbox-custom::after {
     position: absolute;
     content: "";
     left: 12px;
@@ -76,7 +76,7 @@ body {
 }
 
 
-.checkbox-label input:checked ~ .checkbox-custom::after {
+.checkbox-label-feedback input:checked ~ .checkbox-custom::after {
   -webkit-transform: rotate(45deg) scale(1);
   -ms-transform: rotate(45deg) scale(1);
   transform: rotate(45deg) scale(1);
@@ -94,7 +94,7 @@ body {
 
 
 /* For Ripple Effect */
-.checkbox-label .checkbox-custom::before {
+.checkbox-label-feedback .checkbox-custom::before {
     position: absolute;
     content: "";
     left: 10px;
@@ -108,7 +108,7 @@ body {
     transform: scale(0);    
 }
 
-.checkbox-label input:checked ~ .checkbox-custom::before {
+.checkbox-label-feedback input:checked ~ .checkbox-custom::before {
     left: -3px;
     top: -3px;
     width: 24px;
@@ -130,30 +130,30 @@ body {
 
 
 /* Style for Circular Checkbox */
-.checkbox-label .checkbox-custom.circular {
+.checkbox-label-feedback .checkbox-custom.circular {
     border-radius: 50%;
     border: 2px solid #FFFFFF;
 }
 
-.checkbox-label input:checked ~ .checkbox-custom.circular {
+.checkbox-label-feedback input:checked ~ .checkbox-custom.circular {
     background-color: #FFFFFF;
     border-radius: 50%;
     border: 2px solid #FFFFFF;
 }
-.checkbox-label input:checked ~ .checkbox-custom.circular::after {
+.checkbox-label-feedback input:checked ~ .checkbox-custom.circular::after {
     border: solid #0067FF;
     border-width: 0 2px 2px 0;
 }
-.checkbox-label .checkbox-custom.circular::after {
+.checkbox-label-feedback .checkbox-custom.circular::after {
     border-radius: 50%;
 }
 
-.checkbox-label .checkbox-custom.circular::before {
+.checkbox-label-feedback .checkbox-custom.circular::before {
     border-radius: 50%;
     border: 2px solid #FFFFFF;
 }
 
-.checkbox-label input:checked ~ .checkbox-custom.circular::before {
+.checkbox-label-feedback input:checked ~ .checkbox-custom.circular::before {
     border-radius: 50%;
 }
 
@@ -205,13 +205,6 @@ body {
   opacity: 1;
   -webkit-transform: scale(1);
   transform: scale(1);
-}
-
-input[type=text] {
-  width: 50%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
 }
 
 input[type=submit] {
