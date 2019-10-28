@@ -24,6 +24,7 @@ interface IProps {
 reducerFunctions[ActionType.delete_news] = function (newState: IState, deleteAction: INewsAction) {
   let newsToKeep: INewsData[] = newState.BM.allNews.filter(news => news._id !== deleteAction.news._id)
   newState.BM.allNews = newsToKeep;
+  newState.UI.News.errorMessageNews = "";
   return newState;
 }
 
