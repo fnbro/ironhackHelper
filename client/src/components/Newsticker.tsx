@@ -64,7 +64,7 @@ export default class Newsticker extends Component<IProps, IState> {
             <div>
               <div className="row">
                 <div className="col-25">
-                  <label htmlFor="headline">Headline</label>
+                  <label className="news-label" htmlFor="headline">Headline</label>
                 </div>
                 <div className="col-75">
                   <input onChange={this.handleHeadlineChange} type="text" id="lname" name="headline" placeholder="Your headline.." />
@@ -72,7 +72,7 @@ export default class Newsticker extends Component<IProps, IState> {
               </div>
               <div className="row">
                 <div className="col-25">
-                  <label htmlFor="type">Type</label>
+                  <label className="news-label" htmlFor="type">Type</label>
                 </div>
                 <div className="col-75 select">
                   <select onChange={this.handleTypeChange} id="country" name="type">
@@ -86,7 +86,7 @@ export default class Newsticker extends Component<IProps, IState> {
               </div>
               <div className="row">
                 <div className="col-25">
-                  <label htmlFor="content">Content</label>
+                  <label className="news-label" htmlFor="content">Content</label>
                 </div>
                 <div className="col-75">
                   <textarea onChange={this.handleContentChange} id="subject" name="content" placeholder="Write something.."></textarea>
