@@ -14,10 +14,10 @@ export interface IUser {
 
 export enum INewsType {
     none = "none",
-    solution = "Solution",
-    question = "Question",
-    note = "Note",
-    lab = "Lab"
+    solution = "solution",
+    question = "question",
+    note = "note",
+    lab = "lab"
 }
 
 export interface INewsData {
@@ -36,6 +36,10 @@ export interface IRegister {
     errorMessageRegister: string;
 }
 
+export interface INewsError {
+    errorMessageNews: string;
+}
+
 export interface IUI {
     counter: number;
     loggedIn: boolean;
@@ -49,6 +53,7 @@ export interface IUI {
     waitingForResponse: boolean;
     Login: ILogin;
     Register: IRegister;
+    News: INewsError;
 }
 
 export interface IAssetData {
@@ -101,6 +106,7 @@ export const initial: IState = {
         waitingForResponse: false,
         Login: {errorMessage:""},
         Register: {errorMessageRegister:""},
+        News: {errorMessageNews:""},
         currentUser: {
             firstname: "",
             lastname: "",
