@@ -10,6 +10,8 @@ export enum ActionType {
     make_member = "make_member",
     make_admin = "make_admin",
     update_password = "update_password",
+    passwordchange_error= "passwordchange_error",
+    success_message= "success_message",
     update_password_change = "update_password_change",
     set_role = "set_role",
     create_asset = "create_asset",

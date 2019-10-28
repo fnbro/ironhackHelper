@@ -40,6 +40,11 @@ export interface INewsError {
     errorMessageNews: string;
 }
 
+
+export interface IPassword {
+    errorMessagePassword: string;
+}
+
 export interface IUI {
     counter: number;
     loggedIn: boolean;
@@ -54,6 +59,7 @@ export interface IUI {
     Login: ILogin;
     Register: IRegister;
     News: INewsError;
+    Password: IPassword;
 }
 
 export interface IAssetData {
@@ -107,6 +113,7 @@ export const initial: IState = {
         Login: {errorMessage:""},
         Register: {errorMessageRegister:""},
         News: {errorMessageNews:""},
+        Password: {errorMessagePassword:""},
         currentUser: {
             firstname: "",
             lastname: "",
