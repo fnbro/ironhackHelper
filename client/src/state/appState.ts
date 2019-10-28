@@ -6,6 +6,8 @@ export interface IUser {
     username:string;
     password:string;
     confirmpassword:string;
+    oldpassword:string;
+    newpassword:string;
     isMember: boolean;
     isAdmin: boolean;
 }
@@ -105,6 +107,8 @@ export const initial: IState = {
             username: "",
             password: "",
             confirmpassword: "",
+            oldpassword:"",
+            newpassword:"",
             isMember: false,
             isAdmin: false
         }
@@ -117,6 +121,8 @@ export const initial: IState = {
             username:"",
             password:"",
             confirmpassword:"",
+            oldpassword:"",
+            newpassword:"",
             isMember: false,
             isAdmin: false
         },
@@ -143,6 +149,8 @@ export const initial: IState = {
                 username:"",
                 password:"",
                 confirmpassword:"",
+                oldpassword:"",
+                newpassword:"",
                 isMember: false,
                 isAdmin: false
             },

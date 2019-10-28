@@ -95,6 +95,29 @@ router.put("/settings", (req, res) => {
 });
 
 
+router.post("/password", (req, res) => {
+  const userPassword = req.body.oldpassword;
+  const newPassword = req.body.newpassword;
+  const id = req.body._id
+  console.log(newPassword)
+  User.findById(id, (err, user) => {
+    console.log(user.password)
+    if (newPassword === "") {
+      res.status(200).json({ errorMessage: "Empty Password" });
+      return;
+    }
+    const salt = bcrypt.genSaltSync(bcryptSalt);
+    const password = bcrypt.hashSync(newPassword, salt);
+    User
+      .findByIdAndUpdate(id, { $set: { password: password }})
+      .then((user) => {
+        console.log(user.password)
+        res.status(200).json(user);
+      })
+      .catch(err => console.log(err));
+  });
+});
+
 
 
 
