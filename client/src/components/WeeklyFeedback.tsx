@@ -67,8 +67,8 @@ export default class WeeklyFeedback extends React.PureComponent<IFeedbackData, I
             .then(res => {
                 window.CS.clientAction(action);
                 console.log(res.data)
-                
-                history.push("/feedback");
+
+                history.push("/");
             });
 
         event.preventDefault();

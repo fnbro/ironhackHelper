@@ -6,36 +6,32 @@ input[type=text], select, textarea {
   resize: vertical;
 }
 
+#newsType {
+  border: 0;
+  border-bottom: 2px solid currentcolor; 
+  font-weight: bold;
+  letter-spacing: .15em;
+  border-radius: 0;
+  height: 25px;
+  width: 400px;
+}
+
 .news-label {
   padding: 12px 12px 12px 0;
   display: inline-block;
-}
-
-input[type=submit] {
-  background-color: #4CAF50;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  float: right;
-  width: 100px;
 }
 
 .select {
   padding: 12px 12px 12px 0;
 }
 
-input[type=submit]:hover {
-  background-color: #45a049;
-}
-
-
-
-.container {
+.inputContainer {
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
+  position: relative;
+  width: 100%;
+  bottom: 0;
 }
 
 .row {
@@ -65,6 +61,9 @@ input[type=submit]:hover {
 }
 
 .newsContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   border: 0.5px solid #97c4fe;
   border-radius: 10px;
   width: 1000px;
@@ -73,7 +72,7 @@ input[type=submit]:hover {
   box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.5);
 }
 
-h3 {
+.headline {
   margin: 8px 0;
 }
 
@@ -93,10 +92,31 @@ h3 {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  width: 940px;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.newsIcon {
+  height: 50px;
+  width: 50px;
+  padding: 10px 10px 0 0;
+}
+
+#submitNews {
+  box-shadow:inset 0px 1px 0px 0px #97c4fe;
+	background:linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);
+	background-color:#3d94f6;
+	border-radius:6px;
+	border:1px solid #337fed;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+  text-shadow:0px 1px 0px #1570cd;
+}
+
+.errorMessageNews {
+  color: red;
 }
