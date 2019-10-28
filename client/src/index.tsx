@@ -4,7 +4,8 @@ import './index.css';
 import App from './App';
 import './navbar.css';
 import './account.scss';
-import './randomUser.css';
+import './settings.scss';
+import './randomUser.css'
 import './Newsticker.css';
 import './feedback.css';
 import * as serviceWorker from './serviceWorker';
