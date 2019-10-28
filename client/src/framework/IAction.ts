@@ -31,6 +31,7 @@ export enum ActionType {
     update_news = "update_news",
     change_comment = "change_comment",
     select_user = 'select_user',
+    change_week = 'change_week',
     news_error = "news_error"
 }
 export interface IAction {
