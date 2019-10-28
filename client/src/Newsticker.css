@@ -12,7 +12,7 @@ input[type=text], select, textarea {
   font-weight: bold;
   letter-spacing: .15em;
   border-radius: 0;
-  height: 25px;
+  height: 50px;
   width: 400px;
 }
 
@@ -119,4 +119,8 @@ input[type=text], select, textarea {
 
 .errorMessageNews {
   color: red;
+}
+
+#createdBy {
+  font-size: 0.75rem;
 }
