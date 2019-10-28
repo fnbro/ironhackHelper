@@ -68,13 +68,11 @@ export default class Settings extends Component {
         <h1>Settings</h1>
         <form >
           {
-
             <select id="selectbox" onChange={this.handleMemberAndAdmin} name="role" disabled={false}>
               <option value='Member'>Member</option>
               <option value="Admin">Admin</option>
               <option value='Member'>Not Registered</option>
             </select>
-
           }
           <div className="form-wrap">
             <div className="input">
