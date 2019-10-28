@@ -59,13 +59,8 @@ export interface IUI {
     Password: IPassword;
 }
 
-export interface IAssetData {
-    _id: string;
-    asset_name: string;
-    asset_value: number;
-}
-
 export interface IFeedbackData {
+    _id?: string,
     submitted_by?: any;
     feedback_week: number;
     feedback_satisfied: number;
@@ -93,9 +88,9 @@ export interface IUserData {
 
 export interface IBM{
     user:IUser;
-    assets:IAssetData[];
     members:IUserData[];
     allNews: INewsData[],
+    allSurveys: IFeedbackData[],
     news: INewsData;
     survey: IFeedbackData;
     settings: ISettings;
@@ -136,9 +131,9 @@ export const initial: IState = {
             isMember: false,
             isAdmin: false
         },
-        assets:[],
         members:[],
         allNews: [],
+        allSurveys: [],
         news: {
             news_headline:"",
             news_content:"",

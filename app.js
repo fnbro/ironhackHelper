@@ -81,13 +81,14 @@ require('./passport')(app);
 
 const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes); 
-app.use('/assets', require('./routes/asset'));
 const userRoute = require('./routes/user');
 app.use('/random-generator', userRoute);
 const newsRoute = require('./routes/news');
 app.use('/news', newsRoute);
 const feedbackRoute = require('./routes/feedback');
 app.use('/feedback', feedbackRoute);
+app.use('/mybootcamp', feedbackRoute);
+
 
 //redux-change
 app.get('/*', (req, res) => {

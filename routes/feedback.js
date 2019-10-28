@@ -10,11 +10,17 @@ feedbackRoutes.post('/savesurvey', (req, res) => {
     console.log("survey:", survey);
     survey.save()
         .then(survey => {
-            res.status(200).json({ 'survey': 'survey added successfully' });
+            res.status(200).json(survey);
         })
         .catch(err => {
             res.status(400).send('adding new survey failed');
         });
 });
+
+//R: read alle feedbacks 
+feedbackRoutes.route('/read').get(function (req, res) {
+    Survey.find().then(survey => 
+        res.status(200).json(survey))
+  });
 
 module.exports = feedbackRoutes;
