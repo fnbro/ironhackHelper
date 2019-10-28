@@ -75,7 +75,7 @@ export default class Newsticker extends Component<IProps, IState> {
                   <label className="news-label" htmlFor="type">Type</label>
                 </div>
                 <div className="col-75 select">
-                  <select onChange={this.handleTypeChange} id="country" name="type">
+                  <select onChange={this.handleTypeChange} id="newsType" name="type">
                     <option value="none">none</option>
                     <option value="solution">Solution</option>
                     <option value="question">Question</option>

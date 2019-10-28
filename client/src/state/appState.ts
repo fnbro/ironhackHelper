@@ -12,10 +12,10 @@ export interface IUser {
 
 export enum INewsType {
     none = "none",
-    solution = "Solution",
-    question = "Question",
-    note = "Note",
-    lab = "Lab"
+    solution = "solution",
+    question = "question",
+    note = "note",
+    lab = "lab"
 }
 
 export interface INewsData {

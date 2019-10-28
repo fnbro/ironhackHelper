@@ -6,31 +6,24 @@ input[type=text], select, textarea {
   resize: vertical;
 }
 
+#newsType {
+  border: 0;
+  border-bottom: 2px solid currentcolor; 
+  font-weight: bold;
+  letter-spacing: .15em;
+  border-radius: 0;
+  height: 25px;
+  width: 400px;
+}
+
 .news-label {
   padding: 12px 12px 12px 0;
   display: inline-block;
 }
 
-input[type=submit] {
-  background-color: #4CAF50;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  float: right;
-  width: 100px;
-}
-
 .select {
   padding: 12px 12px 12px 0;
 }
-
-input[type=submit]:hover {
-  background-color: #45a049;
-}
-
-
 
 .container {
   border-radius: 5px;
@@ -65,6 +58,9 @@ input[type=submit]:hover {
 }
 
 .newsContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   border: 0.5px solid #97c4fe;
   border-radius: 10px;
   width: 1000px;
@@ -73,7 +69,7 @@ input[type=submit]:hover {
   box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.5);
 }
 
-h3 {
+.headline {
   margin: 8px 0;
 }
 
@@ -93,10 +89,17 @@ h3 {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  width: 940px;
 }
 
 form {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.newsIcon {
+  height: 50px;
+  width: 50px;
+  padding: 10px 10px 0 0;
 }
