@@ -37,6 +37,9 @@ export interface INewsError {
     errorMessageNews: string;
 }
 
+export interface ISurveyError {
+    errorMessageSurvey: string;
+}
 
 export interface IPassword {
     errorMessagePassword: string;
@@ -56,6 +59,7 @@ export interface IUI {
     Login: ILogin;
     Register: IRegister;
     News: INewsError;
+    Survey: ISurveyError;
     Password: IPassword;
 }
 
@@ -105,6 +109,7 @@ export const initial: IState = {
         Login: {errorMessage:""},
         Register: {errorMessageRegister:""},
         News: {errorMessageNews:""},
+        Survey: {errorMessageSurvey:""},
         Password: {errorMessagePassword:""},
         currentUser: {
             firstname: "",
@@ -141,8 +146,8 @@ export const initial: IState = {
             created_by: ''
         },
         survey: {
-            feedback_week: 0,
-            feedback_satisfied: 0,
+            feedback_week: -1,
+            feedback_satisfied: -1,
             feedback_happy: [],
             feedback_unhappy: [],
             feedback_comments: ""
