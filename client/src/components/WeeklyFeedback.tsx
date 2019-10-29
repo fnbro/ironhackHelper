@@ -9,7 +9,9 @@ import axios from 'axios';
 import history from '../framework/history';
 
 declare let window: IWindow;
-interface IJSXState { };
+interface IJSXState {
+    data: any
+};
 
 export interface IFeedbackAction extends IAction {
     survey: IFeedbackData
@@ -48,15 +50,28 @@ export default class WeeklyFeedback extends React.PureComponent<IFeedbackData, I
 
     constructor(props: IFeedbackData) {
         super(props);
-
+        this.state = {
+            data: []
+        }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleSatisfiedChange = this.handleSatisfiedChange.bind(this);
         this.handleCommentChange = this.handleCommentChange.bind(this);
     }
 
+    async componentDidMount  () {
+        await axios.get('/feedback/read')
+        .then(response => {
+            this.setState({
+                data: response.data.filter((item: any) => {
+                    const user = window.CS.getUIState().currentUser as any;
+                    return item.submitted_by === user._id
+                })
+            })
+        })
+        console.log(this.state.data)
+    }
 
     handleSubmit(event: any) {
-
         const action: IAction = {
             type: ActionType.add_survey,
         }
@@ -183,7 +198,8 @@ export default class WeeklyFeedback extends React.PureComponent<IFeedbackData, I
     }
 
     render() {
-
+        console.log(this.state.data
+            .every((item:any)=> item.feedback_week != 2))
         return (
             <form onSubmit={this.handleSubmit}>
                 <h1 className="title" id="title">Ironhack Weekly Survey</h1>
@@ -202,35 +218,45 @@ export default class WeeklyFeedback extends React.PureComponent<IFeedbackData, I
                     <h3 className="questiontitles">Thanks for taking your time, {window.CS.getBMState().user.firstname} {window.CS.getBMState().user.lastname}</h3>
                     <h3 className="questiontitles">This is going to be your feedback for week </h3>
                     <div>
-                        <input type="radio" id="week1" name="Week" value="1" onChange={this.handleWeekChange} />
+                        <input type="radio" id="week1" 
+                        disabled={this.state.data && !this.state.data
+                            .every((item:any)=> item.feedback_week != 1)}
+                         name="Week" value="1" onChange={this.handleWeekChange} />
                         <label htmlFor="week1" className="checkbox-label-week">=> Week 1</label>
                     </div>
                     <div>
-                        <input type="radio" id="week2" name="Week" value="2" onChange={this.handleWeekChange}/>
+                        <input type="radio" id="week2" disabled={this.state.data && !this.state.data
+                        .every((item:any)=> item.feedback_week != 2)} name="Week" value="2" onChange={this.handleWeekChange}/>
                         <label htmlFor="week2" className="checkbox-label-week">=> Week 2</label>
                     </div>
                     <div>
-                        <input type="radio" id="week3" name="Week" value="3" onChange={this.handleWeekChange} />
+                        <input type="radio" id="week3"disabled={this.state.data && !this.state.data
+                        .every((item:any)=> item.feedback_week != 3)} name="Week" value="3" onChange={this.handleWeekChange} />
                         <label htmlFor="week3" className="checkbox-label-week">=> Week 3</label>
                     </div>
                     <div>
-                        <input type="radio" id="week4" name="Week" value="4" onChange={this.handleWeekChange} />
+                        <input type="radio" id="week4" disabled= {this.state.data && !this.state.data
+                        .every((item:any)=> item.feedback_week != 4)} name="Week" value="4" onChange={this.handleWeekChange} />
                         <label htmlFor="week4" className="checkbox-label-week">=> Week 4</label>
                     </div>
                     <div>
-                        <input type="radio" id="week5" name="Week" value="5" onChange={this.handleWeekChange} />
+                        <input type="radio" id="week5"disabled={this.state.data && !this.state.data
+                        .every((item:any)=> item.feedback_week != 5)} name="Week" value="5" onChange={this.handleWeekChange} />
                         <label htmlFor="week5" className="checkbox-label-week">=> Week 5</label>
                     </div>
                     <div>
-                        <input type="radio" id="week6" name="Week" value="6" onChange={this.handleWeekChange} />
+                        <input type="radio" id="week6"disabled={this.state.data && !this.state.data
+                        .every((item:any)=> item.feedback_week != 6)} name="Week" value="6" onChange={this.handleWeekChange} />
                         <label htmlFor="week6" className="checkbox-label-week">=> Week 6</label>
                     </div>
                     <div>
-                        <input type="radio" id="week7" name="Week" value="7" onChange={this.handleWeekChange} />
+                        <input type="radio" id="week7" disabled={this.state.data && !this.state.data
+                        .every((item:any)=> item.feedback_week != 7)} name="Week" value="7" onChange={this.handleWeekChange} />
                         <label htmlFor="week7" className="checkbox-label-week">=> Week 7</label>
                     </div>
                     <div>
-                        <input type="radio" id="week8" name="Week" value="8" onChange={this.handleWeekChange} />
+                        <input type="radio" id="week8" disabled={this.state.data && !this.state.data
+                        .every((item:any)=> item.feedback_week != 8)} name="Week" value="8" onChange={this.handleWeekChange} />
                         <label htmlFor="week8" className="checkbox-label-week">=> Week 8</label>
                     </div>
                 </div>

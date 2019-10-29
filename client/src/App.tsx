@@ -13,6 +13,7 @@ import WeeklyFeedback from './components/WeeklyFeedback';
 import Settings from './components/Settings';
 import RandomGenerator from "./components/RandomGenerator";
 import Newsticker from "./components/Newsticker";
+import UsefulLinks from './components/UsefulLinks';
 
 
 import { IWindow } from './framework/IWindow';
@@ -84,6 +85,7 @@ export default class App extends React.PureComponent<IProps> {
           <Route path="/settings" component={Settings} />
           <Route path="/random-generator" component={RandomGenerator} />
           <Route path="/news" component={Newsticker} />
+          <Route path="/useful-links" component={UsefulLinks} />
         </Switch>
       </>
     );
