@@ -5,7 +5,7 @@ let Survey = require('../models/feedback');
 
 //C: create a new Survey
 feedbackRoutes.post('/savesurvey', (req, res) => {
-    console.log("Request to save this survey:", JSON.stringify(req.body));
+    console.log("Request to save this survey:", req.body);
     let survey = new Survey(req.body);
     console.log("survey:", survey);
     survey.save()

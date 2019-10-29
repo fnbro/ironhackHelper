@@ -62,7 +62,7 @@ export default class Settings extends Component {
   }
 
   render() {
-    //if (window.CS.getUIState().currentUser.isAdmin) {
+    if (window.CS.getUIState().currentUser.isAdmin) {
     return (
       <div>
         <h1>Settings</h1>
@@ -71,14 +71,14 @@ export default class Settings extends Component {
             <select id="selectbox" onChange={this.handleMemberAndAdmin} name="role" disabled={false}>
               <option value='Member'>Member</option>
               <option value="Admin">Admin</option>
-              <option value='Member'>Not Registered</option>
+              <option value='Not Registered'>Not Registered</option>
             </select>
           }
           <div className="form-wrap">
             <div className="input">
               <p>
                 <label htmlFor="password"></label>
-                <input className="form-field" type="username" placeholder="username" onChange={this.handleUsernameRoleChange} value={window.CS.getBMState().settings.foundUser.username} />
+                <input className="form-field" type="username" placeholder="username" onChange={this.handleUsernameRoleChange}  />
               </p>
               <input className="button pulse" type='button' onClick={this.handleSearch} value="search" />
               <input className="button pulse" type="button" onClick={this.handleSubmit} value="change" />
@@ -92,21 +92,44 @@ export default class Settings extends Component {
           <ul>
             <li>
               <label htmlFor="password"></label>
-              <input className="inputFields" type="password" placeholder="old password" onChange={this.handleCheckPassword} value={window.CS.getBMState().user.oldpassword} />
+              <input className="inputFields" type="password" placeholder="new password" onChange={this.handleCheckPassword} value={window.CS.getBMState().user.oldpassword} />
             </li>
             <li>
               <label htmlFor="password"></label>
-              <input className="inputFields" type="password" placeholder="new password"  onChange={this.handlePasswordChange} value={window.CS.getBMState().user.newpassword} />
+              <input className="inputFields" type="password" placeholder="confirm  newpassword"  onChange={this.handlePasswordChange} value={window.CS.getBMState().user.newpassword} />
             </li>
             <input className="join-btn" type="submit" value="Change" />
-            <p className="errorMessagePassword">{window.CS.getUIState().Password.errorMessagePassword}</p>
+            <p>{window.CS.getUIState().Password.errorMessagePassword}</p>
           </ul>
           
         </form>
       </div>
     )
-    //}
-    //else {
+    }
+    else if (window.CS.getUIState().currentUser.isMember) {
+      return (
+        <div>
+          <p>
+          <h1>Change your Password</h1>
+          </p>
+          <form onSubmit={this.handlePasswordSubmit}>
+            <ul>
+              <li>
+                <label htmlFor="password"></label>
+                <input className="inputFields" type="password" placeholder="new password" onChange={this.handleCheckPassword} value={window.CS.getBMState().user.oldpassword} />
+              </li>
+              <li>
+                <label htmlFor="password"></label>
+                <input className="inputFields" type="password" placeholder="confirm  new password"  onChange={this.handlePasswordChange} value={window.CS.getBMState().user.newpassword} />
+              </li>
+              <input className="join-btn" type="submit" value="Change" />
+              <p>{window.CS.getUIState().Password.errorMessagePassword}</p>
+            </ul>
+          </form>
+        </div>
+      )
+    }
+    else {
     return (
       <div className="errorBody" >
         <div className="error-main">
@@ -117,7 +140,7 @@ export default class Settings extends Component {
       </div>
     )
   }
-  //}
+  }
 
 
   handleMemberAndAdmin(event: any) {
@@ -147,9 +170,10 @@ export default class Settings extends Component {
       }
       window.CS.clientAction(action);
       selected.options[window.CS.getBMState().settings.foundUser.isAdmin ? 1 : (window.CS.getBMState().settings.foundUser.isMember ? 0 : 1)].selected = true;
+      alert(`User ${window.CS.getBMState().settings.foundUser.username} has been found!`);
     }
     else {
-      alert("This User does not exists");
+      alert("This User does not exist");
     }
   }
 
@@ -176,6 +200,7 @@ export default class Settings extends Component {
           user: res.data as IUser
         }
         window.CS.clientAction(setRole);
+        alert("User has been changed");
       });
   }
 

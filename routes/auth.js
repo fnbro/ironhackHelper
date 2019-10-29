@@ -60,13 +60,13 @@ router.post("/login", (req, res) => {
   }
   User.findOne({ username }, (err, user) => {
     if (err || !user) {
-      res.status(200).json({ errorMessage: "The username doesn't exist." });
+      res.json({ errorMessage: "The username doesn't exist." });
     } else {
       if (bcrypt.compareSync(userPassword, user.password)) {
         req.session.currentUser = user;
         res.status(200).json(user);
       } else {
-        res.status(200).json({ errorMessage: "Incorrect password." });
+        res.json({ errorMessage: "Incorrect password." });
       }
     }
   });
@@ -99,11 +99,19 @@ router.post("/password", (req, res) => {
   const userPassword = req.body.oldpassword;
   const newPassword = req.body.newpassword;
   const id = req.body._id
-  console.log(newPassword)
+
+console.log(userPassword)
+
+const salt = bcrypt.genSaltSync(bcryptSalt);
+const passwordEn = bcrypt.hashSync(userPassword, salt);
+
   User.findById(id, (err, user) => {
-    console.log(user.password)
     if (newPassword === "") {
       res.status(200).json({ errorMessage: "Empty Password" });
+      return;
+    }
+    if (newPassword !== userPassword) {
+      res.status(200).json({ errorMessage: "Type the same Password" });
       return;
     }
     const salt = bcrypt.genSaltSync(bcryptSalt);
@@ -111,7 +119,6 @@ router.post("/password", (req, res) => {
     User
       .findByIdAndUpdate(id, { $set: { password: password }})
       .then((user) => {
-        console.log(user.password)
         res.status(200).json(user);
       })
       .catch(err => console.log(err));

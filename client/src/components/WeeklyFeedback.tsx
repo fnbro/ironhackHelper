@@ -4,12 +4,16 @@ import { ActionType, IAction } from '../framework/IAction';
 import { reducerFunctions } from '../reducer/appReducer';
 
 import { IWindow } from '../framework/IWindow';
-import { IFeedbackData, IState } from '../state/appState'
+import { IFeedbackData, IState, ISurveyError } from '../state/appState'
 import axios from 'axios';
 import history from '../framework/history';
+import { IErrorMessage } from './Register';
+
 
 declare let window: IWindow;
-interface IJSXState { };
+interface IJSXState {
+    data: any
+};
 
 export interface IFeedbackAction extends IAction {
     survey: IFeedbackData
@@ -45,33 +49,89 @@ reducerFunctions[ActionType.change_comment] = function (newState: IState, action
     return newState;
 }
 
+reducerFunctions[ActionType.survey_error] = function (newState: IState, action: IErrorMessage) {
+    newState.UI.waitingForResponse = false;
+    newState.UI.Survey.errorMessageSurvey = action.errorMessage;
+    return newState
+}
+
 export default class WeeklyFeedback extends React.PureComponent<IFeedbackData, IJSXState> {
 
     constructor(props: IFeedbackData) {
         super(props);
-
+        this.state = {
+            data: []
+        }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleSatisfiedChange = this.handleSatisfiedChange.bind(this);
         this.handleCommentChange = this.handleCommentChange.bind(this);
     }
 
+    async componentDidMount() {
+        await axios.get('/feedback/read')
+            .then(response => {
+                this.setState({
+                    data: response.data.filter((item: any) => {
+                        const user = window.CS.getUIState().currentUser as any;
+                        return item.submitted_by === user._id
+                    })
+                })
+            })
+        console.log(this.state.data)
+    }
 
     handleSubmit(event: any) {
+        const action: IAction = {
+            type: ActionType.add_survey,
+        }
 
-        let data = JSON.parse(JSON.stringify(window.CS.getBMState().survey));
-        const user = window.CS.getUIState().currentUser as any;
-        data.submitted_by = user._id;
-        axios.post('/feedback/savesurvey', data)
-            .then(res => {
-                const action: IFeedbackAction = {
-                    type: ActionType.add_survey,
-                    survey: res.data
-                }
-                window.CS.clientAction(action);
-
-                history.push("/");
-            });
-
+        console.log(window.CS.getBMState().survey)
+        if (window.CS.getBMState().survey.feedback_week === -1) {
+            const uiAction: IErrorMessage = {
+                type: ActionType.survey_error,
+                errorMessage: "Please select a week!"
+            }
+            window.CS.clientAction(uiAction);
+        }
+        if (window.CS.getBMState().survey.feedback_satisfied === -1) {
+            const uiAction: IErrorMessage = {
+                type: ActionType.survey_error,
+                errorMessage: "Please let us know how satisfied you were with this week!"
+            }
+            window.CS.clientAction(uiAction);
+        }
+        if (window.CS.getBMState().survey.feedback_happy.length < 3) {
+            const uiAction: IErrorMessage = {
+                type: ActionType.survey_error,
+                errorMessage: "Please tell us 3 things we did great in this week!"
+            }
+            window.CS.clientAction(uiAction);
+        }
+        if (window.CS.getBMState().survey.feedback_unhappy.length < 3) {
+            const uiAction: IErrorMessage = {
+                type: ActionType.survey_error,
+                errorMessage: "Please tell us 3 things we could have done better in this week!"
+            }
+            window.CS.clientAction(uiAction);
+        }
+        if (window.CS.getBMState().survey.feedback_week > 0 
+        && window.CS.getBMState().survey.feedback_satisfied >= 0 
+        && window.CS.getBMState().survey.feedback_happy.length === 3 
+        && window.CS.getBMState().survey.feedback_unhappy.length === 3) {
+            let data = JSON.parse(JSON.stringify(window.CS.getBMState().survey));
+            const user = window.CS.getUIState().currentUser as any;
+            data.submitted_by = user._id;
+            axios.post('/feedback/savesurvey', data)
+                .then(res => {
+                    const action: IFeedbackAction = {
+                        type: ActionType.add_survey,
+                        survey: res.data
+                    }
+                    window.CS.clientAction(action);
+    
+                    history.push("/");
+                });    
+        }
         event.preventDefault();
     }
 
@@ -185,6 +245,9 @@ export default class WeeklyFeedback extends React.PureComponent<IFeedbackData, I
 
     render() {
         if (window.CS.getUIState().currentUser.isAdmin || window.CS.getUIState().currentUser.isMember) {
+
+            console.log(this.state.data
+                .every((item: any) => item.feedback_week != 2))
             return (
                 <form onSubmit={this.handleSubmit}>
                     <h1 className="title" id="title">Ironhack Weekly Survey</h1>
@@ -203,39 +266,48 @@ export default class WeeklyFeedback extends React.PureComponent<IFeedbackData, I
                         <h3 className="questiontitles">Thanks for taking your time, {window.CS.getBMState().user.firstname} {window.CS.getBMState().user.lastname}</h3>
                         <h3 className="questiontitles">This is going to be your feedback for week </h3>
                         <div>
-                            <input type="radio" id="week1" name="Week" value="1" onChange={this.handleWeekChange} />
+                            <input type="radio" id="week1"
+                                disabled={this.state.data && !this.state.data
+                                    .every((item: any) => item.feedback_week != 1)}
+                                name="Week" value="1" onChange={this.handleWeekChange} />
                             <label htmlFor="week1" className="checkbox-label-week">=> Week 1</label>
                         </div>
                         <div>
-                            <input type="radio" id="week2" name="Week" value="2" onChange={this.handleWeekChange} />
+                            <input type="radio" id="week2" disabled={this.state.data && !this.state.data
+                                .every((item: any) => item.feedback_week != 2)} name="Week" value="2" onChange={this.handleWeekChange} />
                             <label htmlFor="week2" className="checkbox-label-week">=> Week 2</label>
                         </div>
                         <div>
-                            <input type="radio" id="week3" name="Week" value="3" onChange={this.handleWeekChange} />
+                            <input type="radio" id="week3" disabled={this.state.data && !this.state.data
+                                .every((item: any) => item.feedback_week != 3)} name="Week" value="3" onChange={this.handleWeekChange} />
                             <label htmlFor="week3" className="checkbox-label-week">=> Week 3</label>
                         </div>
                         <div>
-                            <input type="radio" id="week4" name="Week" value="4" onChange={this.handleWeekChange} />
+                            <input type="radio" id="week4" disabled={this.state.data && !this.state.data
+                                .every((item: any) => item.feedback_week != 4)} name="Week" value="4" onChange={this.handleWeekChange} />
                             <label htmlFor="week4" className="checkbox-label-week">=> Week 4</label>
                         </div>
                         <div>
-                            <input type="radio" id="week5" name="Week" value="5" onChange={this.handleWeekChange} />
+                            <input type="radio" id="week5" disabled={this.state.data && !this.state.data
+                                .every((item: any) => item.feedback_week != 5)} name="Week" value="5" onChange={this.handleWeekChange} />
                             <label htmlFor="week5" className="checkbox-label-week">=> Week 5</label>
                         </div>
                         <div>
-                            <input type="radio" id="week6" name="Week" value="6" onChange={this.handleWeekChange} />
+                            <input type="radio" id="week6" disabled={this.state.data && !this.state.data
+                                .every((item: any) => item.feedback_week != 6)} name="Week" value="6" onChange={this.handleWeekChange} />
                             <label htmlFor="week6" className="checkbox-label-week">=> Week 6</label>
                         </div>
                         <div>
-                            <input type="radio" id="week7" name="Week" value="7" onChange={this.handleWeekChange} />
+                            <input type="radio" id="week7" disabled={this.state.data && !this.state.data
+                                .every((item: any) => item.feedback_week != 7)} name="Week" value="7" onChange={this.handleWeekChange} />
                             <label htmlFor="week7" className="checkbox-label-week">=> Week 7</label>
                         </div>
                         <div>
-                            <input type="radio" id="week8" name="Week" value="8" onChange={this.handleWeekChange} />
+                            <input type="radio" id="week8" disabled={this.state.data && !this.state.data
+                                .every((item: any) => item.feedback_week != 8)} name="Week" value="8" onChange={this.handleWeekChange} />
                             <label htmlFor="week8" className="checkbox-label-week">=> Week 8</label>
                         </div>
                     </div>
-
                     <div className="satisfiedForm">
                         <h3 className="questiontitles">On a scale from 0 to 10, how satisfied are you with this week at Ironhack?</h3>
                         <label htmlFor="satisfied0" className="checkbox-label-feedback">Not At All</label>
@@ -407,6 +479,9 @@ export default class WeeklyFeedback extends React.PureComponent<IFeedbackData, I
                         <textarea id="comments" value={this.props.feedback_comments} onChange={this.handleCommentChange}> </textarea>
                     </div>
 
+                    <div>
+                        <p className="errorMessageNews">{window.CS.getUIState().Survey.errorMessageSurvey}</p>
+                    </div>
                     <input className="submitButton" type="submit" value="Submit" placeholder="Just put it in here..." />
                 </form>
             )
