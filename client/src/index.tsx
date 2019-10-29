@@ -7,6 +7,7 @@ import './account.scss';
 import './settings.scss';
 import './randomUser.css'
 import './Newsticker.css';
+import './myBootcamp.css';
 import './feedback.css';
 import * as serviceWorker from './serviceWorker';
 import { Router } from 'react-router-dom';
