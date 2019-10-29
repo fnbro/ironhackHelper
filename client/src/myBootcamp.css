@@ -1,3 +1,17 @@
 .singleSurveyContainer {
   border: 1px solid grey;
+  width: 1000px;
+  margin: 20px;
+  padding: 15px;
+}
+
+.feedbackContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px;
+}
+
+.feedbackHead {
+  font-weight: 500;
 }
