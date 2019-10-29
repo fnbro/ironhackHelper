@@ -110,10 +110,6 @@ const passwordEn = bcrypt.hashSync(userPassword, salt);
       res.status(200).json({ errorMessage: "Empty Password" });
       return;
     }
-    //if (passwordEn !== password) {
-    //  res.status(200).json({ errorMessage: "Mauli" });
-     // return;
-    //}
     if (newPassword !== userPassword) {
       res.status(200).json({ errorMessage: "Type the same password" });
       return;
