@@ -69,9 +69,9 @@ export default class Settings extends Component {
         <form >
           {
             <select id="selectbox" onChange={this.handleMemberAndAdmin} name="role" disabled={false}>
+              <option value='Not Registered'>Not Registered</option>
               <option value='Member'>Member</option>
               <option value="Admin">Admin</option>
-              <option value='Not Registered'>Not Registered</option>
             </select>
           }
           <div className="form-wrap">
@@ -169,7 +169,7 @@ export default class Settings extends Component {
         user: search[0]
       }
       window.CS.clientAction(action);
-      selected.options[window.CS.getBMState().settings.foundUser.isAdmin ? 1 : (window.CS.getBMState().settings.foundUser.isMember ? 0 : 1)].selected = true;
+      selected.options[window.CS.getBMState().settings.foundUser.isAdmin ? 2 : (window.CS.getBMState().settings.foundUser.isMember ? 1 : 0)].selected = true;
       alert(`User ${window.CS.getBMState().settings.foundUser.username} has been found!`);
     }
     else {
