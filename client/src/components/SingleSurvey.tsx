@@ -3,7 +3,6 @@ import { INewsData, IState, IFeedbackData} from '../state/appState';
 import { ActionType, IAction } from '../framework/IAction';
 import { IWindow } from '../framework/IWindow';
 import { reducerFunctions } from '../reducer/appReducer';
-
 import axios from 'axios';
 import { INewsAction } from './Newsticker';
 
