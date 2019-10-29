@@ -6,6 +6,7 @@ import { reducerFunctions } from '../reducer/appReducer';
 import { IWindow } from '../framework/IWindow';
 import { IFeedbackLoadedAction, IUsersLoadedAction } from '../App';
 import SingleSurvey from './SingleSurvey';
+import { validate } from '@babel/types';
 declare let window: IWindow;
 
 interface IProps { };
@@ -53,18 +54,18 @@ export default class MyBootcamp extends Component<IProps, IState> {
     let weekShow;
     if (window.CS.getBMState().surveyFilter.weekFilter === "all") {
       if (window.CS.getBMState().surveyFilter.userFilter === "none") {
-        weekShow = window.CS.getBMState().allSurveys.map(survey => <SingleSurvey key={survey._id} survey={survey} />)
+        weekShow = window.CS.getBMState().allSurveys
       }
       else {
-        weekShow = window.CS.getBMState().allSurveys.filter(survey => survey.submitted_by.username.toString().includes(window.CS.getBMState().surveyFilter.userFilter)).map(survey => <SingleSurvey key={survey._id} survey={survey} />)
+        weekShow = window.CS.getBMState().allSurveys.filter(survey => survey.submitted_by.username.toString().includes(window.CS.getBMState().surveyFilter.userFilter))
       }
     }
     else {
       if (window.CS.getBMState().surveyFilter.userFilter === "none") {
-        weekShow = window.CS.getBMState().allSurveys.filter(survey => survey.feedback_week.toString() === window.CS.getBMState().surveyFilter.weekFilter.toString()).map(survey => <SingleSurvey key={survey._id} survey={survey} />)
+        weekShow = window.CS.getBMState().allSurveys.filter(survey => survey.feedback_week.toString() === window.CS.getBMState().surveyFilter.weekFilter.toString())
       }
       else {
-        weekShow = window.CS.getBMState().allSurveys.filter(survey => survey.feedback_week.toString() === window.CS.getBMState().surveyFilter.weekFilter.toString() && survey.submitted_by.username.toString().includes(window.CS.getBMState().surveyFilter.userFilter)).map(survey => <SingleSurvey key={survey._id} survey={survey} />)
+        weekShow = window.CS.getBMState().allSurveys.filter(survey => survey.feedback_week.toString() === window.CS.getBMState().surveyFilter.weekFilter.toString() && survey.submitted_by.username.toString().includes(window.CS.getBMState().surveyFilter.userFilter))
       }
     }
 
@@ -94,11 +95,38 @@ export default class MyBootcamp extends Component<IProps, IState> {
             <label htmlFor="userFilter">Username: </label>
             <input type="text" id="userFilter" onChange={this.handleUserChange} />
           </div>
-
+        </div>
+        <h2>Evaluation of feedbacks: </h2>
+        <div className="singleSurveyContainer">
+          <p><span className="feedbackHead">Scale (0-10) how satisfied you are with the Bootcamp: </span>{weekShow.reduce((acc, val) => (acc + val.feedback_satisfied) ,0 )/weekShow.length}</p>
+          <p className="feedbackHead">Please pick 3 areas of your learning experience that you think we are doing well (check 3 that apply):</p>
+          <ul>
+            <li>Curriculum topics and structure({weekShow.filter(survey => survey.feedback_happy.includes(1)).length})</li>
+            <li>Curriculum difficulty level({weekShow.filter(survey => survey.feedback_happy.includes(2)).length})</li>
+            <li>Quality of lessons({weekShow.filter(survey => survey.feedback_happy.includes(3)).length})</li>
+            <li>Quality of labs (WebDev & Data) and projects (UX/UI) ({weekShow.filter(survey => survey.feedback_happy.includes(3)).length})</li>
+            <li>Teacher technical skills ({weekShow.filter(survey => survey.feedback_happy.includes(4)).length})</li>
+            <li>Teacher teaching ability ({weekShow.filter(survey => survey.feedback_happy.includes(5)).length})</li>
+            <li>Teacher accessibility ({weekShow.filter(survey => survey.feedback_happy.includes(6)).length})</li>
+            <li>Teacher´s Assistant abilities ({weekShow.filter(survey => survey.feedback_happy.includes(7)).length})</li>
+            <li>Helping you achieve your personal learning goals ({weekShow.filter(survey => survey.feedback_happy.includes(8)).length})</li>
+          </ul>
+          <p className="feedbackHead">Please pick 3 areas of your learning experience that you think we need to improve most (check 3 that apply):</p>
+          <ul>
+            <li>Curriculum topics and structure ({weekShow.filter(survey => survey.feedback_unhappy.includes(1)).length})</li>
+            <li>Curriculum difficulty level ({weekShow.filter(survey => survey.feedback_unhappy.includes(2)).length})</li>
+            <li>Quality of lessons ({weekShow.filter(survey => survey.feedback_unhappy.includes(3)).length})</li>
+            <li>Quality of labs (WebDev & Data) and projects (UX/UI) ({weekShow.filter(survey => survey.feedback_unhappy.includes(4)).length})</li>
+            <li>Teacher technical skills ({weekShow.filter(survey => survey.feedback_unhappy.includes(5)).length})</li>
+            <li>Teacher teaching ability ({weekShow.filter(survey => survey.feedback_unhappy.includes(6)).length})</li>
+            <li>Teacher accessibility ({weekShow.filter(survey => survey.feedback_unhappy.includes(7)).length})</li>
+            <li>Teacher´s Assistant abilities ({weekShow.filter(survey => survey.feedback_unhappy.includes(8)).length})</li>
+            <li>Helping you achieve your personal learning goals ({weekShow.filter(survey => survey.feedback_unhappy.includes(9)).length})</li>
+          </ul>
         </div>
         <h2>All Feedbacks: </h2>
         <div>
-          {weekShow}
+          {weekShow.map(survey => <SingleSurvey key={survey._id} survey={survey} />)}
         </div>
       </div>
     )
