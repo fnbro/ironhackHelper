@@ -62,7 +62,7 @@ export default class Settings extends Component {
   }
 
   render() {
-    //if (window.CS.getUIState().currentUser.isAdmin) {
+    if (window.CS.getUIState().currentUser.isAdmin) {
     return (
       <div>
         <h1>Settings</h1>
@@ -71,7 +71,7 @@ export default class Settings extends Component {
             <select id="selectbox" onChange={this.handleMemberAndAdmin} name="role" disabled={false}>
               <option value='Member'>Member</option>
               <option value="Admin">Admin</option>
-              <option value='Member'>Not Registered</option>
+              <option value='Not Registered'>Not Registered</option>
             </select>
           }
           <div className="form-wrap">
@@ -96,7 +96,7 @@ export default class Settings extends Component {
             </li>
             <li>
               <label htmlFor="password"></label>
-              <input className="inputFields" type="password" placeholder="confirm  new password"  onChange={this.handlePasswordChange} value={window.CS.getBMState().user.newpassword} />
+              <input className="inputFields" type="password" placeholder="confirm  newpassword"  onChange={this.handlePasswordChange} value={window.CS.getBMState().user.newpassword} />
             </li>
             <input className="join-btn" type="submit" value="Change" />
             <p className="errorMessagePassword">{window.CS.getUIState().Password.errorMessagePassword}</p>
@@ -105,8 +105,32 @@ export default class Settings extends Component {
         </form>
       </div>
     )
-    //}
-    //else {
+    }
+    else if (window.CS.getUIState().currentUser.isMember) {
+      return (
+        <div>
+          <p>
+          <h1>Change your Password</h1>
+          </p>
+          <form onSubmit={this.handlePasswordSubmit}>
+            <ul>
+              <li>
+                <label htmlFor="password"></label>
+                <input className="inputFields" type="password" placeholder="new password" onChange={this.handleCheckPassword} value={window.CS.getBMState().user.oldpassword} />
+              </li>
+              <li>
+                <label htmlFor="password"></label>
+                <input className="inputFields" type="password" placeholder="confirm  newpassword"  onChange={this.handlePasswordChange} value={window.CS.getBMState().user.newpassword} />
+              </li>
+              <input className="join-btn" type="submit" value="Change" />
+              <p className="errorMessagePassword">{window.CS.getUIState().Password.errorMessagePassword}</p>
+            </ul>
+            
+          </form>
+        </div>
+      )
+    }
+    else {
     return (
       <div className="errorBody" >
         <div className="error-main">
@@ -117,7 +141,7 @@ export default class Settings extends Component {
       </div>
     )
   }
-  //}
+  }
 
 
   handleMemberAndAdmin(event: any) {
