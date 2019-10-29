@@ -54,7 +54,7 @@ export default class MyBootcamp extends Component<IProps, IState> {
     else {
       weekShow = window.CS.getBMState().allSurveys.filter(survey => survey.feedback_week.toString() === window.CS.getBMState().surveyFilter.toString()).map(survey => <SingleSurvey key={survey._id} survey={survey} />)
     }
-
+    if (window.CS.getUIState().currentUser.isAdmin) {
     return (
       <div className="feedbackContainer">
         <div>
@@ -80,6 +80,7 @@ export default class MyBootcamp extends Component<IProps, IState> {
         </div>
       </div>
     )
+    }
   }
 
   handleWeekChange(event: any) {
