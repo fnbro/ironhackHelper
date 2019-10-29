@@ -96,6 +96,7 @@ export interface IBM{
     allNews: INewsData[],
     allSurveys: IFeedbackData[],
     news: INewsData;
+    surveyFilter: string;
     survey: IFeedbackData;
     settings: ISettings;
 }
@@ -122,7 +123,6 @@ export const initial: IState = {
             isMember: false,
             isAdmin: false
         }
-        
     },
 	BM: {
         user:{
@@ -145,6 +145,7 @@ export const initial: IState = {
             news_type: INewsType.none,
             created_by: ''
         },
+        surveyFilter: "all",
         survey: {
             feedback_week: -1,
             feedback_satisfied: -1,
