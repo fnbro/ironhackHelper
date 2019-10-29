@@ -17,6 +17,15 @@ export interface IErrorMessage extends IAction {
   errorMessage: string;
 }
 
+export interface IErrorMessageSearch extends IAction {
+  errorMessageSearch: string;
+}
+
+reducerFunctions[ActionType.search_error] = function (newState: IState, action: IErrorMessageSearch) {
+  newState.UI.waitingForResponse = false;
+  newState.UI.Search.errorMessageSearch = action.errorMessageSearch;
+  return newState
+}
 
 reducerFunctions[ActionType.update_user] = function (newState: IState, updateAction: IUserAction) {
   newState.BM.settings.foundUser = updateAction.user;
@@ -82,6 +91,7 @@ export default class Settings extends Component {
               </p>
               <input className="button pulse" type='button' onClick={this.handleSearch} value="search" />
               <input className="button pulse" type="button" onClick={this.handleSubmit} value="change" />
+              <p>{window.CS.getUIState().Search.errorMessageSearch}</p>
             </div>
           </div>
         </form>
@@ -170,12 +180,15 @@ export default class Settings extends Component {
       }
       window.CS.clientAction(action);
       selected.options[window.CS.getBMState().settings.foundUser.isAdmin ? 2 : (window.CS.getBMState().settings.foundUser.isMember ? 1 : 0)].selected = true;
-      alert(`User ${window.CS.getBMState().settings.foundUser.username} has been found!`);
     }
     else {
-      alert("This User does not exist");
-    }
+        const uiAction: IErrorMessageSearch = {
+            type: ActionType.search_error,
+            errorMessageSearch:  "User can not be found"
+        }
+        window.CS.clientAction(uiAction);
   }
+}
 
   handleUsernameRoleChange(event: any) {
     let user = window.CS.getBMState().settings.foundUser;
@@ -200,10 +213,9 @@ export default class Settings extends Component {
           user: res.data as IUser
         }
         window.CS.clientAction(setRole);
-        alert("User has been changed");
       });
   }
-
+//1 user has been changed 1 for password has been changed
   handleCheckPassword(event: any) {
     let user = window.CS.getBMState().user;
     user.oldpassword = event.target.value
@@ -248,6 +260,7 @@ handlePasswordSubmit(event: any) {
                   type: ActionType.update_password
               }
               window.CS.clientAction(uiAction);
+              //history.push("/login")
               console.log(res.data)
           }
 
