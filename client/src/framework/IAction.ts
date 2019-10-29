@@ -9,6 +9,7 @@ export enum ActionType {
     user_exists = "user_exists",
     make_member = "make_member",
     make_admin = "make_admin",
+    search_error = "search_error",
     update_password = "update_password",
     passwordchange_error= "passwordchange_error",
     success_message= "success_message",
@@ -31,7 +32,8 @@ export enum ActionType {
     select_user = 'select_user',
     change_week = 'change_week',
     news_error = "news_error",
-    survey_error = "survey_error"
+    survey_error = "survey_error",
+    filter_week = "filter_week"
 }
 export interface IAction {
     type: ActionType;

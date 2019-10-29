@@ -45,6 +45,10 @@ export interface IPassword {
     errorMessagePassword: string;
 }
 
+export interface ISearch {
+    errorMessageSearch: string;
+}
+
 export interface IUI {
     counter: number;
     loggedIn: boolean;
@@ -61,6 +65,7 @@ export interface IUI {
     News: INewsError;
     Survey: ISurveyError;
     Password: IPassword;
+    Search: ISearch;
 }
 
 export interface IFeedbackData {
@@ -96,6 +101,7 @@ export interface IBM{
     allNews: INewsData[],
     allSurveys: IFeedbackData[],
     news: INewsData;
+    surveyFilter: string;
     survey: IFeedbackData;
     settings: ISettings;
 }
@@ -111,6 +117,7 @@ export const initial: IState = {
         News: {errorMessageNews:""},
         Survey: {errorMessageSurvey:""},
         Password: {errorMessagePassword:""},
+        Search: {errorMessageSearch: ""},
         currentUser: {
             firstname: "",
             lastname: "",
@@ -122,7 +129,6 @@ export const initial: IState = {
             isMember: false,
             isAdmin: false
         }
-        
     },
 	BM: {
         user:{
@@ -145,6 +151,7 @@ export const initial: IState = {
             news_type: INewsType.none,
             created_by: ''
         },
+        surveyFilter: "all",
         survey: {
             feedback_week: -1,
             feedback_satisfied: -1,
