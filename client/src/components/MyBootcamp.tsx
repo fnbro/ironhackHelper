@@ -10,7 +10,12 @@ declare let window: IWindow;
 
 interface IProps { };
 
-
+// READ ALL Surveys
+reducerFunctions[ActionType.add_feedbacks_from_server] = function (newState: IState, action: IFeedbackLoadedAction) {
+  newState.UI.waitingForResponse = false;
+  newState.BM.allSurveys = action.surveys;
+  return newState
+}
 
 export default class MyBootcamp extends Component<IProps, IState> {
   constructor(props: IProps) {

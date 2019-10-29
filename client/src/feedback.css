@@ -10,11 +10,10 @@ body {
 /* Styling Checkbox Starts */
 .checkbox-label-feedback {
 		position: relative;
-		padding: 0rem 2rem;
-    margin: auto;
+    padding: 0rem 2rem;
     cursor: pointer;
-    font-size: 22px;
-    line-height: 30px;
+    font-size: 26px;
+    line-height: 40px;
     height: 24px;
     width: 24px;
     clear: both;
@@ -33,7 +32,7 @@ body {
     height: 24px;
     width: 24px;
     background-color: transparent;
-    border-radius: 5px;
+    border-radius: 15px;
     transition: all 0.3s ease-out;
     -webkit-transition: all 0.3s ease-out;
     -moz-transition: all 0.3s ease-out;

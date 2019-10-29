@@ -20,8 +20,8 @@ export default class SingleSurvey extends React.PureComponent<IProps> {
 
   render() {
     return (
-      <div>
-        {this.props.survey.feedback_satisfied}
+      <div className="singleSurveyContainer">
+        {this.props.survey.feedback_comments}
       </div>
     )
 
