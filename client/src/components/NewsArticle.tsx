@@ -53,18 +53,46 @@ export default class NewsArticle extends React.PureComponent<IProps> {
       icon = lab
     }
 
-    return (
-      <div className="newsContainer">
-        <img className="newsIcon" src={icon} alt="icon" />
-        <div>
-          <div className="headlineContainer">
-            <h3 className="headline">{this.props.news.news_headline}</h3>
-            <img onClick={this.handleDeleteButton} id="deleteBtn" src={logo} alt="delete-btn" />
+    if (window.CS.getUIState().currentUser.isMember) {
+      return (
+        <div className="newsContainer">
+          <img className="newsIcon" src={icon} alt="icon" />
+          <div>
+            <div className="headlineContainer">
+              <h3 className="headline">{this.props.news.news_headline}</h3>
+            </div>
+            <p>{this.props.news.news_content}</p>
+            <i id="createdBy">created by: {this.props.news.created_by}</i>
           </div>
-          <p>{this.props.news.news_content}</p>
         </div>
-      </div>
-    )
+      )
+    }
+    else if (window.CS.getUIState().currentUser.isAdmin) {
+      return (
+        <div className="newsContainer">
+          <img className="newsIcon" src={icon} alt="icon" />
+          <div>
+            <div className="headlineContainer">
+              <h3 className="headline">{this.props.news.news_headline}</h3>
+              <img onClick={this.handleDeleteButton} id="deleteBtn" src={logo} alt="delete-btn" />
+            </div>
+            <p>{this.props.news.news_content}</p>
+            <i id="createdBy">created by: {this.props.news.created_by}</i>
+          </div>
+        </div>
+      )
+    }
+    else {
+      return (
+        <div className="errorBody" >
+          <div className="error-main">
+            <h1>Oops!</h1>
+            <div className="error-heading">403</div>
+            <p>You do not have permission to access the document or program that you requested.</p>
+          </div>
+        </div>
+      )
+    }
 
   }
 

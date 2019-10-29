@@ -16,7 +16,7 @@ export default class nav extends Component {
                     <NavLink to="/">Home</NavLink>
                     <NavLink to="/news">News</NavLink>
                     <NavLink to="/feedback">Feedback</NavLink>
-                    <NavLink to="/forum">Forum</NavLink>
+                    <NavLink to="/mybootcamp">My Bootcamp</NavLink>
                     <div id="dropdown">
                         <button id="dropbtn">Extras
                         <i id="fa fa-caret-down"></i>
@@ -45,7 +45,7 @@ export default class nav extends Component {
                     <NavLink to="/">Home</NavLink>
                     <NavLink to="/news">News</NavLink>
                     <NavLink to="/feedback">Feedback</NavLink>
-                    <NavLink to="/forum">Forum</NavLink>
+                    <NavLink to="/mybootcamp">My Bootcamp</NavLink>
                     <div id="dropdown">
                         <button id="dropbtn">Extras
                         <i id="fa fa-caret-down"></i>

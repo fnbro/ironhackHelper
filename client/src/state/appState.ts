@@ -1,5 +1,3 @@
-import Register from "../components/test";
-
 export interface IUser {
     firstname:string;
     lastname:string;
@@ -19,10 +17,9 @@ export enum INewsType {
     note = "note",
     lab = "lab"
 }
-
 export interface INewsData {
     _id?: string,
-    created_by?: string,
+    created_by: string,
     news_type: INewsType,
     news_headline: string,
     news_content: string
@@ -40,6 +37,11 @@ export interface INewsError {
     errorMessageNews: string;
 }
 
+
+export interface IPassword {
+    errorMessagePassword: string;
+}
+
 export interface IUI {
     counter: number;
     loggedIn: boolean;
@@ -54,15 +56,11 @@ export interface IUI {
     Login: ILogin;
     Register: IRegister;
     News: INewsError;
-}
-
-export interface IAssetData {
-    _id: string;
-    asset_name: string;
-    asset_value: number;
+    Password: IPassword;
 }
 
 export interface IFeedbackData {
+    _id?: string,
     submitted_by?: any;
     feedback_week: number;
     feedback_satisfied: number;
@@ -90,9 +88,9 @@ export interface IUserData {
 
 export interface IBM{
     user:IUser;
-    assets:IAssetData[];
     members:IUserData[];
     allNews: INewsData[],
+    allSurveys: IFeedbackData[],
     news: INewsData;
     survey: IFeedbackData;
     settings: ISettings;
@@ -107,6 +105,7 @@ export const initial: IState = {
         Login: {errorMessage:""},
         Register: {errorMessageRegister:""},
         News: {errorMessageNews:""},
+        Password: {errorMessagePassword:""},
         currentUser: {
             firstname: "",
             lastname: "",
@@ -132,13 +131,14 @@ export const initial: IState = {
             isMember: false,
             isAdmin: false
         },
-        assets:[],
         members:[],
         allNews: [],
+        allSurveys: [],
         news: {
             news_headline:"",
             news_content:"",
-            news_type: INewsType.none
+            news_type: INewsType.none,
+            created_by: ''
         },
         survey: {
             feedback_week: 0,

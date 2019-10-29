@@ -54,64 +54,92 @@ export default class Newsticker extends Component<IProps, IState> {
   componentDidMount() {
     // Get all News from Database
     axios.get('/news/read').then(response => {
+
       const responseAction: INewsLoadedAction = {
         type: ActionType.add_news_from_server,
         news: response.data as INewsData[]
       }
-      console.log(responseAction.news);
       window.CS.clientAction(responseAction);
     }).catch(function (error) { console.log(error); })
   }
 
   render() {
-    console.log(window.CS.getBMState().allNews)
-    return (
-      <div>
-        <div className="sectionNews">
-          {window.CS.getBMState().allNews.map(news => <NewsArticle key={news._id} news={news} />)}
+    if (window.CS.getUIState().currentUser.isMember) {
+      return (
+        <div>
+          <div className="sectionNews">
+            {window.CS.getBMState().allNews.map(news => <NewsArticle key={news._id} news={news} />)}
+          </div>
+          <div>
+            <form onSubmit={this.handleSubmit}>
+              <div>
+                <p className="errorMessageNews">{window.CS.getUIState().News.errorMessageNews}</p>
+              </div>
+            </form>
+          </div>
         </div>
-        <div className="inputContainer">
-          <form onSubmit={this.handleSubmit}>
-            <div>
-              <p className="errorMessageNews">{window.CS.getUIState().News.errorMessageNews}</p>
-              <div className="row">
-                <div className="col-25">
-                  <label className="news-label" htmlFor="headline">Headline</label>
+      )
+    }
+    else if (window.CS.getUIState().currentUser.isAdmin) {
+      return (
+        <div>
+          <div className="sectionNews">
+            {window.CS.getBMState().allNews.map(news => <NewsArticle key={news._id} news={news} />)}
+          </div>
+          <div className="inputContainer">
+            <form onSubmit={this.handleSubmit}>
+              <div>
+                <p className="errorMessageNews">{window.CS.getUIState().News.errorMessageNews}</p>
+                <div className="row">
+                  <div className="col-25">
+                    <label className="news-label" htmlFor="headline">Headline</label>
+                  </div>
+                  <div className="col-75">
+                    <input onChange={this.handleHeadlineChange} value={window.CS.getBMState().news.news_headline} type="text" id="lname" name="headline" placeholder="Your headline.." />
+                  </div>
                 </div>
-                <div className="col-75">
-                  <input onChange={this.handleHeadlineChange} value={window.CS.getBMState().news.news_headline} type="text" id="lname" name="headline" placeholder="Your headline.." />
+                <div className="row">
+                  <div className="col-25">
+                    <label className="news-label" htmlFor="type">Type</label>
+                  </div>
+                  <div className="col-75 select">
+                    <select value={window.CS.getBMState().news.news_type} onChange={this.handleTypeChange} id="newsType" name="type">
+                      <option value="none">none</option>
+                      <option value="solution">Solution</option>
+                      <option value="question">Question</option>
+                      <option value="note">Note</option>
+                      <option value="lab">Lab</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-25">
+                    <label className="news-label" htmlFor="content">Content</label>
+                  </div>
+                  <div className="col-75">
+                    <textarea onChange={this.handleContentChange} value={window.CS.getBMState().news.news_content} id="subject" name="content" placeholder="Write something.."></textarea>
+                  </div>
                 </div>
               </div>
-              <div className="row">
-                <div className="col-25">
-                  <label className="news-label" htmlFor="type">Type</label>
-                </div>
-                <div className="col-75 select">
-                  <select value={window.CS.getBMState().news.news_type} onChange={this.handleTypeChange} id="newsType" name="type">
-                    <option value="none">none</option>
-                    <option value="solution">Solution</option>
-                    <option value="question">Question</option>
-                    <option value="note">Note</option>
-                    <option value="lab">Lab</option>
-                  </select>
-                </div>
+              <div className="row button-col">
+                <input id="submitNews" type="submit" value="Submit" />
               </div>
-              <div className="row">
-                <div className="col-25">
-                  <label className="news-label" htmlFor="content">Content</label>
-                </div>
-                <div className="col-75">
-                  <textarea onChange={this.handleContentChange} value={window.CS.getBMState().news.news_content} id="subject" name="content" placeholder="Write something.."></textarea>
-                </div>
-              </div>
-            </div>
-            <div className="row button-col">
-              <input id="submitNews" type="submit" value="Submit" />
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
-      </div>
-    )
+      )
+    }
+    else {
+      return (
+        <div className="errorBody" >
+          <div className="error-main">
+            <h1>Oops!</h1>
+            <div className="error-heading">403</div>
+            <p>You do not have permission to access the document or program that you requested.</p>
+          </div>
+        </div>
+      )
+    }
   }
 
   handleSubmit(event: any) {
@@ -142,6 +170,9 @@ export default class Newsticker extends Component<IProps, IState> {
       window.CS.clientAction(uiAction);
     }
     else {
+      const user = window.CS.getUIState().currentUser as any;
+      console.log(user);
+      window.CS.getBMState().news.created_by = user.username;
       axios.post('/news/add', window.CS.getBMState().news)
         .then(res => {
           const action: INewsAction = {

@@ -18,14 +18,8 @@ newsRoutes.route('/add').post(function (req, res) {
 
 //R: read alle news 
 newsRoutes.route('/read').get(function (req, res) {
-  console.log("got a request for news");
-  News.find(function (err, user) {
-    if (err) {
-      console.log(err);
-    } else {
-      res.json(user);
-    }
-  });
+  News.find().then(user => 
+      res.status(200).json(user))
 });
 
 //D: delete the news with the given id

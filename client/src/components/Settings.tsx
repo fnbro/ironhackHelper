@@ -17,6 +17,7 @@ export interface IErrorMessage extends IAction {
   errorMessage: string;
 }
 
+
 reducerFunctions[ActionType.update_user] = function (newState: IState, updateAction: IUserAction) {
   newState.BM.settings.foundUser = updateAction.user;
   return newState
@@ -34,10 +35,16 @@ reducerFunctions[ActionType.set_role] = function (newState: IState, action: IUse
   return newState
 }
 
+reducerFunctions[ActionType.passwordchange_error] = function (newState: IState, action: IErrorMessage) {
+  newState.UI.waitingForResponse = false;
+  newState.UI.Password.errorMessagePassword = action.errorMessage;
+  return newState
+}
+
 reducerFunctions[ActionType.update_password_change] = function (newState: IState, updateAction: IUserAction) {
   newState.BM.user = updateAction.user;
   newState.UI.currentUser = updateAction.user;
-  newState.UI.Register.errorMessageRegister = "";
+  newState.UI.Password.errorMessagePassword = "";
   return newState
 }
 
@@ -61,13 +68,11 @@ export default class Settings extends Component {
         <h1>Settings</h1>
         <form >
           {
-
             <select id="selectbox" onChange={this.handleMemberAndAdmin} name="role" disabled={false}>
               <option value='Member'>Member</option>
               <option value="Admin">Admin</option>
               <option value='Member'>Not Registered</option>
             </select>
-
           }
           <div className="form-wrap">
             <div className="input">
@@ -87,15 +92,16 @@ export default class Settings extends Component {
           <ul>
             <li>
               <label htmlFor="password"></label>
-              <input className="inputFields" type="password" placeholder="old password" onChange={this.handleCheckPassword} value={window.CS.getBMState().user.oldpassword} />
+              <input className="inputFields" type="password" placeholder="new password" onChange={this.handleCheckPassword} value={window.CS.getBMState().user.oldpassword} />
             </li>
             <li>
               <label htmlFor="password"></label>
-              <input className="inputFields" type="password" placeholder="new password"  onChange={this.handlePasswordChange} value={window.CS.getBMState().user.newpassword} />
+              <input className="inputFields" type="password" placeholder="confirm  new password"  onChange={this.handlePasswordChange} value={window.CS.getBMState().user.newpassword} />
             </li>
             <input className="join-btn" type="submit" value="Change" />
-            <p className="errorMessage">{window.CS.getUIState().Login.errorMessage}</p>
+            <p className="errorMessagePassword">{window.CS.getUIState().Password.errorMessagePassword}</p>
           </ul>
+          
         </form>
       </div>
     )
@@ -195,6 +201,7 @@ handlePasswordChange(event: any) {
 
 handlePasswordSubmit(event: any) {
   event.preventDefault();
+  console.log(window.CS.getUIState().Password.errorMessagePassword)
   const uiAction: IAction = {
       type: ActionType.server_called
   }
@@ -203,9 +210,10 @@ handlePasswordSubmit(event: any) {
       .then(res => {
           const data = res.data;
           console.log(data);
+          if (window.CS.getBMState().user.oldpassword)
           if (data.errorMessage) {
               const uiAction: IErrorMessage = {
-                  type: ActionType.register_error,
+                  type: ActionType.passwordchange_error,
                   errorMessage: data.errorMessage
               }
               window.CS.clientAction(uiAction);

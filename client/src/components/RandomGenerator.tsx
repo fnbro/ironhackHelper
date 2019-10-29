@@ -33,7 +33,7 @@ export default class RandomGenerator extends Component<IProps, IState> {
             window.CS.clientAction(responseAction);
         }).catch(function (error) { console.log(error); })
     }
-    
+
     render() {
         const randomUsers: any = [];
         window.CS.getBMState().members.forEach((user, ind, arr) => {
@@ -44,28 +44,41 @@ export default class RandomGenerator extends Component<IProps, IState> {
                     <td className="partner">{user.username}</td>
                 </tr>)
         }, [])
-        return (
-            <div id="section">
-                <h1>Pair Programming : Random Generator</h1>
-                <p>Click this button to get new pairs:&nbsp;
+        if (window.CS.getUIState().currentUser.isAdmin || window.CS.getUIState().currentUser.isMember) {
+            return (
+                <div id="section">
+                    <h1>Pair Programming : Random Generator</h1>
+                    <p>Click this button to get new pairs:&nbsp;
             <button className="randomBtn" onClick={this.randomizeAllUsers}>Random</button>
-                </p>
-                <p>{window.CS.getBMState().members.length > 0 &&
-                    <h2>
-                        You have {window.CS.getBMState().members.length} members in your Bootcamp.
+                    </p>
+                    <p>{window.CS.getBMState().members.length > 0 &&
+                        <h2>
+                            You have {window.CS.getBMState().members.length} members in your Bootcamp.
                     </h2>
-                }</p>
-                <table>
-                    <tbody>
-                        <tr>
-                            <th>Partner 1</th>
-                            <th>Partner 2</th>
-                        </tr>
-                        {randomUsers}
-                    </tbody>
-                </table>
-            </div>
-        )
+                    }</p>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>Partner 1</th>
+                                <th>Partner 2</th>
+                            </tr>
+                            {randomUsers}
+                        </tbody>
+                    </table>
+                </div>
+            )
+        }
+        else {
+            return (
+                <div className="errorBody" >
+                    <div className="error-main">
+                        <h1>Oops!</h1>
+                        <div className="error-heading">403</div>
+                        <p>You do not have permission to access the document or program that you requested.</p>
+                    </div>
+                </div>
+            )
+        }
     }
 
     randomizeAllUsers() {
