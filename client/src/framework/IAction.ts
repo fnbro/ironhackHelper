@@ -9,6 +9,7 @@ export enum ActionType {
     user_exists = "user_exists",
     make_member = "make_member",
     make_admin = "make_admin",
+    search_error = "search_error",
     update_password = "update_password",
     passwordchange_error= "passwordchange_error",
     success_message= "success_message",

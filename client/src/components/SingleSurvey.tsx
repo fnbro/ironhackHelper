@@ -1,5 +1,5 @@
 import React from 'react';
-import { INewsData, IState, IFeedbackData } from '../state/appState';
+import { INewsData, IState, IFeedbackData} from '../state/appState';
 import { ActionType, IAction } from '../framework/IAction';
 import { IWindow } from '../framework/IWindow';
 import { reducerFunctions } from '../reducer/appReducer';

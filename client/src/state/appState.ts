@@ -45,6 +45,10 @@ export interface IPassword {
     errorMessagePassword: string;
 }
 
+export interface ISearch {
+    errorMessageSearch: string;
+}
+
 export interface IUI {
     counter: number;
     loggedIn: boolean;
@@ -61,6 +65,7 @@ export interface IUI {
     News: INewsError;
     Survey: ISurveyError;
     Password: IPassword;
+    Search: ISearch;
 }
 
 export interface IFeedbackData {
@@ -112,6 +117,7 @@ export const initial: IState = {
         News: {errorMessageNews:""},
         Survey: {errorMessageSurvey:""},
         Password: {errorMessagePassword:""},
+        Search: {errorMessageSearch: ""},
         currentUser: {
             firstname: "",
             lastname: "",
