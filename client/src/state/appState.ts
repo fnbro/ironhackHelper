@@ -90,13 +90,18 @@ export interface IUserData {
     isAdmin?: string;   
 }
 
+export interface IFilter {
+    weekFilter: string,
+    userFilter: string
+}
+
 export interface IBM{
     user:IUser;
     members:IUserData[];
     allNews: INewsData[],
     allSurveys: IFeedbackData[],
     news: INewsData;
-    surveyFilter: string;
+    surveyFilter: IFilter,
     survey: IFeedbackData;
     settings: ISettings;
 }
@@ -145,7 +150,10 @@ export const initial: IState = {
             news_type: INewsType.none,
             created_by: ''
         },
-        surveyFilter: "all",
+        surveyFilter: {
+            weekFilter: "all",
+            userFilter: "none",
+        },
         survey: {
             feedback_week: -1,
             feedback_satisfied: -1,
