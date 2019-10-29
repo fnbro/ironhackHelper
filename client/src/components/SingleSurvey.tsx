@@ -1,5 +1,5 @@
 import React from 'react';
-import { INewsData, IState, IFeedbackData, IFeedbackDataNew } from '../state/appState';
+import { INewsData, IState, IFeedbackData } from '../state/appState';
 import { ActionType, IAction } from '../framework/IAction';
 import { IWindow } from '../framework/IWindow';
 import { reducerFunctions } from '../reducer/appReducer';
@@ -49,7 +49,7 @@ export default class SingleSurvey extends React.PureComponent<IProps> {
     console.log(this.props.survey)
     return (
       <div className="singleSurveyContainer">
-        <p><span className="feedbackHead">User: </span>{this.props.survey.submitted_by.username}</p>
+        <p><span className="feedbackHead">User: </span>{this.props.survey.submitted_by[0].username}</p>
         <p><span className="feedbackHead">Woche: </span>{this.props.survey.feedback_week}</p>
         <p><span className="feedbackHead">Skala(0-10) how satisfied you are with the Bootcamp:</span> {this.props.survey.feedback_satisfied}</p>
         <p className="feedbackHead">Please pick 3 areas of your learning experience that you think we are doing well (check 3 that apply):</p>
