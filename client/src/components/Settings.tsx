@@ -78,7 +78,7 @@ export default class Settings extends Component {
             <div className="input">
               <p>
                 <label htmlFor="password"></label>
-                <input className="form-field" type="username" placeholder="username" onChange={this.handleUsernameRoleChange} value={window.CS.getBMState().settings.foundUser.username} />
+                <input className="form-field" type="username" placeholder="username" onChange={this.handleUsernameRoleChange}  />
               </p>
               <input className="button pulse" type='button' onClick={this.handleSearch} value="search" />
               <input className="button pulse" type="button" onClick={this.handleSubmit} value="change" />
