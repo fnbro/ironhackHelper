@@ -93,20 +93,6 @@ body {
 
 
 /* For Ripple Effect */
-.checkbox-label-feedback .checkbox-custom::before {
-    position: absolute;
-    content: "";
-    left: 10px;
-    top: 10px;
-    width: 0px;
-    height: 0px;
-    border-radius: 5px;
-    border: 2px solid #FFFFFF;
-    -webkit-transform: scale(0);
-    -ms-transform: scale(0);
-    transform: scale(0);    
-}
-
 .checkbox-label-feedback input:checked ~ .checkbox-custom::before {
     left: -3px;
     top: -3px;

@@ -67,17 +67,16 @@ export default class WeeklyFeedback extends React.PureComponent<IFeedbackData, I
         this.handleCommentChange = this.handleCommentChange.bind(this);
     }
 
-    async componentDidMount() {
-        await axios.get('/feedback/read')
+    componentDidMount() {
+        const user = window.CS.getUIState().currentUser as any;
+        axios.get('/feedback/read')
             .then(response => {
                 this.setState({
                     data: response.data.filter((item: any) => {
-                        const user = window.CS.getUIState().currentUser as any;
-                        return item.submitted_by === user._id
+                        return item.submitted_by._id === user._id
                     })
                 })
             })
-        console.log(this.state.data)
     }
 
     handleSubmit(event: any) {
@@ -85,7 +84,6 @@ export default class WeeklyFeedback extends React.PureComponent<IFeedbackData, I
             type: ActionType.add_survey,
         }
 
-        console.log(window.CS.getBMState().survey)
         if (window.CS.getBMState().survey.feedback_week === -1) {
             const uiAction: IErrorMessage = {
                 type: ActionType.survey_error,
@@ -136,7 +134,6 @@ export default class WeeklyFeedback extends React.PureComponent<IFeedbackData, I
     }
 
     handleWeekChange(event: any) {
-        console.log(event.target.value);
 
         let newSurvey = window.CS.getBMState().survey;
         newSurvey.feedback_week = event.target.value
@@ -150,7 +147,6 @@ export default class WeeklyFeedback extends React.PureComponent<IFeedbackData, I
     }
 
     handleSatisfiedChange(event: any) {
-        console.log(event.target.value);
 
         let newSurvey = window.CS.getBMState().survey;
         newSurvey.feedback_satisfied = event.target.value
@@ -163,25 +159,23 @@ export default class WeeklyFeedback extends React.PureComponent<IFeedbackData, I
 
     }
 
-    handleLikeChange = (event: any) => {
+    handleLikeChange = async (event: any) => {
         let newSurvey = window.CS.getBMState().survey;
         let clickedNo = Number(event.target.value);
-        let sprehc: any;
-        if (event.target.checked === true) {
-            console.log('here')
+        let krojter: any;
+        if (event.target.checked) {
             newSurvey.feedback_happy.push(clickedNo);
             if (newSurvey.feedback_happy.length >= 4) {
-                sprehc = newSurvey.feedback_happy.shift() as number;
+                krojter = newSurvey.feedback_happy.shift() as number;
             }
         }
         else {
-            sprehc = newSurvey.feedback_happy.splice(newSurvey.feedback_happy.indexOf(clickedNo), 1)[0];
+            krojter = newSurvey.feedback_happy.splice(newSurvey.feedback_happy.indexOf(clickedNo), 1)[0];
         }
-        console.log(newSurvey.feedback_happy, sprehc, newSurvey.feedback_happy.indexOf(clickedNo), event.target.value);
-        if (sprehc) {
+        if(krojter) {
             const like: any = Array.from(document.getElementsByName("Like"));
             like.forEach((_: any, i: any) => {
-                if (i + 1 == sprehc) {
+                if (i + 1 == krojter) {
                     _.checked = false;
                 }
             })
@@ -192,8 +186,7 @@ export default class WeeklyFeedback extends React.PureComponent<IFeedbackData, I
             survey: newSurvey
         }
 
-        window.CS.clientAction(action);
-
+        await window.CS.clientAction(action);
     }
 
     handleDislikeChange = (event: any) => {
@@ -201,7 +194,6 @@ export default class WeeklyFeedback extends React.PureComponent<IFeedbackData, I
         let clickedNo = Number(event.target.value);
         let sprehz: any;
         if (event.target.checked === true) {
-            console.log('here')
             newSurvey.feedback_unhappy.push(clickedNo);
             if (newSurvey.feedback_unhappy.length >= 4) {
                 sprehz = newSurvey.feedback_unhappy.shift() as number;
@@ -210,7 +202,6 @@ export default class WeeklyFeedback extends React.PureComponent<IFeedbackData, I
         else {
             sprehz = newSurvey.feedback_unhappy.splice(newSurvey.feedback_unhappy.indexOf(clickedNo), 1)[0];
         }
-        console.log(newSurvey.feedback_unhappy, sprehz, newSurvey.feedback_unhappy.indexOf(clickedNo), event.target.value);
         if (sprehz) {
             const like: any = Array.from(document.getElementsByName("Dislike"));
             like.forEach((_: any, i: any) => {
@@ -230,7 +221,6 @@ export default class WeeklyFeedback extends React.PureComponent<IFeedbackData, I
     }
 
     handleCommentChange(event: any) {
-        console.log(event.target.value);
 
         let newSurvey = window.CS.getBMState().survey;
         newSurvey.feedback_comments = event.target.value
@@ -245,9 +235,6 @@ export default class WeeklyFeedback extends React.PureComponent<IFeedbackData, I
 
     render() {
         if (window.CS.getUIState().currentUser.isAdmin || window.CS.getUIState().currentUser.isMember) {
-
-            console.log(this.state.data
-                .every((item: any) => item.feedback_week != 2))
             return (
                 <form onSubmit={this.handleSubmit}>
                     <h1 className="title" id="title">Ironhack Weekly Survey</h1>
