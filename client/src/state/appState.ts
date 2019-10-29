@@ -69,6 +69,16 @@ export interface IFeedbackData {
     feedback_comments: string;
 }
 
+export interface IFeedbackDataNew {
+    _id?: string,
+    submitted_by?: any;
+    feedback_week: number;
+    feedback_satisfied: number;
+    feedback_happy: string[];
+    feedback_unhappy: string[];
+    feedback_comments: string;
+}
+
 export interface ISettings {
     currentSelection?: string;
     foundUser: IUser;

@@ -18,8 +18,8 @@ feedbackRoutes.post('/savesurvey', (req, res) => {
 });
 
 //R: read alle feedbacks 
-feedbackRoutes.route('/read').get(function (req, res) {
-    Survey.find().then(survey => 
+feedbackRoutes.get('/read', function (req, res) {
+    Survey.find().populate('submitted_by').then(survey => 
         res.status(200).json(survey))
   });
 
