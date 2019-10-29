@@ -111,7 +111,7 @@ const passwordEn = bcrypt.hashSync(userPassword, salt);
       return;
     }
     if (newPassword !== userPassword) {
-      res.status(200).json({ errorMessage: "Type the same password" });
+      res.status(200).json({ errorMessage: "Type the same Password" });
       return;
     }
     const salt = bcrypt.genSaltSync(bcryptSalt);
