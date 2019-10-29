@@ -1,0 +1,13 @@
+#homepageImage {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+}
+
+#homepageTitle {
+  text-align: center;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  color: darkblue;
+}

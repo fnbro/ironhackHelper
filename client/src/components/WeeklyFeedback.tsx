@@ -10,6 +10,8 @@ import history from '../framework/history';
 import { IErrorMessage } from './Register';
 
 
+
+
 declare let window: IWindow;
 interface IJSXState {
     data: any
