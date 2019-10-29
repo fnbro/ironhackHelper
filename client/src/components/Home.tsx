@@ -8,8 +8,8 @@ export default class Startpage extends Component {
     render() {
         return (
             <div>
-                <h1>Welcome to the Ironhack helper {window.CS.getBMState().user.firstname} {window.CS.getBMState().user.lastname}!</h1>
-                <img src={ironhackLogo} alt="Ironhack Logo"/>
+                <h1 id="homepageTitle">Welcome to the Ironhack helper {window.CS.getBMState().user.firstname} {window.CS.getBMState().user.lastname}!</h1>
+                <img id="homepageImage"src={ironhackLogo} alt="Ironhack Logo"/>
             </div>
         )
     }
