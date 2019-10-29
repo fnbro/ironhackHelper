@@ -32,7 +32,8 @@ export enum ActionType {
     select_user = 'select_user',
     change_week = 'change_week',
     news_error = "news_error",
-    survey_error = "survey_error"
+    survey_error = "survey_error",
+    filter_week = "filter_week"
 }
 export interface IAction {
     type: ActionType;
