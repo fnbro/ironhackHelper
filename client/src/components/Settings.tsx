@@ -99,7 +99,7 @@ export default class Settings extends Component {
               <input className="inputFields" type="password" placeholder="confirm  newpassword"  onChange={this.handlePasswordChange} value={window.CS.getBMState().user.newpassword} />
             </li>
             <input className="join-btn" type="submit" value="Change" />
-            <p className="errorMessagePassword">{window.CS.getUIState().Password.errorMessagePassword}</p>
+            <p>{window.CS.getUIState().Password.errorMessagePassword}</p>
           </ul>
           
         </form>
@@ -120,12 +120,11 @@ export default class Settings extends Component {
               </li>
               <li>
                 <label htmlFor="password"></label>
-                <input className="inputFields" type="password" placeholder="confirm  newpassword"  onChange={this.handlePasswordChange} value={window.CS.getBMState().user.newpassword} />
+                <input className="inputFields" type="password" placeholder="confirm  new password"  onChange={this.handlePasswordChange} value={window.CS.getBMState().user.newpassword} />
               </li>
               <input className="join-btn" type="submit" value="Change" />
-              <p className="errorMessagePassword">{window.CS.getUIState().Password.errorMessagePassword}</p>
+              <p>{window.CS.getUIState().Password.errorMessagePassword}</p>
             </ul>
-            
           </form>
         </div>
       )
@@ -171,9 +170,10 @@ export default class Settings extends Component {
       }
       window.CS.clientAction(action);
       selected.options[window.CS.getBMState().settings.foundUser.isAdmin ? 1 : (window.CS.getBMState().settings.foundUser.isMember ? 0 : 1)].selected = true;
+      alert(`User ${window.CS.getBMState().settings.foundUser.username} has been found!`);
     }
     else {
-      alert("This User does not exists");
+      alert("This User does not exist");
     }
   }
 
@@ -200,6 +200,7 @@ export default class Settings extends Component {
           user: res.data as IUser
         }
         window.CS.clientAction(setRole);
+        alert("User has been changed");
       });
   }
 
