@@ -49,6 +49,10 @@ export interface ISearch {
     errorMessageSearch: string;
 }
 
+export interface IChange {
+    successMessageChange: string;
+}
+
 export interface IUI {
     counter: number;
     loggedIn: boolean;
@@ -66,6 +70,7 @@ export interface IUI {
     Survey: ISurveyError;
     Password: IPassword;
     Search: ISearch;
+    Change: IChange;
 }
 
 export interface IFeedbackData {
@@ -123,6 +128,7 @@ export const initial: IState = {
         Survey: {errorMessageSurvey:""},
         Password: {errorMessagePassword:""},
         Search: {errorMessageSearch: ""},
+        Change: {successMessageChange:""},
         currentUser: {
             firstname: "",
             lastname: "",

@@ -21,6 +21,16 @@ export interface IErrorMessageSearch extends IAction {
   errorMessageSearch: string;
 }
 
+export interface ISuccessMessageChange extends IAction {
+  successMessageChange: string;
+}
+
+reducerFunctions[ActionType.change_success] = function (newState: IState, action: ISuccessMessageChange) {
+  newState.UI.waitingForResponse = false;
+  newState.UI.Change.successMessageChange = action.successMessageChange;
+  return newState
+}
+
 reducerFunctions[ActionType.search_error] = function (newState: IState, action: IErrorMessageSearch) {
   newState.UI.waitingForResponse = false;
   newState.UI.Search.errorMessageSearch = action.errorMessageSearch;
@@ -72,55 +82,32 @@ export default class Settings extends Component {
 
   render() {
     if (window.CS.getUIState().currentUser.isAdmin) {
-    return (
-      <div>
-        <h1>Settings</h1>
-        <form >
-          {
-            <select id="selectbox" onChange={this.handleMemberAndAdmin} name="role" disabled={false}>
-              <option value='Not Registered'>Not Registered</option>
-              <option value='Member'>Member</option>
-              <option value="Admin">Admin</option>
-            </select>
-          }
-          <div className="form-wrap">
-            <div className="input">
-              <p>
-                <label htmlFor="password"></label>
-                <input className="form-field" type="username" placeholder="username" onChange={this.handleUsernameRoleChange}  />
-              </p>
-              <input className="button pulse" type='button' onClick={this.handleSearch} value="search" />
-              <input className="button pulse" type="button" onClick={this.handleSubmit} value="change" />
-              <p>{window.CS.getUIState().Search.errorMessageSearch}</p>
-            </div>
-          </div>
-        </form>
-        <p>
-        <h1>Change your Password</h1>
-        </p>
-        <form onSubmit={this.handlePasswordSubmit}>
-          <ul>
-            <li>
-              <label htmlFor="password"></label>
-              <input className="inputFields" type="password" placeholder="new password" onChange={this.handleCheckPassword} value={window.CS.getBMState().user.oldpassword} />
-            </li>
-            <li>
-              <label htmlFor="password"></label>
-              <input className="inputFields" type="password" placeholder="confirm  newpassword"  onChange={this.handlePasswordChange} value={window.CS.getBMState().user.newpassword} />
-            </li>
-            <input className="join-btn" type="submit" value="Change" />
-            <p>{window.CS.getUIState().Password.errorMessagePassword}</p>
-          </ul>
-          
-        </form>
-      </div>
-    )
-    }
-    else if (window.CS.getUIState().currentUser.isMember) {
       return (
         <div>
+          <h1>Settings</h1>
+          <form >
+            {
+              <select id="selectbox" onChange={this.handleMemberAndAdmin} name="role" disabled={false}>
+                <option value='Not Registered'>Not Registered</option>
+                <option value='Member'>Member</option>
+                <option value="Admin">Admin</option>
+              </select>
+            }
+            <div className="form-wrap">
+              <div className="input">
+                <p>
+                  <label htmlFor="password"></label>
+                  <input className="form-field" type="username" placeholder="username" onChange={this.handleUsernameRoleChange} />
+                </p>
+                <input className="button pulse" type='button' onClick={this.handleSearch} value="search" />
+                <input className="button pulse" type="button" onClick={this.handleSubmit} value="change" />
+                
+                <p>{window.CS.getUIState().Search.errorMessageSearch}</p>
+              </div>
+            </div>
+          </form>
           <p>
-          <h1>Change your Password</h1>
+            <h1>Change your Password</h1>
           </p>
           <form onSubmit={this.handlePasswordSubmit}>
             <ul>
@@ -130,26 +117,51 @@ export default class Settings extends Component {
               </li>
               <li>
                 <label htmlFor="password"></label>
-                <input className="inputFields" type="password" placeholder="confirm  new password"  onChange={this.handlePasswordChange} value={window.CS.getBMState().user.newpassword} />
+                <input className="inputFields" type="password" placeholder="confirm  newpassword" onChange={this.handlePasswordChange} value={window.CS.getBMState().user.newpassword} />
               </li>
               <input className="join-btn" type="submit" value="Change" />
               <p>{window.CS.getUIState().Password.errorMessagePassword}</p>
+            </ul>
+
+          </form>
+        </div>
+      )
+    }
+    else if (window.CS.getUIState().currentUser.isMember) {
+      return (
+        <div>
+          <p>
+            <h1>Change your Password</h1>
+          </p>
+          <form onSubmit={this.handlePasswordSubmit}>
+            <ul>
+              <li>
+                <label htmlFor="password"></label>
+                <input className="inputFields" type="password" placeholder="new password" onChange={this.handleCheckPassword} value={window.CS.getBMState().user.oldpassword} />
+              </li>
+              <li>
+                <label htmlFor="password"></label>
+                <input className="inputFields" type="password" placeholder="confirm new password" onChange={this.handlePasswordChange} value={window.CS.getBMState().user.newpassword} />
+              </li>
+              <input className="join-btn" type="submit" value="Change" />
+              <p>{window.CS.getUIState().Password.errorMessagePassword}</p>
+             <p className="Maul">{window.CS.getUIState().Change.successMessageChange}</p>
             </ul>
           </form>
         </div>
       )
     }
     else {
-    return (
-      <div className="errorBody" >
-        <div className="error-main">
-          <h1>Oops!</h1>
-          <div className="error-heading">403</div>
-          <p>You do not have permission to access the document or program that you requested.</p>
+      return (
+        <div className="errorBody" >
+          <div className="error-main">
+            <h1>Oops!</h1>
+            <div className="error-heading">403</div>
+            <p>You do not have permission to access the document or program that you requested.</p>
+          </div>
         </div>
-      </div>
-    )
-  }
+      )
+    }
   }
 
 
@@ -178,17 +190,22 @@ export default class Settings extends Component {
         type: ActionType.select_user,
         user: search[0]
       }
+      const uiAction: IErrorMessageSearch = {
+        type: ActionType.search_error,
+        errorMessageSearch: "User has been found"
+      }
+      window.CS.clientAction(uiAction);
       window.CS.clientAction(action);
       selected.options[window.CS.getBMState().settings.foundUser.isAdmin ? 2 : (window.CS.getBMState().settings.foundUser.isMember ? 1 : 0)].selected = true;
     }
     else {
-        const uiAction: IErrorMessageSearch = {
-            type: ActionType.search_error,
-            errorMessageSearch:  "User can not be found"
-        }
-        window.CS.clientAction(uiAction);
+      const uiAction: IErrorMessageSearch = {
+        type: ActionType.search_error,
+        errorMessageSearch: "User can not be found"
+      }
+      window.CS.clientAction(uiAction);
+    }
   }
-}
 
   handleUsernameRoleChange(event: any) {
     let user = window.CS.getBMState().settings.foundUser;
@@ -212,59 +229,63 @@ export default class Settings extends Component {
           type: ActionType.set_role,
           user: res.data as IUser
         }
+        const uiAction: ISuccessMessageChange = {
+          type: ActionType.change_success,
+          successMessageChange: "Userrole has been updated"
+        }
+        window.CS.clientAction(uiAction);
         window.CS.clientAction(setRole);
       });
   }
-//1 user has been changed 1 for password has been changed
+  //1 user has been changed 1 for password has been changed
   handleCheckPassword(event: any) {
     let user = window.CS.getBMState().user;
     user.oldpassword = event.target.value
     const action: IUserAction = {
-        type: ActionType.update_password,
-        user: user
-    }
-    window.CS.clientAction(action);
-}
-
-handlePasswordChange(event: any) {
-  let user = window.CS.getBMState().user;
-  user.newpassword = event.target.value
-  const action: IUserAction = {
       type: ActionType.update_password,
       user: user
+    }
+    window.CS.clientAction(action);
   }
-  window.CS.clientAction(action);
-}
 
-handlePasswordSubmit(event: any) {
-  event.preventDefault();
-  console.log(window.CS.getUIState().Password.errorMessagePassword)
-  const uiAction: IAction = {
-      type: ActionType.server_called
+  handlePasswordChange(event: any) {
+    let user = window.CS.getBMState().user;
+    user.newpassword = event.target.value
+    const action: IUserAction = {
+      type: ActionType.update_password,
+      user: user
+    }
+    window.CS.clientAction(action);
   }
-  window.CS.clientAction(uiAction);
-  axios.post('/auth/password', window.CS.getBMState().user)
+
+  handlePasswordSubmit(event: any) {
+    event.preventDefault();
+    console.log(window.CS.getUIState().Password.errorMessagePassword)
+    const uiAction: IAction = {
+      type: ActionType.server_called
+    }
+    window.CS.clientAction(uiAction);
+    axios.post('/auth/password', window.CS.getBMState().user)
       .then(res => {
-          const data = res.data;
-          console.log(data);
-          if (window.CS.getBMState().user.oldpassword)
+        const data = res.data;
+        console.log(data);
+        if (window.CS.getBMState().user.oldpassword)
           if (data.errorMessage) {
-              const uiAction: IErrorMessage = {
-                  type: ActionType.passwordchange_error,
-                  errorMessage: data.errorMessage
-              }
-              window.CS.clientAction(uiAction);
+            const uiAction: IErrorMessage = {
+              type: ActionType.passwordchange_error,
+              errorMessage: data.errorMessage
+            }
+            window.CS.clientAction(uiAction);
           }
           else {
-              const uiAction: IAction = {
-                  type: ActionType.update_password
-              }
-              window.CS.clientAction(uiAction);
-              //history.push("/login")
-              console.log(res.data)
+            const uiAction: IAction = {
+              type: ActionType.update_password
+            }
+            window.CS.clientAction(uiAction);
+            //history.push("/login")
+            console.log(res.data)
           }
 
       });
-}
-
+  }
 }
