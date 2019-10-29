@@ -92,11 +92,11 @@ export default class Settings extends Component {
           <ul>
             <li>
               <label htmlFor="password"></label>
-              <input className="inputFields" type="password" placeholder="old password" onChange={this.handleCheckPassword} value={window.CS.getBMState().user.oldpassword} />
+              <input className="inputFields" type="password" placeholder="new password" onChange={this.handleCheckPassword} value={window.CS.getBMState().user.oldpassword} />
             </li>
             <li>
               <label htmlFor="password"></label>
-              <input className="inputFields" type="password" placeholder="new password"  onChange={this.handlePasswordChange} value={window.CS.getBMState().user.newpassword} />
+              <input className="inputFields" type="password" placeholder="confirm  new password"  onChange={this.handlePasswordChange} value={window.CS.getBMState().user.newpassword} />
             </li>
             <input className="join-btn" type="submit" value="Change" />
             <p className="errorMessagePassword">{window.CS.getUIState().Password.errorMessagePassword}</p>
