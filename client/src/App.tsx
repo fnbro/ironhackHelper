@@ -11,13 +11,8 @@ import WeeklyFeedback from './components/WeeklyFeedback';
 import Settings from './components/Settings';
 import RandomGenerator from "./components/RandomGenerator";
 import Newsticker from "./components/Newsticker";
-<<<<<<< HEAD
 import UsefulLinks from './components/UsefulLinks';
-
-=======
 import MyBootcamp from './components/MyBootcamp';
->>>>>>> 0c4ca6ab008520f7446f6804b81d4c61d19f4f9d
-
 import { IWindow } from './framework/IWindow';
 
 declare let window: IWindow;
@@ -69,11 +64,8 @@ export default class App extends React.PureComponent<IProps> {
           <Route path="/settings" component={Settings} />
           <Route path="/random-generator" component={RandomGenerator} />
           <Route path="/news" component={Newsticker} />
-<<<<<<< HEAD
           <Route path="/useful-links" component={UsefulLinks} />
-=======
           <Route path="/mybootcamp" component={MyBootcamp} />
->>>>>>> 0c4ca6ab008520f7446f6804b81d4c61d19f4f9d
         </Switch>
       </>
     );
