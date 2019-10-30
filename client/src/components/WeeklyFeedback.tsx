@@ -1,16 +1,11 @@
-import React, { Component } from 'react';
-import mongoose from 'mongoose';
+import React from 'react';
 import { ActionType, IAction } from '../framework/IAction';
 import { reducerFunctions } from '../reducer/appReducer';
-
 import { IWindow } from '../framework/IWindow';
-import { IFeedbackData, IState, ISurveyError } from '../state/appState'
+import { IFeedbackData, IState } from '../state/appState'
 import axios from 'axios';
 import history from '../framework/history';
 import { IErrorMessage } from './Register';
-
-
-
 
 declare let window: IWindow;
 interface IJSXState {
@@ -82,9 +77,6 @@ export default class WeeklyFeedback extends React.PureComponent<IFeedbackData, I
     }
 
     handleSubmit(event: any) {
-        const action: IAction = {
-            type: ActionType.add_survey,
-        }
 
         if (window.CS.getBMState().survey.feedback_week === -1) {
             const uiAction: IErrorMessage = {
@@ -177,7 +169,7 @@ export default class WeeklyFeedback extends React.PureComponent<IFeedbackData, I
         if(krojter) {
             const like: any = Array.from(document.getElementsByName("Like"));
             like.forEach((_: any, i: any) => {
-                if (i + 1 == krojter) {
+                if (i + 1 === krojter) {
                     _.checked = false;
                 }
             })
@@ -207,7 +199,7 @@ export default class WeeklyFeedback extends React.PureComponent<IFeedbackData, I
         if (sprehz) {
             const like: any = Array.from(document.getElementsByName("Dislike"));
             like.forEach((_: any, i: any) => {
-                if (i + 1 == sprehz) {
+                if (i + 1 === sprehz) {
                     _.checked = false;
                 }
             })
@@ -257,43 +249,43 @@ export default class WeeklyFeedback extends React.PureComponent<IFeedbackData, I
                         <div>
                             <input type="radio" id="week1"
                                 disabled={this.state.data && !this.state.data
-                                    .every((item: any) => item.feedback_week != 1)}
+                                    .every((item: any) => item.feedback_week !== 1)}
                                 name="Week" value="1" onChange={this.handleWeekChange} />
                             <label htmlFor="week1" className="checkbox-label-week">=> Week 1</label>
                         </div>
                         <div>
                             <input type="radio" id="week2" disabled={this.state.data && !this.state.data
-                                .every((item: any) => item.feedback_week != 2)} name="Week" value="2" onChange={this.handleWeekChange} />
+                                .every((item: any) => item.feedback_week !== 2)} name="Week" value="2" onChange={this.handleWeekChange} />
                             <label htmlFor="week2" className="checkbox-label-week">=> Week 2</label>
                         </div>
                         <div>
                             <input type="radio" id="week3" disabled={this.state.data && !this.state.data
-                                .every((item: any) => item.feedback_week != 3)} name="Week" value="3" onChange={this.handleWeekChange} />
+                                .every((item: any) => item.feedback_week !== 3)} name="Week" value="3" onChange={this.handleWeekChange} />
                             <label htmlFor="week3" className="checkbox-label-week">=> Week 3</label>
                         </div>
                         <div>
                             <input type="radio" id="week4" disabled={this.state.data && !this.state.data
-                                .every((item: any) => item.feedback_week != 4)} name="Week" value="4" onChange={this.handleWeekChange} />
+                                .every((item: any) => item.feedback_week !== 4)} name="Week" value="4" onChange={this.handleWeekChange} />
                             <label htmlFor="week4" className="checkbox-label-week">=> Week 4</label>
                         </div>
                         <div>
                             <input type="radio" id="week5" disabled={this.state.data && !this.state.data
-                                .every((item: any) => item.feedback_week != 5)} name="Week" value="5" onChange={this.handleWeekChange} />
+                                .every((item: any) => item.feedback_week !== 5)} name="Week" value="5" onChange={this.handleWeekChange} />
                             <label htmlFor="week5" className="checkbox-label-week">=> Week 5</label>
                         </div>
                         <div>
                             <input type="radio" id="week6" disabled={this.state.data && !this.state.data
-                                .every((item: any) => item.feedback_week != 6)} name="Week" value="6" onChange={this.handleWeekChange} />
+                                .every((item: any) => item.feedback_week !== 6)} name="Week" value="6" onChange={this.handleWeekChange} />
                             <label htmlFor="week6" className="checkbox-label-week">=> Week 6</label>
                         </div>
                         <div>
                             <input type="radio" id="week7" disabled={this.state.data && !this.state.data
-                                .every((item: any) => item.feedback_week != 7)} name="Week" value="7" onChange={this.handleWeekChange} />
+                                .every((item: any) => item.feedback_week !== 7)} name="Week" value="7" onChange={this.handleWeekChange} />
                             <label htmlFor="week7" className="checkbox-label-week">=> Week 7</label>
                         </div>
                         <div>
                             <input type="radio" id="week8" disabled={this.state.data && !this.state.data
-                                .every((item: any) => item.feedback_week != 8)} name="Week" value="8" onChange={this.handleWeekChange} />
+                                .every((item: any) => item.feedback_week !== 8)} name="Week" value="8" onChange={this.handleWeekChange} />
                             <label htmlFor="week8" className="checkbox-label-week">=> Week 8</label>
                         </div>
                     </div>
@@ -465,7 +457,7 @@ export default class WeeklyFeedback extends React.PureComponent<IFeedbackData, I
 
                     <div className="commentForm">
                         <h3 className="questiontitles">Anything you woud like to add?</h3>
-                        <textarea id="comments" value={this.props.feedback_comments} onChange={this.handleCommentChange}> </textarea>
+                        <textarea id="comments" value={window.CS.getBMState().survey.feedback_comments} defaultValue={this.props.feedback_comments} onChange={this.handleCommentChange}> </textarea>
                     </div>
 
                     <div>
