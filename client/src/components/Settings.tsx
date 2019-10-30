@@ -157,7 +157,7 @@ export default class Settings extends Component {
               </li>
               <input className="join-btn" type="submit" value="Change" />
               <p>{window.CS.getUIState().Password.errorMessagePassword}</p>
-             <p className="Maul">{window.CS.getUIState().Change.successMessageChange}</p>
+              <p>{window.CS.getUIState().newPassword.successMessagePassword}</p>
             </ul>
           </form>
         </div>
