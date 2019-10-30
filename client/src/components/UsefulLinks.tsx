@@ -20,7 +20,7 @@ export default class Startpage extends Component {
                     <a href="http://learn.ironhack.com" target="_blank">
                     <img className="usefulImage" src={ironhackHomepage} alt="Ironhack Homepage" />
                     </a>
-                    <p>Welcome to Ironhack!
+                    <p className="homepageDescription">Welcome to Ironhack!
                         In order to have the best start into becoming a real developer we prepared a great collection of Tutorials, DIY Exercises and also guided examples.
                         You can access all of them by creating an account on our platform, then you are ready to start!
                     </p>
@@ -29,7 +29,7 @@ export default class Startpage extends Component {
                     <a href="https://trello.com/" target="_blank">
                     <img className="usefulImage" src={trelloHomepage} alt="Trello Homepage" />
                     </a>
-                    <p>Welcome to Trello!
+                    <p className="homepageDescription">Welcome to Trello!
                         Trello is a web-based Kanban-style list-making application. 
                         In other words, it´s the perfect way to help bringing more structure in your projects and to get an overview of the current status. 
                         This will come in handy when you are going to start working on your own projects!
@@ -39,7 +39,7 @@ export default class Startpage extends Component {
                     <a href="https://github.com" target="_blank">
                     <img className="usefulImage" src={githubHomepage} alt="Github Homepage" />
                     </a>
-                    <p>Welcome to Github!
+                    <p className="homepageDescription">Welcome to Github!
                     GitHub is a Git repository hosting service, but it adds many of its own features. 
                     While Git is a command line tool, GitHub provides a Web-based graphical interface.
                     Git is a Distributed Version Control tool that is used to store different versions of a file in a remote or local repository.
@@ -51,7 +51,7 @@ export default class Startpage extends Component {
                     <a href="https://www.codewars.com" target="_blank">
                     <img className="usefulImage" src={codewarsHomepage} alt="Codewars Homepage" />
                     </a>
-                    <p>Welcome to Codewars!
+                    <p className="homepageDescription">Welcome to Codewars!
                         If want to practise or improve your coding skills you should take a look at Codewars.
                         Dozens of developers are creating so called "Katas", in all sorts of programming languages and in all difficulty levels.
                         If you want to compete with your colleagues/friends, you can create your own clan and check who of you has what it takes to be the best developer!
@@ -61,7 +61,7 @@ export default class Startpage extends Component {
                     <a href="https://kahoot.it/" target="_blank">
                     <img className="usefulImage" src={kahootHomepage} alt="Kahoot Homepage" />
                     </a>
-                    <p>Welcome to Kahoot!
+                    <p className="homepageDescription">Welcome to Kahoot!
                         Kahoot is a free student-response tool for administering quizzes, facilitating discussions, or collecting survey data.
                         It is a game-based classroom response system played by the whole class in real time.
                         You will see it many times during our bootcamp so stay tuned!
@@ -71,7 +71,7 @@ export default class Startpage extends Component {
                     <a href="https://codepen.io/" target="_blank">
                     <img className="usefulImage" src={codepenHomepage} alt="Codepen Homepage" />
                     </a>
-                    <p>Welcome to Codepen!
+                    <p className="homepageDescription">Welcome to Codepen!
                     CodePen is an online community for testing and showcasing user-created HTML, CSS and JavaScript code snippets.
                     At the beginning of our bootcamp you are going to use it quite a lot before we are going to start developing in VisualStudioCode.
                     </p>
@@ -80,7 +80,7 @@ export default class Startpage extends Component {
                     <a href="https://repl.it/" target="_blank">
                     <img className="usefulImage" src={replitHomepage} alt="Repl.it Homepage" />
                     </a>
-                    <p>Welcome to Repl.it!
+                    <p className="homepageDescription">Welcome to Repl.it!
                     REPL stands for Read-Eval-Print-Loop - however, the function of REPLs at Repl.it has outgrown that definition.
                     Capable of doing much more, Repls are the workspaces that Repl.it users interface with whenever they use the app.
                     A Repl at Repl.it is an interactive programming environment.
@@ -92,7 +92,7 @@ export default class Startpage extends Component {
                     <a href="https://codesandbox.io" target="_blank">
                     <img className="usefulImage" src={codesandboxHomepage} alt="Codesandbox Homepage" />
                     </a>
-                    <p>Welcome to Codesandbox!
+                    <p className="homepageDescription">Welcome to Codesandbox!
                     We know how overwhelming JavaScript development can be. 
                     With CodeSandbox we specifically focus on web application development to make the experience as smooth as possible. 
                     Just open your browser and start coding.
