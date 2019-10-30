@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.2f359c7b.chunk.css",
-    "main.js": "/static/js/main.e039783b.chunk.js",
-    "main.js.map": "/static/js/main.e039783b.chunk.js.map",
+    "main.css": "/static/css/main.4d783253.chunk.css",
+    "main.js": "/static/js/main.52740475.chunk.js",
+    "main.js.map": "/static/js/main.52740475.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.87bec749.js",
     "runtime-main.js.map": "/static/js/runtime-main.87bec749.js.map",
     "static/js/2.7aeb8d66.chunk.js": "/static/js/2.7aeb8d66.chunk.js",
     "static/js/2.7aeb8d66.chunk.js.map": "/static/js/2.7aeb8d66.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.4f85f2a0125718511864e4f964f032e8.js": "/precache-manifest.4f85f2a0125718511864e4f964f032e8.js",
+    "precache-manifest.3666c8a771ca7536b91c427b93251fee.js": "/precache-manifest.3666c8a771ca7536b91c427b93251fee.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.2f359c7b.chunk.css.map": "/static/css/main.2f359c7b.chunk.css.map",
+    "static/css/main.4d783253.chunk.css.map": "/static/css/main.4d783253.chunk.css.map",
     "static/media/CodepenHomepage.png": "/static/media/CodepenHomepage.482052d7.png",
     "static/media/CodesandboxHomepage.png": "/static/media/CodesandboxHomepage.126f679b.png",
     "static/media/CodewarsHomepage.png": "/static/media/CodewarsHomepage.dca4044b.png",
@@ -27,7 +27,7 @@
   "entrypoints": [
     "static/js/runtime-main.87bec749.js",
     "static/js/2.7aeb8d66.chunk.js",
-    "static/css/main.2f359c7b.chunk.css",
-    "static/js/main.e039783b.chunk.js"
+    "static/css/main.4d783253.chunk.css",
+    "static/js/main.52740475.chunk.js"
   ]
 }
