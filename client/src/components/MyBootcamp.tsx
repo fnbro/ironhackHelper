@@ -67,7 +67,7 @@ export default class MyBootcamp extends Component<IProps, IState> {
         weekShow = window.CS.getBMState().allSurveys.filter(survey => survey.feedback_week.toString() === window.CS.getBMState().surveyFilter.weekFilter.toString() && survey.submitted_by.username.toString().includes(window.CS.getBMState().surveyFilter.userFilter))
       }
     }
-    // if (window.CS.getUIState().currentUser.isAdmin) {
+    if (window.CS.getUIState().currentUser.isAdmin) {
     return (
       <div className="feedbackContainer">
         <div className="filterSection">
@@ -129,7 +129,7 @@ export default class MyBootcamp extends Component<IProps, IState> {
         </div>
       </div>
     )
-    // }
+    }
   }
 
   handleWeekChange(event: any) {
