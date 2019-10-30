@@ -39,7 +39,7 @@ export default class RandomGenerator extends Component<IProps, IState> {
             if (ind % 2)
                 randomUsers.push(<RandomUser key={user._id} users={[arr[ind - 1], arr[ind]]} />)
             if (arr.length % 2 && ind === arr.length - 1)
-                randomUsers.push(<tr>
+                randomUsers.push(<tr key={user._id}>
                     <td className="partner">{user.username}</td>
                 </tr>)
         }, [])
