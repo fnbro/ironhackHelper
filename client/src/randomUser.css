@@ -8,21 +8,6 @@
   align-items: center;
 }
 
-/* .randomBtn{
-  display:block;
-  padding:0.35em 1.2em;
-  border:0.1em solid rgb(0, 0, 0);
-  margin: 1rem auto;
-  border-radius:0.12em;
-  box-sizing: border-box;
-  text-decoration:none;
-  font-family:'Roboto',sans-serif;
-  font-weight:300;
-  color:rgb(0, 0, 0);
-  text-align:center;
-  transition: all 0.2s;
-} */
-
 .randomBtn{
   display:block;
   box-shadow:inset 0px 1px 0px 0px #97c4fe;

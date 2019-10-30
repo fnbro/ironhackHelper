@@ -94,7 +94,7 @@ export default class Settings extends Component {
     if (window.CS.getUIState().currentUser.isAdmin) {
       return (
         <div className="settingsSection">
-          <h1>Settings</h1>
+          <h1>Change your user roles</h1>
           <form className="settingsForm">
             {
               <select id="selectbox" onChange={this.handleMemberAndAdmin} name="role" disabled={false}>
@@ -142,10 +142,8 @@ export default class Settings extends Component {
     }
     else if (window.CS.getUIState().currentUser.isMember) {
       return (
-        <div>
-          <p>
-            <h1>Change your Password</h1>
-          </p>
+        <div className="settingsSection">
+            <h1>Change your password</h1>
           <form className="settingsForm" onSubmit={this.handlePasswordSubmit}>
             <ul>
               <li>
