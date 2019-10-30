@@ -305,7 +305,6 @@ export default class Settings extends Component {
 
   handlePasswordSubmit(event: any) {
     
-    console.log(window.CS.getUIState().Password.errorMessagePassword)
     const uiAction: IAction = {
       type: ActionType.server_called
     }
@@ -314,7 +313,6 @@ export default class Settings extends Component {
       .then(res => {
         
         const data = res.data;
-        //console.log(data.errorMessage)
           if (data.errorMessage) {
             const uiAction: IErrorMessage = {
               type: ActionType.passwordchange_error,
@@ -335,7 +333,7 @@ export default class Settings extends Component {
             window.CS.clientAction(uiAction);
             window.CS.clientAction(uiActionPassword);
             //history.push("/login")
-            console.log(res.data)
+
           }
 
       });
