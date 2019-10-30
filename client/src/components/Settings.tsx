@@ -142,10 +142,8 @@ export default class Settings extends Component {
     }
     else if (window.CS.getUIState().currentUser.isMember) {
       return (
-        <div>
-          <p>
+        <div className="settingsSection">
             <h1>Change your Password</h1>
-          </p>
           <form className="settingsForm" onSubmit={this.handlePasswordSubmit}>
             <ul>
               <li>

@@ -75,6 +75,7 @@ router.post("/login", (req, res) => {
 
 
 router.get("/logout", (req, res, next) => {
+  console.log(req.session)
   if (!req.session.currentUser) {
     res.status(200).json({ errorMessage: "logged out" });
     return;
