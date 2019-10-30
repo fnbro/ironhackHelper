@@ -9,11 +9,11 @@
   align-items: center;
   margin: 5rem;
   padding: 1rem;
-  border: solid #1e62d0;
+  border: solid rgb(34, 39, 104);
   border-radius: 10px;
   box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.5);
   line-height: 25px;
-  color: #1e62d0;
+  color: rgb(34, 39, 104);
 }
 
 .usefulImage {

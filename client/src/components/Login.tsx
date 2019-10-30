@@ -6,6 +6,8 @@ import { IWindow } from '../framework/IWindow';
 import { reducerFunctions } from '../reducer/appReducer';
 import { IUserAction } from './Register';
 import history from '../framework/history';
+import logoutMeme from '../images/IronhackMeme.png';
+
 
 declare let window: IWindow;
 
@@ -31,8 +33,9 @@ export default class Login extends Component {
     render() {
         if (window.CS.getUIState().loggedIn)
             return (
-                <div>
-                    <p>You are logged in as {window.CS.getBMState().user.username}</p>
+                <div className="logoutContainer">
+                    <img id="logout"src={logoutMeme} alt="Logout Meme"/>
+                    <h2 id="logoutConfirm">Still want to logout?</h2>
                     <button className="join-btn" onClick={this.handleLogout}>Logout</button>
                 </div>
             )
