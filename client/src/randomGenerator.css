@@ -1,0 +1,46 @@
+#generatorTitle {
+  color: rgb(34, 39, 104);
+}
+
+#memberDescription {
+  margin-top: 4rem;
+}
+
+table.blueTable {
+  border: 1px none;
+  width: 50%;
+  text-align: center;
+}
+
+table.blueTable td, table.blueTable th {
+  border: 1px none;
+  border-radius: 30px;
+  padding: 10px;
+}
+
+table.blueTable tbody td {
+  border-radius: 30px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+table.blueTable tr:nth-child(even) {
+  background: #D0E4F5;
+}
+
+table.blueTable tr:nth-child(odd) {
+  background: lightsteelblue;
+}
+
+table.blueTable th {
+  background: rgb(34, 39, 104);
+  background: -moz-linear-gradient(top, #5592bb 0%, rgb(34, 39, 104) 66%, rgb(34, 39, 104) 100%);
+  background: -webkit-linear-gradient(top, #5592bb 0%, rgb(34, 39, 104) 66%, rgb(34, 39, 104) 100%);
+  background: linear-gradient(to bottom, #5592bb 0%, rgb(34, 39, 104) 66%, rgb(34, 39, 104) 100%);
+}
+
+table.blueTable th {
+  font-size: 20px;
+  font-weight: bold;
+  color: #FFFFFF;
+}
