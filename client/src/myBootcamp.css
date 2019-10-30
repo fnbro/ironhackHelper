@@ -41,7 +41,11 @@
   margin-bottom: 15px;
 }
 
-.filterSection input {
+.smallInput {
   width: 300px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
   margin: 0 15px 15px 15px;
 }
