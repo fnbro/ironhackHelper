@@ -1,24 +1,33 @@
 {
   "files": {
-    "main.css": "/static/css/main.0c6fddf2.chunk.css",
-    "main.js": "/static/js/main.9295919d.chunk.js",
-    "main.js.map": "/static/js/main.9295919d.chunk.js.map",
+    "main.css": "/static/css/main.2f359c7b.chunk.css",
+    "main.js": "/static/js/main.e039783b.chunk.js",
+    "main.js.map": "/static/js/main.e039783b.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.87bec749.js",
     "runtime-main.js.map": "/static/js/runtime-main.87bec749.js.map",
-    "static/js/2.715ef009.chunk.js": "/static/js/2.715ef009.chunk.js",
-    "static/js/2.715ef009.chunk.js.map": "/static/js/2.715ef009.chunk.js.map",
+    "static/js/2.7aeb8d66.chunk.js": "/static/js/2.7aeb8d66.chunk.js",
+    "static/js/2.7aeb8d66.chunk.js.map": "/static/js/2.7aeb8d66.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.cdc5d25479ecd15b0210fa1b9c933f81.js": "/precache-manifest.cdc5d25479ecd15b0210fa1b9c933f81.js",
+    "precache-manifest.4f85f2a0125718511864e4f964f032e8.js": "/precache-manifest.4f85f2a0125718511864e4f964f032e8.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.0c6fddf2.chunk.css.map": "/static/css/main.0c6fddf2.chunk.css.map",
+    "static/css/main.2f359c7b.chunk.css.map": "/static/css/main.2f359c7b.chunk.css.map",
+    "static/media/CodepenHomepage.png": "/static/media/CodepenHomepage.482052d7.png",
+    "static/media/CodesandboxHomepage.png": "/static/media/CodesandboxHomepage.126f679b.png",
+    "static/media/CodewarsHomepage.png": "/static/media/CodewarsHomepage.dca4044b.png",
+    "static/media/IronhackHomepage.png": "/static/media/IronhackHomepage.bf4d1b36.png",
+    "static/media/IronhackMeme.png": "/static/media/IronhackMeme.bcf10320.png",
+    "static/media/KahootHomepage.png": "/static/media/KahootHomepage.9c9b0ab3.png",
+    "static/media/ReplitHomepage.png": "/static/media/ReplitHomepage.5d15822b.png",
+    "static/media/TrelloHomepage.png": "/static/media/TrelloHomepage.f747b637.png",
+    "static/media/githubHomepage.png": "/static/media/githubHomepage.680cfcbe.png",
     "static/media/none-icon.png": "/static/media/none-icon.463e81bd.png",
     "static/media/question-icon.png": "/static/media/question-icon.b3be4e80.png",
     "static/media/solutions-icon.png": "/static/media/solutions-icon.40af6324.png"
   },
   "entrypoints": [
     "static/js/runtime-main.87bec749.js",
-    "static/js/2.715ef009.chunk.js",
-    "static/css/main.0c6fddf2.chunk.css",
-    "static/js/main.9295919d.chunk.js"
+    "static/js/2.7aeb8d66.chunk.js",
+    "static/css/main.2f359c7b.chunk.css",
+    "static/js/main.e039783b.chunk.js"
   ]
 }
