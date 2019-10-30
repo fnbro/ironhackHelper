@@ -71,6 +71,7 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 
 // Enable authentication using session + passport
 app.use(session({
+  maxAge: 365*24*60*60,
   secret: 'irongenerator',
   resave: true,
   saveUninitialized: true,
