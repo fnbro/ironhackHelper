@@ -41,9 +41,9 @@ export default class Login extends Component {
     render() {
         if (window.CS.getUIState().loggedIn)
             return (
-                <div>
-                    <img src={logoutMeme} alt="Logout Meme"/>
-                    <p>You are logged in as {window.CS.getBMState().user.username}</p>
+                <div className="logoutContainer">
+                    <img id="logout"src={logoutMeme} alt="Logout Meme"/>
+                    <h2 id="logoutConfirm">Still want to logout?</h2>
                     <button className="join-btn" onClick={this.handleLogout}>Logout</button>
                 </div>
             )
