@@ -67,6 +67,7 @@ export default class MyBootcamp extends Component<IProps, IState> {
         weekShow = window.CS.getBMState().allSurveys.filter(survey => survey.feedback_week.toString() === window.CS.getBMState().surveyFilter.weekFilter.toString() && survey.submitted_by.username.toString().includes(window.CS.getBMState().surveyFilter.userFilter))
       }
     }
+
     if (window.CS.getUIState().currentUser.isAdmin) {
     return (
       <div className="feedbackContainer">
@@ -97,30 +98,30 @@ export default class MyBootcamp extends Component<IProps, IState> {
         </div>
         <h2>Evaluation of selected Feedbacks: </h2>
         <div className="singleSurveyContainer">
-          <p><span className="feedbackHead">Scale (0-10) how satisfied you are with the Bootcamp: </span>{(weekShow.reduce((acc, val) => (acc + val.feedback_satisfied) ,0 )/weekShow.length).toFixed(1)}</p>
+          <p><span className="feedbackHead">Scale (0-10) how satisfied you are with the Bootcamp: </span><b>{(weekShow.reduce((acc, val) => (acc + val.feedback_satisfied) ,0 )/weekShow.length).toFixed(1)} Ø</b></p>
           <p className="feedbackHead">Please pick 3 areas of your learning experience that you think we are doing well (check 3 that apply):</p>
           <ul>
-            <li>Curriculum topics and structure({weekShow.filter(survey => survey.feedback_happy.includes(1)).length})</li>
-            <li>Curriculum difficulty level({weekShow.filter(survey => survey.feedback_happy.includes(2)).length})</li>
-            <li>Quality of lessons({weekShow.filter(survey => survey.feedback_happy.includes(3)).length})</li>
-            <li>Quality of labs (WebDev & Data) and projects (UX/UI) ({weekShow.filter(survey => survey.feedback_happy.includes(4)).length})</li>
-            <li>Teacher technical skills ({weekShow.filter(survey => survey.feedback_happy.includes(5)).length})</li>
-            <li>Teacher teaching ability ({weekShow.filter(survey => survey.feedback_happy.includes(6)).length})</li>
-            <li>Teacher accessibility ({weekShow.filter(survey => survey.feedback_happy.includes(7)).length})</li>
-            <li>Teacher´s Assistant abilities ({weekShow.filter(survey => survey.feedback_happy.includes(8)).length})</li>
-            <li>Helping you achieve your personal learning goals ({weekShow.filter(survey => survey.feedback_happy.includes(9)).length})</li>
+            <li>- Curriculum topics and structure <b>({weekShow.filter(survey => survey.feedback_happy.includes(1)).length})</b></li>
+            <li>- Curriculum difficulty level <b>({weekShow.filter(survey => survey.feedback_happy.includes(2)).length})</b></li>
+            <li>- Quality of lessons<b>({weekShow.filter(survey => survey.feedback_happy.includes(3)).length})</b></li>
+            <li>- Quality of labs (WebDev & Data) and projects (UX/UI) <b>({weekShow.filter(survey => survey.feedback_happy.includes(4)).length})</b></li>
+            <li>- Teacher technical skills <b>({weekShow.filter(survey => survey.feedback_happy.includes(5)).length})</b></li>
+            <li>- Teacher teaching ability <b>({weekShow.filter(survey => survey.feedback_happy.includes(6)).length})</b></li>
+            <li>- Teacher accessibility <b>({weekShow.filter(survey => survey.feedback_happy.includes(7)).length})</b></li>
+            <li>- Teacher´s Assistant abilities <b>({weekShow.filter(survey => survey.feedback_happy.includes(8)).length})</b></li>
+            <li>- Helping you achieve your personal learning goals <b>({weekShow.filter(survey => survey.feedback_happy.includes(9)).length})</b></li>
           </ul>
           <p className="feedbackHead">Please pick 3 areas of your learning experience that you think we need to improve most (check 3 that apply):</p>
           <ul>
-            <li>Curriculum topics and structure ({weekShow.filter(survey => survey.feedback_unhappy.includes(1)).length})</li>
-            <li>Curriculum difficulty level ({weekShow.filter(survey => survey.feedback_unhappy.includes(2)).length})</li>
-            <li>Quality of lessons ({weekShow.filter(survey => survey.feedback_unhappy.includes(3)).length})</li>
-            <li>Quality of labs (WebDev & Data) and projects (UX/UI) ({weekShow.filter(survey => survey.feedback_unhappy.includes(4)).length})</li>
-            <li>Teacher technical skills ({weekShow.filter(survey => survey.feedback_unhappy.includes(5)).length})</li>
-            <li>Teacher teaching ability ({weekShow.filter(survey => survey.feedback_unhappy.includes(6)).length})</li>
-            <li>Teacher accessibility ({weekShow.filter(survey => survey.feedback_unhappy.includes(7)).length})</li>
-            <li>Teacher´s Assistant abilities ({weekShow.filter(survey => survey.feedback_unhappy.includes(8)).length})</li>
-            <li>Helping you achieve your personal learning goals ({weekShow.filter(survey => survey.feedback_unhappy.includes(9)).length})</li>
+            <li>- Curriculum topics and structure <b>({weekShow.filter(survey => survey.feedback_unhappy.includes(1)).length})</b></li>
+            <li>- Curriculum difficulty level <b>({weekShow.filter(survey => survey.feedback_unhappy.includes(2)).length})</b></li>
+            <li>- Quality of lessons <b>({weekShow.filter(survey => survey.feedback_unhappy.includes(3)).length})</b></li>
+            <li>- Quality of labs (WebDev & Data) and projects (UX/UI) <b>({weekShow.filter(survey => survey.feedback_unhappy.includes(4)).length})</b></li>
+            <li>- Teacher technical skills <b>({weekShow.filter(survey => survey.feedback_unhappy.includes(5)).length})</b></li>
+            <li>- Teacher teaching ability <b>({weekShow.filter(survey => survey.feedback_unhappy.includes(6)).length})</b></li>
+            <li>- Teacher accessibility <b>({weekShow.filter(survey => survey.feedback_unhappy.includes(7)).length})</b></li>
+            <li>- Teacher´s Assistant abilities <b>({weekShow.filter(survey => survey.feedback_unhappy.includes(8)).length})</b></li>
+            <li>- Helping you achieve your personal learning goals <b>({weekShow.filter(survey => survey.feedback_unhappy.includes(9)).length})</b></li>
           </ul>
         </div>
         <h2>All Feedbacks: </h2>

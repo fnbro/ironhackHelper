@@ -95,7 +95,7 @@ export default class Newsticker extends Component<IProps, IState> {
                     <label className="news-label" htmlFor="headline">Headline</label>
                   </div>
                   <div className="col-75">
-                    <input onChange={this.handleHeadlineChange} value={window.CS.getBMState().news.news_headline} type="text" id="lname" name="headline" placeholder="Your headline.." />
+                    <input className="inputNews" onChange={this.handleHeadlineChange} value={window.CS.getBMState().news.news_headline} type="text" id="lname" name="headline" placeholder="Your headline.." />
                   </div>
                 </div>
                 <div className="row">
@@ -103,7 +103,7 @@ export default class Newsticker extends Component<IProps, IState> {
                     <label className="news-label" htmlFor="type">Type</label>
                   </div>
                   <div className="col-75 select">
-                    <select value={window.CS.getBMState().news.news_type} onChange={this.handleTypeChange} id="newsType" name="type">
+                    <select value={window.CS.getBMState().news.news_type} onChange={this.handleTypeChange} id="newsType" className="inputNews" name="type">
                       <option value="none">none</option>
                       <option value="solution">Solution</option>
                       <option value="question">Question</option>
@@ -117,7 +117,7 @@ export default class Newsticker extends Component<IProps, IState> {
                     <label className="news-label" htmlFor="content">Content</label>
                   </div>
                   <div className="col-75">
-                    <textarea onChange={this.handleContentChange} value={window.CS.getBMState().news.news_content} id="subject" name="content" placeholder="Write something.."></textarea>
+                    <textarea className="inputNews" onChange={this.handleContentChange} value={window.CS.getBMState().news.news_content} id="subject" name="content" placeholder="Write something.."></textarea>
                   </div>
                 </div>
               </div>

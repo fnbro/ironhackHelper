@@ -52,7 +52,7 @@ export default class Login extends Component {
                         <ul className="noBullet">
                             <li>
                                 <label htmlFor="username"></label>
-                                <input className="inputFields" type="username" placeholder="Your username" onChange={this.handleUsernameChange} value={window.CS.getBMState().user.username} />
+                                <input className="inputFields" type="username" placeholder="your username" onChange={this.handleUsernameChange} value={window.CS.getBMState().user.username} />
                             </li>
                             <li>
                                 <label htmlFor="password"></label>
