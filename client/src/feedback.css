@@ -41,18 +41,6 @@ body {
     border: 2px solid #009BFF;
 }
 
-
-.checkbox-label-feedback input:checked ~ .checkbox-custom {
-    background-color: #FFFFFF;
-    border-radius: 5px;
-    -webkit-transform: rotate(0deg) scale(1);
-    -ms-transform: rotate(0deg) scale(1);
-    transform: rotate(0deg) scale(1);
-    opacity:1;
-    border: 2px solid #009BFF;
-}
-
-
 .checkbox-label-feedback .checkbox-custom::after {
     position: absolute;
     content: "";
@@ -74,7 +62,6 @@ body {
     -o-transition: all 0.3s ease-out;
 }
 
-
 .checkbox-label-feedback input:checked ~ .checkbox-custom::after {
   -webkit-transform: rotate(45deg) scale(1);
   -ms-transform: rotate(45deg) scale(1);
@@ -90,9 +77,6 @@ body {
   border-radius: 0;
 }
 
-
-
-/* For Ripple Effect */
 .checkbox-label-feedback input:checked ~ .checkbox-custom::before {
     left: -3px;
     top: -3px;
