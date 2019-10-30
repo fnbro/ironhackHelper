@@ -43,9 +43,9 @@ export default class SingleSurvey extends React.PureComponent<IProps> {
         <p><span className="feedbackHead">Week: </span>{this.props.survey.feedback_week}</p>
         <p><span className="feedbackHead">Scale (0-10) how satisfied you are with the Bootcamp:</span> {this.props.survey.feedback_satisfied}</p>
         <p className="feedbackHead">Please pick 3 areas of your learning experience that you think we are doing well (check 3 that apply):</p>
-        <ul>{newArrHappy.map(value => <li>- {value}</li>)}</ul>
+        <ul>{newArrHappy.map((value, i) => <li key={i}>- {value}</li>)}</ul>
         <p className="feedbackHead">Please pick 3 areas of your learning experience that you think we need to improve most (check 3 that apply):</p>
-        <ul>{newArrImprove.map(value => <li>- {value}</li>)}</ul>
+        <ul>{newArrImprove.map((value, i) => <li key={i}>- {value}</li>)}</ul>
         <p><span className="feedbackHead">Comment: </span> {this.props.survey.feedback_comments}</p>
       </div>
     )

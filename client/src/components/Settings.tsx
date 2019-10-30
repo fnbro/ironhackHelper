@@ -118,9 +118,7 @@ export default class Settings extends Component {
             </div>
           </form>
           <hr id="settingsHR" />
-          <p>
             <h1>Change your Password</h1>
-          </p>
           <form className="settingsForm" onSubmit={this.handlePasswordSubmit}>
             <ul>
               <li>
