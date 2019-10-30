@@ -113,6 +113,7 @@ export default class Settings extends Component {
                 <input className="button pulse" type="button" onClick={this.handleSubmit} value="change" />
                 
                 <p>{window.CS.getUIState().Search.errorMessageSearch}</p>
+                <p>{window.CS.getUIState().Change.successMessageChange}</p>
               </div>
             </div>
           </form>
@@ -205,8 +206,13 @@ export default class Settings extends Component {
         type: ActionType.search_error,
         errorMessageSearch: "User has been found"
       }
+      const uiActionChange: ISuccessMessageChange = {
+        type: ActionType.change_success,
+        successMessageChange: ""
+      }
       window.CS.clientAction(uiAction);
       window.CS.clientAction(action);
+      window.CS.clientAction(uiActionChange);
       selected.options[window.CS.getBMState().settings.foundUser.isAdmin ? 2 : (window.CS.getBMState().settings.foundUser.isMember ? 1 : 0)].selected = true;
     }
     else {
@@ -231,7 +237,12 @@ export default class Settings extends Component {
         type: ActionType.search_error,
         errorMessageSearch: ""
       }
+      const uiActionChange: ISuccessMessageChange = {
+        type: ActionType.change_success,
+        successMessageChange: ""
+      }
       window.CS.clientAction(uiAction);
+      window.CS.clientAction(uiActionChange);
     }
     window.CS.clientAction(action);
   }
@@ -269,7 +280,12 @@ export default class Settings extends Component {
       type: ActionType.update_password,
       user: user
     }
+    const uiActionPassword: ISuccessMessagePassword = {
+      type: ActionType.password_success,
+      successMessagePassword: ""
+    }
     window.CS.clientAction(action);
+    window.CS.clientAction(uiActionPassword);
   }
 
   handlePasswordChange(event: any) {
@@ -279,11 +295,16 @@ export default class Settings extends Component {
       type: ActionType.update_password,
       user: user
     }
+    const uiActionPassword: ISuccessMessagePassword = {
+      type: ActionType.password_success,
+      successMessagePassword: ""
+    }
     window.CS.clientAction(action);
+    window.CS.clientAction(uiActionPassword);
   }
 
   handlePasswordSubmit(event: any) {
-    event.preventDefault();
+    
     console.log(window.CS.getUIState().Password.errorMessagePassword)
     const uiAction: IAction = {
       type: ActionType.server_called
@@ -291,9 +312,9 @@ export default class Settings extends Component {
     window.CS.clientAction(uiAction);
     axios.post('/auth/password', window.CS.getBMState().user)
       .then(res => {
+        
         const data = res.data;
-        console.log(data);
-
+        //console.log(data.errorMessage)
           if (data.errorMessage) {
             const uiAction: IErrorMessage = {
               type: ActionType.passwordchange_error,
@@ -301,9 +322,10 @@ export default class Settings extends Component {
             }
             window.CS.clientAction(uiAction);
           }
-          else {
-            const uiAction: IAction = {
-              type: ActionType.update_password
+          else  {
+            const uiAction: IUserAction = {
+              type: ActionType.update_password_change,
+              user: res.data
             }
             const uiActionPassword: ISuccessMessagePassword = {
               type: ActionType.password_success,
@@ -317,5 +339,6 @@ export default class Settings extends Component {
           }
 
       });
+      event.preventDefault();
   }
 }
