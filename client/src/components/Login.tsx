@@ -6,6 +6,8 @@ import { IWindow } from '../framework/IWindow';
 import { reducerFunctions } from '../reducer/appReducer';
 import { IUserAction } from './Register';
 import history from '../framework/history';
+import logoutMeme from '../images/IronhackMeme.png';
+
 
 declare let window: IWindow;
 
@@ -16,14 +18,6 @@ export interface IErrorMessage extends IAction {
 reducerFunctions[ActionType.login_error] = function (newState: IState, action: IErrorMessage) {
     newState.UI.waitingForResponse = false;
     newState.UI.Login.errorMessage = action.errorMessage;
-    return newState
-}
-reducerFunctions[ActionType.user_logged_in] = function (newState: IState, action: IUserAction) {
-    newState.UI.waitingForResponse = false;
-    newState.UI.Login.errorMessage = "";
-    newState.UI.loggedIn = true;
-    newState.BM.user = action.user;
-    newState.UI.currentUser = action.user;
     return newState
 }
 reducerFunctions[ActionType.user_logged_out] = function (newState: IState, action: IUserAction) {
@@ -40,7 +34,8 @@ export default class Login extends Component {
         if (window.CS.getUIState().loggedIn)
             return (
                 <div className="logoutContainer">
-                    <h3>Are you sure?</h3>
+                    <img id="logout"src={logoutMeme} alt="Logout Meme"/>
+                    <h2 id="logoutConfirm">Still want to logout?</h2>
                     <button className="join-btn" onClick={this.handleLogout}>Logout</button>
                 </div>
             )

@@ -29,7 +29,6 @@ export default class RandomGenerator extends Component<IProps, IState> {
                 type: ActionType.add_users_from_server,
                 members: response.data as IUserData[]
             }
-            console.log(responseAction.members);
             window.CS.clientAction(responseAction);
         }).catch(function (error) { console.log(error); })
     }

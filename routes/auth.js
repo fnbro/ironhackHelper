@@ -101,7 +101,7 @@ router.post("/password", (req, res) => {
   const newPassword = req.body.newpassword;
   const id = req.body._id
 
-console.log(userPassword)
+console.log(req.body)
 
 const salt = bcrypt.genSaltSync(bcryptSalt);
 const passwordEn = bcrypt.hashSync(userPassword, salt);
@@ -115,6 +115,7 @@ const passwordEn = bcrypt.hashSync(userPassword, salt);
       res.status(200).json({ errorMessage: "Type the same Password" });
       return;
     }
+   
     const salt = bcrypt.genSaltSync(bcryptSalt);
     const password = bcrypt.hashSync(newPassword, salt);
     User
