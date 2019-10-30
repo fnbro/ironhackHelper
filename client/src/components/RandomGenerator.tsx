@@ -47,14 +47,12 @@ export default class RandomGenerator extends Component<IProps, IState> {
         if (window.CS.getUIState().currentUser.isAdmin || window.CS.getUIState().currentUser.isMember) {
             return (
                 <div id="section">
-                    <h1>Pair Programming : Random Generator</h1>
+                    <h1 id="generatorTitle">Pair Programming Generator</h1>
             <button className="randomBtn" onClick={this.randomizeAllUsers}>Random</button>
                     <p>{window.CS.getBMState().members.length > 0 &&
-                        <h2>
-                            You have {window.CS.getBMState().members.length} members in your Bootcamp.
-                    </h2>
+                        <h2 id="memberDescription">You have {window.CS.getBMState().members.length} members in your Bootcamp</h2>
                     }</p>
-                    <table>
+                    <table className="blueTable">
                         <tbody>
                             <tr>
                                 <th>Partner 1</th>
