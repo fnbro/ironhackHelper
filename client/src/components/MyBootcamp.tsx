@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { IState, IFeedbackData, IUserData, IFilter } from '../state/appState';
+import { IState, IFeedbackData, IFilter } from '../state/appState';
 import { ActionType, IAction } from '../framework/IAction';
 import axios from 'axios';
 import { reducerFunctions } from '../reducer/appReducer';
 import { IWindow } from '../framework/IWindow';
-import { IFeedbackLoadedAction, IUsersLoadedAction } from '../App';
+import { IFeedbackLoadedAction } from '../App';
 import SingleSurvey from './SingleSurvey';
-import { validate } from '@babel/types';
 declare let window: IWindow;
 
 interface IProps { };
@@ -71,7 +70,7 @@ export default class MyBootcamp extends Component<IProps, IState> {
     if (window.CS.getUIState().currentUser.isAdmin) {
     return (
       <div className="feedbackContainer">
-        <div>
+        <div className="filterSection">
           <h3>Filter:</h3>
           <div>
             <label htmlFor="weekFilter">Week: </label>
