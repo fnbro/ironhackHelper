@@ -17,7 +17,7 @@ export default class Startpage extends Component {
                 <h1 id="homepageTitle">Forgot where to find the most helpful tools and guides?</h1>
                 <h2 id="littlemotivation">Do not worry, we got you covered!</h2>
                 <div className="usefulFlex">
-                    <a href="http://learn.ironhack.com" target="_blank">
+                    <a href="http://learn.ironhack.com">
                         <img className="usefulImage" src={ironhackHomepage} alt="Ironhack Homepage" />
                     </a>
                     <div className="homepageDescription">
@@ -30,7 +30,7 @@ export default class Startpage extends Component {
 
                 </div>
                 <div className="usefulFlex">
-                    <a href="https://trello.com/" target="_blank">
+                    <a href="https://trello.com/">
                         <img className="usefulImage" src={trelloHomepage} alt="Trello Homepage" />
                     </a>
                     <div className="homepageDescription">
@@ -44,7 +44,7 @@ export default class Startpage extends Component {
 
                 </div>
                 <div className="usefulFlex">
-                    <a href="https://github.com" target="_blank">
+                    <a href="https://github.com">
                         <img className="usefulImage" src={githubHomepage} alt="Github Homepage" />
                     </a>
                     <div className="homepageDescription">
@@ -60,7 +60,7 @@ export default class Startpage extends Component {
 
                 </div>
                 <div className="usefulFlex">
-                    <a href="https://www.codewars.com" target="_blank">
+                    <a href="https://www.codewars.com">
                         <img className="usefulImage" src={codewarsHomepage} alt="Codewars Homepage" />
                     </a>
                     <div className="homepageDescription">
@@ -74,7 +74,7 @@ export default class Startpage extends Component {
 
                 </div>
                 <div className="usefulFlex">
-                    <a href="https://kahoot.it/" target="_blank">
+                    <a href="https://kahoot.it/">
                         <img className="usefulImage" src={kahootHomepage} alt="Kahoot Homepage" />
                     </a>
                     <div className="homepageDescription">
@@ -88,7 +88,7 @@ export default class Startpage extends Component {
 
                 </div>
                 <div className="usefulFlex">
-                    <a href="https://codepen.io/" target="_blank">
+                    <a href="https://codepen.io/">
                         <img className="usefulImage" src={codepenHomepage} alt="Codepen Homepage" />
                     </a>
                     <div className="homepageDescription">
@@ -101,7 +101,7 @@ export default class Startpage extends Component {
 
                 </div>
                 <div className="usefulFlex">
-                    <a href="https://repl.it/" target="_blank">
+                    <a href="https://repl.it/">
                         <img className="usefulImage" src={replitHomepage} alt="Repl.it Homepage" />
                     </a>
                     <div className="homepageDescription">
@@ -117,7 +117,7 @@ export default class Startpage extends Component {
 
                 </div>
                 <div className="usefulFlex">
-                    <a href="https://codesandbox.io" target="_blank">
+                    <a href="https://codesandbox.io">
                         <img className="usefulImage" src={codesandboxHomepage} alt="Codesandbox Homepage" />
                     </a>
                     <div className="homepageDescription">

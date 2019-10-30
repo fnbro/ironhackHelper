@@ -16,7 +16,7 @@ import * as serviceWorker from './serviceWorker';
 import { Router } from 'react-router-dom';
 import history from './framework/history';
 import axios from 'axios';
-import { ActionType, IAction } from './framework/IAction';
+import { ActionType } from './framework/IAction';
 import { IState, IUser } from './state/appState'
 import { reducerFunctions } from './reducer/appReducer';
 import { IUserAction } from './components/Register';
@@ -47,7 +47,6 @@ reducerFunctions[ActionType.user_logged_in] = function (newState: IState, action
 axios.get("auth/loggedin")
   .then(res => {
     const data = res.data;
-    console.log(res.data)
     if (data.username) {
       const loggedinAction: IUserAction = {
         type: ActionType.user_logged_in,
