@@ -1,0 +1,28 @@
+#littlemotivation {
+  text-align: center;
+}
+
+.usefulFlex{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  width: auto;
+  margin: 5rem;
+  padding: 15px;
+  border: 0.5px solid #97c4fe;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.5);
+  line-height: 25px;
+  color: #1e62d0;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0;
+  text-align: center;
+  border: 1px solid black;
+}
+
+.usefulImage {
+  width: 100%;
+}
+
