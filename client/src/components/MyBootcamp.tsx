@@ -93,7 +93,7 @@ export default class MyBootcamp extends Component<IProps, IState> {
           </div>
           <div>
             <label htmlFor="userFilter">Username: </label>
-            <input type="text" id="userFilter" onChange={this.handleUserChange} />
+            <input className="inputNews" type="text" id="userFilter" onChange={this.handleUserChange} />
           </div>
         </div>
         <h2>Evaluation of selected Feedbacks: </h2>
