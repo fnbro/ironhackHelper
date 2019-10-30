@@ -64,7 +64,7 @@ export default class App extends React.PureComponent<IProps> {
           <Route path="/settings" component={Settings} />
           <Route path="/random-generator" component={RandomGenerator} />
           <Route path="/news" component={Newsticker} />
-          <Route path="/useful-links" component={UsefulLinks} />
+          <Route path="/links" component={UsefulLinks} />
           <Route path="/mybootcamp" component={MyBootcamp} />
         </Switch>
       </>

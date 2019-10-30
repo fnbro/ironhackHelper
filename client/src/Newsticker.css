@@ -29,8 +29,6 @@ input[type=text], select, textarea {
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
-  position: relative;
-  width: 100%;
   bottom: 0;
 }
 
@@ -64,7 +62,7 @@ input[type=text], select, textarea {
   display: flex;
   flex-direction: row;
   align-items: center;
-  border: 0.5px solid #97c4fe;
+  border: solid rgb(34, 39, 104);
   border-radius: 10px;
   width: 1000px;
   margin: 15px 0;
@@ -103,10 +101,10 @@ input[type=text], select, textarea {
 
 #submitNews {
   box-shadow:inset 0px 1px 0px 0px #97c4fe;
-	background:linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);
-	background-color:#3d94f6;
+	background:linear-gradient(to bottom, #3d94f6 5%, rgb(34, 39, 104) 100%);
+	background-color:rgb(34, 39, 104);
 	border-radius:6px;
-	border:1px solid #337fed;
+	border:1px solid rgb(34, 39, 104);
 	cursor:pointer;
 	color:#ffffff;
 	font-family:Arial;

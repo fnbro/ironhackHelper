@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { IState, IFeedbackData, IUserData, IFilter } from '../state/appState';
+import { IState, IFeedbackData, IFilter } from '../state/appState';
 import { ActionType, IAction } from '../framework/IAction';
 import axios from 'axios';
 import { reducerFunctions } from '../reducer/appReducer';
 import { IWindow } from '../framework/IWindow';
-import { IFeedbackLoadedAction, IUsersLoadedAction } from '../App';
+import { IFeedbackLoadedAction } from '../App';
 import SingleSurvey from './SingleSurvey';
-import { validate } from '@babel/types';
 declare let window: IWindow;
 
 interface IProps { };
@@ -71,7 +70,7 @@ export default class MyBootcamp extends Component<IProps, IState> {
     if (window.CS.getUIState().currentUser.isAdmin) {
     return (
       <div className="feedbackContainer">
-        <div>
+        <div className="filterSection">
           <h3>Filter:</h3>
           <div>
             <label htmlFor="weekFilter">Week: </label>
@@ -96,20 +95,20 @@ export default class MyBootcamp extends Component<IProps, IState> {
             <input type="text" id="userFilter" onChange={this.handleUserChange} />
           </div>
         </div>
-        <h2>Evaluation of feedbacks: </h2>
+        <h2>Evaluation of selected Feedbacks: </h2>
         <div className="singleSurveyContainer">
-          <p><span className="feedbackHead">Scale (0-10) how satisfied you are with the Bootcamp: </span>{weekShow.reduce((acc, val) => (acc + val.feedback_satisfied) ,0 )/weekShow.length}</p>
+          <p><span className="feedbackHead">Scale (0-10) how satisfied you are with the Bootcamp: </span>{(weekShow.reduce((acc, val) => (acc + val.feedback_satisfied) ,0 )/weekShow.length).toFixed(1)}</p>
           <p className="feedbackHead">Please pick 3 areas of your learning experience that you think we are doing well (check 3 that apply):</p>
           <ul>
             <li>Curriculum topics and structure({weekShow.filter(survey => survey.feedback_happy.includes(1)).length})</li>
             <li>Curriculum difficulty level({weekShow.filter(survey => survey.feedback_happy.includes(2)).length})</li>
             <li>Quality of lessons({weekShow.filter(survey => survey.feedback_happy.includes(3)).length})</li>
-            <li>Quality of labs (WebDev & Data) and projects (UX/UI) ({weekShow.filter(survey => survey.feedback_happy.includes(3)).length})</li>
-            <li>Teacher technical skills ({weekShow.filter(survey => survey.feedback_happy.includes(4)).length})</li>
-            <li>Teacher teaching ability ({weekShow.filter(survey => survey.feedback_happy.includes(5)).length})</li>
-            <li>Teacher accessibility ({weekShow.filter(survey => survey.feedback_happy.includes(6)).length})</li>
-            <li>Teacher´s Assistant abilities ({weekShow.filter(survey => survey.feedback_happy.includes(7)).length})</li>
-            <li>Helping you achieve your personal learning goals ({weekShow.filter(survey => survey.feedback_happy.includes(8)).length})</li>
+            <li>Quality of labs (WebDev & Data) and projects (UX/UI) ({weekShow.filter(survey => survey.feedback_happy.includes(4)).length})</li>
+            <li>Teacher technical skills ({weekShow.filter(survey => survey.feedback_happy.includes(5)).length})</li>
+            <li>Teacher teaching ability ({weekShow.filter(survey => survey.feedback_happy.includes(6)).length})</li>
+            <li>Teacher accessibility ({weekShow.filter(survey => survey.feedback_happy.includes(7)).length})</li>
+            <li>Teacher´s Assistant abilities ({weekShow.filter(survey => survey.feedback_happy.includes(8)).length})</li>
+            <li>Helping you achieve your personal learning goals ({weekShow.filter(survey => survey.feedback_happy.includes(9)).length})</li>
           </ul>
           <p className="feedbackHead">Please pick 3 areas of your learning experience that you think we need to improve most (check 3 that apply):</p>
           <ul>
