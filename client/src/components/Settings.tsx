@@ -25,6 +25,16 @@ export interface ISuccessMessageChange extends IAction {
   successMessageChange: string;
 }
 
+export interface ISuccessMessagePassword extends IAction {
+  successMessagePassword: string;
+}
+
+reducerFunctions[ActionType.password_success] = function (newState: IState, action: ISuccessMessagePassword) {
+  newState.UI.waitingForResponse = false;
+  newState.UI.newPassword.successMessagePassword = action.successMessagePassword;
+  return newState
+}
+
 reducerFunctions[ActionType.change_success] = function (newState: IState, action: ISuccessMessageChange) {
   newState.UI.waitingForResponse = false;
   newState.UI.Change.successMessageChange = action.successMessageChange;
@@ -96,7 +106,7 @@ export default class Settings extends Component {
             <div className="form-wrap">
               <div className="input">
                 <p>
-                  <label htmlFor="password"></label>
+                  <label htmlFor="username"></label>
                   <input className="form-field" type="username" placeholder="username" onChange={this.handleUsernameRoleChange} />
                 </p>
                 <input className="button pulse" type='button' onClick={this.handleSearch} value="search" />
@@ -117,10 +127,11 @@ export default class Settings extends Component {
               </li>
               <li>
                 <label htmlFor="password"></label>
-                <input className="inputFields" type="password" placeholder="confirm  newpassword" onChange={this.handlePasswordChange} value={window.CS.getBMState().user.newpassword} />
+                <input className="inputFields" type="password" placeholder="confirm new password" onChange={this.handlePasswordChange} value={window.CS.getBMState().user.newpassword} />
               </li>
               <input className="join-btn" type="submit" value="Change" />
               <p>{window.CS.getUIState().Password.errorMessagePassword}</p>
+              <p>{window.CS.getUIState().newPassword.successMessagePassword}</p>
             </ul>
 
           </form>
@@ -141,7 +152,7 @@ export default class Settings extends Component {
               </li>
               <li>
                 <label htmlFor="password"></label>
-                <input className="inputFields" type="password" placeholder="confirm new password" onChange={this.handlePasswordChange} value={window.CS.getBMState().user.newpassword} />
+                <input className="inputFields" type="password" id ="deleteError" placeholder="confirm new password" onChange={this.handlePasswordChange} value={window.CS.getBMState().user.newpassword} />
               </li>
               <input className="join-btn" type="submit" value="Change" />
               <p>{window.CS.getUIState().Password.errorMessagePassword}</p>
@@ -214,6 +225,14 @@ export default class Settings extends Component {
       type: ActionType.update_user,
       user: user
     }
+    const input = document.getElementById('deleteError') as HTMLInputElement;
+    if (input === null) {
+      const uiAction: IErrorMessageSearch = {
+        type: ActionType.search_error,
+        errorMessageSearch: ""
+      }
+      window.CS.clientAction(uiAction);
+    }
     window.CS.clientAction(action);
   }
 
@@ -229,10 +248,15 @@ export default class Settings extends Component {
           type: ActionType.set_role,
           user: res.data as IUser
         }
+        const uiActionSearch: IErrorMessageSearch = {
+          type: ActionType.search_error,
+          errorMessageSearch: ""
+        }
         const uiAction: ISuccessMessageChange = {
           type: ActionType.change_success,
           successMessageChange: "Userrole has been updated"
         }
+        window.CS.clientAction(uiActionSearch);
         window.CS.clientAction(uiAction);
         window.CS.clientAction(setRole);
       });
@@ -269,7 +293,7 @@ export default class Settings extends Component {
       .then(res => {
         const data = res.data;
         console.log(data);
-        if (window.CS.getBMState().user.oldpassword)
+
           if (data.errorMessage) {
             const uiAction: IErrorMessage = {
               type: ActionType.passwordchange_error,
@@ -281,7 +305,13 @@ export default class Settings extends Component {
             const uiAction: IAction = {
               type: ActionType.update_password
             }
+            const uiActionPassword: ISuccessMessagePassword = {
+              type: ActionType.password_success,
+              successMessagePassword: "Password has been changed"
+            }
+            
             window.CS.clientAction(uiAction);
+            window.CS.clientAction(uiActionPassword);
             //history.push("/login")
             console.log(res.data)
           }

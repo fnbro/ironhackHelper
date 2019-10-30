@@ -2,6 +2,7 @@ const express = require("express");
 const passport = require('passport');
 const router = express.Router();
 const User = require("../models/User");
+const mongoose = require('mongoose');
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -124,5 +125,12 @@ const passwordEn = bcrypt.hashSync(userPassword, salt);
       .catch(err => console.log(err));
   });
 });
+
+router.get('/loggedin', (req, res) =>
+  {
+    console.log(JSON.stringify(req.session.currentUser));
+    res.json(req.session.currentUser)
+  }
+)
 
 module.exports = router;

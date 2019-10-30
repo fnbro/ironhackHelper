@@ -13,6 +13,13 @@ import './feedback.css';
 import * as serviceWorker from './serviceWorker';
 import { Router } from 'react-router-dom';
 import history from './framework/history';
+import axios from 'axios';
+import { ActionType, IAction } from './framework/IAction';
+import { IState, IUser } from './state/appState'
+import { reducerFunctions } from './reducer/appReducer';
+import { IUserAction } from './components/Register';
+
+
 //import framework components
 //CS: ClientServices, we will use them a lot, so to shorten the code they are just called: CS
 import { CS } from './framework/CS';
@@ -24,12 +31,34 @@ window.CS = new CS();
 //we create the inital Application State
 window.CS.initializeStore();
 
+reducerFunctions[ActionType.user_logged_in] = function (newState: IState, action: IUserAction) {
+  newState.UI.waitingForResponse = false;
+  newState.UI.loggedIn = true;
+  newState.UI.currentUser = action.user;
+  return newState
+}
+
+
+axios.get("auth/loggedin")
+  .then(res => {
+    const data = res.data;
+    console.log(res.data)
+    if (data.username) {
+      const loggedinAction: IUserAction = {
+        type: ActionType.user_logged_in,
+        user: data as IUser
+      }
+      window.CS.clientAction(loggedinAction);
+    }
+  });
+
+
 //now we can render this state to the DOM using React
 ReactDOM.render(
   <Router history={history}>
-  <App stateCounter={window.CS.getUIState().counter} />
+    <App stateCounter={window.CS.getUIState().counter} />
   </Router>
-, document.getElementById('root'));
+  , document.getElementById('root'));
 
 
 //whenever there is a new state, we render the whole virtual DOM again
@@ -38,8 +67,8 @@ ReactDOM.render(
 window.CS.getStore().subscribe(() => {
   window.CS.log("3. before render ---------------------------------------------");
   ReactDOM.render(<Router history={history}>
-                  <App stateCounter={window.CS.getUIState().counter} />
-                  </Router>, document.getElementById('root'));
+    <App stateCounter={window.CS.getUIState().counter} />
+  </Router>, document.getElementById('root'));
   window.CS.log("3. after render ---------------------------------------------");
 });
 
