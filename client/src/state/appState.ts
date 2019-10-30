@@ -53,6 +53,10 @@ export interface IChange {
     successMessageChange: string;
 }
 
+export interface INewPassword {
+    successMessagePassword: string;
+}
+
 export interface IUI {
     counter: number;
     loggedIn: boolean;
@@ -71,6 +75,7 @@ export interface IUI {
     Password: IPassword;
     Search: ISearch;
     Change: IChange;
+    newPassword: INewPassword;
 }
 
 export interface IFeedbackData {
@@ -129,6 +134,7 @@ export const initial: IState = {
         Password: {errorMessagePassword:""},
         Search: {errorMessageSearch: ""},
         Change: {successMessageChange:""},
+        newPassword: {successMessagePassword:""},
         currentUser: {
             firstname: "",
             lastname: "",
