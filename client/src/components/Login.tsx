@@ -39,8 +39,8 @@ export default class Login extends Component {
     render() {
         if (window.CS.getUIState().loggedIn)
             return (
-                <div>
-                    <p>You are logged in as {window.CS.getBMState().user.username}</p>
+                <div className="logoutContainer">
+                    <h3>Are you sure?</h3>
                     <button className="join-btn" onClick={this.handleLogout}>Logout</button>
                 </div>
             )
