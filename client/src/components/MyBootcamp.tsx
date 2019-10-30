@@ -39,7 +39,6 @@ export default class MyBootcamp extends Component<IProps, IState> {
   componentDidMount() {
     // Get all Feedbacks from Database
     axios.get('/mybootcamp/read').then(response => {
-      console.log(response.data)
       const responseAction: IFeedbackLoadedAction = {
         type: ActionType.add_feedbacks_from_server,
         surveys: response.data as IFeedbackData[]
