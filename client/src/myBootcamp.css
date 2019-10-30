@@ -2,7 +2,7 @@
   width: 1000px;
   margin: 25px;
   padding: 15px;
-  border: 0.5px solid #97c4fe;
+  border: solid #1e62d0;
   border-radius: 10px;
   box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.5);
   line-height: 25px;
@@ -13,7 +13,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 30px;
 }
 
 .feedbackHead {
@@ -30,4 +29,19 @@
   height: 50px;
   width: 400px;
   margin: 15px 15px 30px 15px;
+}
+
+.filterSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f2f2f2;
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.filterSection input {
+  width: 300px;
+  margin: 0 15px 15px 15px;
 }
