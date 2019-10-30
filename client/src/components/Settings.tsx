@@ -93,9 +93,9 @@ export default class Settings extends Component {
   render() {
     if (window.CS.getUIState().currentUser.isAdmin) {
       return (
-        <div>
+        <div className="settingsSection">
           <h1>Settings</h1>
-          <form >
+          <form className="settingsForm">
             {
               <select id="selectbox" onChange={this.handleMemberAndAdmin} name="role" disabled={false}>
                 <option value='Not Registered'>Not Registered</option>
@@ -107,20 +107,21 @@ export default class Settings extends Component {
               <div className="input">
                 <p>
                   <label htmlFor="username"></label>
-                  <input className="form-field" type="username" placeholder="username" onChange={this.handleUsernameRoleChange} />
+                  <input className="smallInput" type="username" placeholder="username" onChange={this.handleUsernameRoleChange} />
                 </p>
-                <input className="button pulse" type='button' onClick={this.handleSearch} value="search" />
-                <input className="button pulse" type="button" onClick={this.handleSubmit} value="change" />
+                <input className="join-btn" type='button' onClick={this.handleSearch} value="search" />
+                <input className="join-btn" type="button" onClick={this.handleSubmit} value="change" />
                 
-                <p>{window.CS.getUIState().Search.errorMessageSearch}</p>
+                <p className="errorMessageNews">{window.CS.getUIState().Search.errorMessageSearch}</p>
                 <p>{window.CS.getUIState().Change.successMessageChange}</p>
               </div>
             </div>
           </form>
+          <hr id="settingsHR" />
           <p>
             <h1>Change your Password</h1>
           </p>
-          <form onSubmit={this.handlePasswordSubmit}>
+          <form className="settingsForm" onSubmit={this.handlePasswordSubmit}>
             <ul>
               <li>
                 <label htmlFor="password"></label>
@@ -131,7 +132,7 @@ export default class Settings extends Component {
                 <input className="inputFields" type="password" placeholder="confirm new password" onChange={this.handlePasswordChange} value={window.CS.getBMState().user.newpassword} />
               </li>
               <input className="join-btn" type="submit" value="Change" />
-              <p>{window.CS.getUIState().Password.errorMessagePassword}</p>
+              <p className="errorMessageNews">{window.CS.getUIState().Password.errorMessagePassword}</p>
               <p>{window.CS.getUIState().newPassword.successMessagePassword}</p>
             </ul>
 
@@ -145,7 +146,7 @@ export default class Settings extends Component {
           <p>
             <h1>Change your Password</h1>
           </p>
-          <form onSubmit={this.handlePasswordSubmit}>
+          <form className="settingsForm" onSubmit={this.handlePasswordSubmit}>
             <ul>
               <li>
                 <label htmlFor="password"></label>
@@ -156,8 +157,8 @@ export default class Settings extends Component {
                 <input className="inputFields" type="password" id ="deleteError" placeholder="confirm new password" onChange={this.handlePasswordChange} value={window.CS.getBMState().user.newpassword} />
               </li>
               <input className="join-btn" type="submit" value="Change" />
-              <p>{window.CS.getUIState().Password.errorMessagePassword}</p>
-             <p className="Maul">{window.CS.getUIState().Change.successMessageChange}</p>
+              <p className="errorMessageNews">{window.CS.getUIState().Password.errorMessagePassword}</p>
+              <p>{window.CS.getUIState().newPassword.successMessagePassword}</p>
             </ul>
           </form>
         </div>
