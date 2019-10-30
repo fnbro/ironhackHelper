@@ -457,7 +457,7 @@ export default class WeeklyFeedback extends React.PureComponent<IFeedbackData, I
 
                     <div className="commentForm">
                         <h3 className="questiontitles">Anything you woud like to add?</h3>
-                        <textarea id="comments" value={window.CS.getBMState().survey.feedback_comments} defaultValue={this.props.feedback_comments} onChange={this.handleCommentChange}> </textarea>
+                        <textarea className="inputNews" id="comments" value={window.CS.getBMState().survey.feedback_comments} defaultValue={this.props.feedback_comments} onChange={this.handleCommentChange}> </textarea>
                     </div>
 
                     <div>

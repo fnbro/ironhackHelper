@@ -52,7 +52,7 @@ export default class Register extends Component {
                         </li>
                         <li>
                             <label htmlFor="username"></label>
-                            <input className="inputFields" type="username" placeholder="Your username" onChange={this.handleUsernameChange} value={window.CS.getBMState().user.username} />
+                            <input className="inputFields" type="username" placeholder="your username" onChange={this.handleUsernameChange} value={window.CS.getBMState().user.username} />
                         </li>
                         <li>
                             <label htmlFor="password"></label>
