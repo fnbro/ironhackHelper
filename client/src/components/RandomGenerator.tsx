@@ -35,7 +35,7 @@ export default class RandomGenerator extends Component<IProps, IState> {
 
     render() {
         const randomUsers: any = [];
-        window.CS.getBMState().members.forEach((user, ind, arr) => {
+        window.CS.getBMState().members.filter(user => user.isAdmin as any === false).forEach((user, ind, arr) => {
             if (ind % 2)
                 randomUsers.push(<RandomUser key={user._id} users={[arr[ind - 1], arr[ind]]} />)
             if (arr.length % 2 && ind === arr.length - 1)
@@ -48,7 +48,7 @@ export default class RandomGenerator extends Component<IProps, IState> {
                 <div id="section">
                     <h1 id="generatorTitle">Pair Programming Generator</h1>
             <button className="randomBtn" onClick={this.randomizeAllUsers}>Random</button>
-                    {window.CS.getBMState().members.length > 0 && <h2 id="memberDescription">You have {window.CS.getBMState().members.length} members in your Bootcamp</h2>}
+                    {window.CS.getBMState().members.length > 0 && <h2 id="memberDescription">You have {window.CS.getBMState().members.filter(user => user.isAdmin as any === false).length} members in your Bootcamp</h2>}
  
                     <table className="blueTable">
                         <tbody>
