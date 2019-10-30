@@ -18,14 +18,6 @@ reducerFunctions[ActionType.login_error] = function (newState: IState, action: I
     newState.UI.Login.errorMessage = action.errorMessage;
     return newState
 }
-reducerFunctions[ActionType.user_logged_in] = function (newState: IState, action: IUserAction) {
-    newState.UI.waitingForResponse = false;
-    newState.UI.Login.errorMessage = "";
-    newState.UI.loggedIn = true;
-    newState.BM.user = action.user;
-    newState.UI.currentUser = action.user;
-    return newState
-}
 reducerFunctions[ActionType.user_logged_out] = function (newState: IState, action: IUserAction) {
     newState.UI.waitingForResponse = false;
     newState.UI.Login.errorMessage = "";

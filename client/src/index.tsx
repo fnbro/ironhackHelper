@@ -34,11 +34,14 @@ window.CS.initializeStore();
 
 reducerFunctions[ActionType.user_logged_in] = function (newState: IState, action: IUserAction) {
   newState.UI.waitingForResponse = false;
+  newState.UI.Login.errorMessage = "";
   newState.UI.loggedIn = true;
+  newState.BM.user = action.user;
   newState.UI.currentUser = action.user;
+  newState.BM.user.oldpassword = "";
+  newState.BM.user.newpassword = "";
   return newState
 }
-
 
 axios.get("auth/loggedin")
   .then(res => {
