@@ -105,8 +105,9 @@ export default class Login extends Component {
                     history.push("/");
                 }
             });
+            
     }
-
+    
     handleLogout() {
         const uiAction: IAction = {
             type: ActionType.server_called
