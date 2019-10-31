@@ -2,7 +2,7 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 30%;
+  width: 20%;
 }
 
 #homepageTitle {
@@ -10,4 +10,15 @@
   margin-top: 5%;
   margin-bottom: 5%;
   color: rgb(34, 39, 104);
+}
+
+.createdBy {
+  text-align: right;
+  margin-right: 3rem;
+  color: rgb(34, 39, 104);
+}
+
+.creator{
+  text-align: right;
+  margin-right: 3rem;
 }
