@@ -30,6 +30,11 @@ reducerFunctions[ActionType.update_user] = function (newState: IState, updateAct
 reducerFunctions[ActionType.user_created] = function (newState: IState, updateAction: IUserAction) {
     newState.UI.waitingForResponse = false;
     newState.UI.Register.errorMessageRegister = "";
+    newState.BM.user.firstname = "";
+    newState.BM.user.lastname = "";
+    newState.BM.user.username = "";
+    newState.BM.user.password = "";
+    newState.BM.user.confirmpassword = "";
     return newState
 }
 export default class Register extends Component {
@@ -132,6 +137,7 @@ export default class Register extends Component {
                     const uiAction: IAction = {
                         type: ActionType.user_created
                     }
+                    
                     history.push('/login');
                     window.CS.clientAction(uiAction);
 
