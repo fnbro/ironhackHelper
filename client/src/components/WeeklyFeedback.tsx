@@ -294,6 +294,26 @@ export default class WeeklyFeedback extends React.PureComponent<IFeedbackData, I
                                 .every((item: any) => item.feedback_week !== 8)} name="Week" value="8" onChange={this.handleWeekChange} />
                             <label htmlFor="week8" className="checkbox-label-week">=> Week 8</label>
                         </div>
+                        <div>
+                            <input type="radio" id="week9" disabled={this.state.data && !this.state.data
+                                .every((item: any) => item.feedback_week !== 9)} name="Week" value="9" onChange={this.handleWeekChange} />
+                            <label htmlFor="week9" className="checkbox-label-week">=> Week 9</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="week10" disabled={this.state.data && !this.state.data
+                                .every((item: any) => item.feedback_week !== 10)} name="Week" value="10" onChange={this.handleWeekChange} />
+                            <label htmlFor="week10" className="checkbox-label-week">=> Week 10</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="week11" disabled={this.state.data && !this.state.data
+                                .every((item: any) => item.feedback_week !== 11)} name="Week" value="11" onChange={this.handleWeekChange} />
+                            <label htmlFor="week11" className="checkbox-label-week">=> Week 11</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="week12" disabled={this.state.data && !this.state.data
+                                .every((item: any) => item.feedback_week !== 12)} name="Week" value="12" onChange={this.handleWeekChange} />
+                            <label htmlFor="week12" className="checkbox-label-week">=> Week 12</label>
+                        </div>
                     </div>
                     <div className="satisfiedForm">
                         <h3 className="questiontitles">On a scale from 0 to 10, how satisfied are you with this week at Ironhack?</h3>
