@@ -103,6 +103,7 @@ export interface IUserData {
     _id: string;
     username: string; 
     isAdmin?: string;   
+    isMember?: string;
 }
 
 export interface IFilter {
