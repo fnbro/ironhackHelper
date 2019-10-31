@@ -131,13 +131,7 @@ export default class Newsticker extends Component<IProps, IState> {
     }
     else {
       return (
-        <div className="errorBody" >
-          <div className="error-main">
-            <h1>Oops!</h1>
-            <div className="error-heading">403</div>
-            <p>You do not have permission to access the document or program that you requested.</p>
-          </div>
-        </div>
+        <div></div>
       )
     }
   }

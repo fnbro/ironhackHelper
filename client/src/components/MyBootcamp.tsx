@@ -130,6 +130,12 @@ export default class MyBootcamp extends Component<IProps, IState> {
       </div>
     )
     }
+    else {
+      return(
+        <div></div>
+      )
+    }
+
   }
 
   handleWeekChange(event: any) {
