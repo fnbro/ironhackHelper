@@ -26,6 +26,14 @@ router.post("/signup", (req, res) => {
       res.status(200).json({ errorMessage: "Type in a Username and a Password" });
       return;
     }
+    if (firstname === "") {
+      res.status(200).json({ errorMessage: "Type in your firstname" });
+      return;
+    }
+    if (lastname === "") {
+      res.status(200).json({ errorMessage: "Type in your lastname" });
+      return;
+    }
     if (user !== null) {
       console.log("User with username exists already:" + username);
       res.status(200).json({ errorMessage: 'this user already exists' });
