@@ -19,6 +19,12 @@ export interface IFeedbackAction extends IAction {
 reducerFunctions[ActionType.add_survey] = function (newState: IState, updateAction: IFeedbackAction) {
     newState.BM.allSurveys.push(updateAction.survey);
     newState.UI.waitingForResponse = false;
+    newState.BM.survey.feedback_week = -1;
+    newState.BM.survey.feedback_satisfied = -1;
+    newState.BM.survey.feedback_happy.splice(0,3);
+    newState.BM.survey.feedback_unhappy.splice(0,3);
+    newState.BM.survey.feedback_comments="";
+    newState.UI.Survey.errorMessageSurvey = "";
     return newState;
 }
 
