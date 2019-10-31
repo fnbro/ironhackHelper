@@ -27,18 +27,8 @@
   letter-spacing: .15em;
   border-radius: 0;
   height: 50px;
-  width: 400px;
+  width: 210px;
   margin: 15px 15px 30px 15px;
-}
-
-.filterSection {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #f2f2f2;
-  width: 100%;
-  padding: 15px;
-  margin-bottom: 15px;
 }
 
 .smallInput {
@@ -48,4 +38,43 @@
   border-radius: 4px;
   resize: vertical;
   margin: 0 15px 15px 15px;
+}
+
+.filterinput {
+  width: 190px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  margin: 15px;
+}
+.filterSection > h3 {
+  margin-left: 15px;
+}
+
+.filterSection label {
+  margin-left: 15px;
+}
+
+/* The sidebar menu */
+.filterSection {
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 250px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  left: 0;
+  background-color: rgb(157, 158, 167); /* Black */
+  overflow: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+}
+
+/* Style page content */
+.feedbackContainer {
+  margin-left: 250px; /* Same as the width of the sidebar */
+  padding: 0px 10px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .filterSection {padding-top: 15px;}
+  .filterSection a {font-size: 18px;}
 }
