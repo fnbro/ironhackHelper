@@ -111,6 +111,7 @@ export default class Login extends Component {
         const uiAction: IAction = {
             type: ActionType.server_called
         }
+        console.log("Test")
         window.CS.clientAction(uiAction);
         axios.get('/auth/logout').then(res => {
             const loggedoutAction: IAction = {
@@ -119,7 +120,6 @@ export default class Login extends Component {
             window.CS.clientAction(loggedoutAction);
         }
         );
-        window.location.reload();
     }
 
 }
