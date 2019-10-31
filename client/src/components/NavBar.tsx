@@ -12,6 +12,7 @@ export default class nav extends Component {
                 <nav>
                     <div id="ironhack-helper">
                         <NavLink to="/">Ironhack Helper</NavLink>
+                        <div id="showusername">Hello {window.CS.getUIState().currentUser.username}!</div>
                     </div>
                     <div id="nav-links">
                         <NavLink to="/">Home</NavLink>
@@ -40,6 +41,7 @@ export default class nav extends Component {
             <nav>
                 <div id="ironhack-helper">
                     <NavLink to="/">Ironhack Helper</NavLink>
+                    <div id="showusername">Hello {window.CS.getUIState().currentUser.username}!</div>
                 </div>
                 <div id="nav-links">
                     <NavLink to="/">Home</NavLink>
@@ -66,6 +68,7 @@ export default class nav extends Component {
             <nav>
                 <div id="ironhack-helper">
                     <NavLink to="/">Ironhack Helper</NavLink>
+                    <div id="showusername">Hello {window.CS.getUIState().currentUser.username}!</div>
                 </div>
                 <div id="nav-links">
                     <NavLink to="/">Home</NavLink>
