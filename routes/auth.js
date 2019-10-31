@@ -41,13 +41,6 @@ router.post("/signup", (req, res) => {
 
     const userPassworEncrypted = { username, password, firstname, lastname, isMember, isAdmin };
     console.log("User will be created:" + userPassworEncrypted);
-    req.session.destroy(err => {
-      if (err) {
-        console.log(err);
-      } else {
-        res.status(200).json({ errorMessage: "logged out" });
-      }
-    });
     User
       .create(userPassworEncrypted)
       .then((user) => {
