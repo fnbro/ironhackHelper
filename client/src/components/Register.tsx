@@ -32,7 +32,6 @@ reducerFunctions[ActionType.user_created] = function (newState: IState, updateAc
     console.log(updateAction.user);
     newState.UI.waitingForResponse = false;
     newState.UI.Register.errorMessageRegister = "";
-    newState.UI.loggedIn = true;
     return newState
 }
 export default class Register extends Component {
@@ -136,7 +135,7 @@ export default class Register extends Component {
                     const uiAction: IAction = {
                         type: ActionType.user_created
                     }
-                    history.push('/');
+                    history.push('/login');
                     window.CS.clientAction(uiAction);
 
                     console.log(res.data)
